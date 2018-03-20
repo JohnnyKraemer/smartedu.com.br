@@ -1,0 +1,154 @@
+-- Criar novo projeto Laravel
+composer create-project --prefer-dist laravel/laravel blog
+
+-- Criar Auth
+php artisan make:auth
+
+-- Ver todos os comandos disponível do Artisan
+php artisan
+
+-- Criar model e migration
+php artisan make:model Models\\Cargo -m
+composer dump-autoload
+php artisan migrate
+
+-- Exclui todas as tabelas e cria novamente
+php artisan migrate:fresh
+
+-- Seeds
+php artisan db:seed
+php artisan db:seed --class=AllTableSeeder
+
+-- Modificações XAMPP necessárias para este projeto
+max_execution_time=1000
+max_input_vars = 100000
+post_max_size=50M
+upload_max_filesize=50M
+
+SELECT student.codigo, student.nome, detail.periodoCarga, situation.situation_long, course.name
+FROM student
+LEFT JOIN detail ON student.id = detail.student_id
+LEFT JOIN course ON student.course_id = course.id
+LEFT JOIN situation ON detail.situation_id = situation.id
+WHERE detail.periodoCarga = (SELECT MAX(detail.periodoCarga) FROM detail WHERE detail.student_id = student.id)
+ORDER BY student.nome ASC
+
+--------------- TOTAL DE ACERTOS POR TEST
+SELECT test_classifier.id, classifier.name, test_classifier.success, variable.name
+FROM test_classifier
+LEFT JOIN classifier
+ON test_classifier.classifier_id = classifier.id
+LEFT JOIN test_classifier_variable
+ON test_classifier.id = test_classifier_variable.test_classifier_id
+LEFT JOIN variable
+ON variable.id = test_classifier_variable.variable_id
+WHERE `period_calculation` = '14-1-2018'
+ORDER BY classifier.name ASC, test_classifier.success DESC
+
+--------------- TOTAL DE ACERTOS POR CLASSIFICADOR
+SELECT classifier.name, SUM(test_classifier.success)
+FROM test_classifier
+LEFT JOIN classifier
+ON test_classifier.classifier_id = classifier.id
+WHERE `period_calculation` = '14-1-2018'
+GROUP BY classifier.name
+ORDER BY classifier.name ASC
+
+SELECT COUNT(variable.id) FROM variable WHERE variable.use_classify = 1
+
+SELECT count(test_classifier.id) AS total_tests, classifier.name, SUM(test_classifier.success) AS sucess,
+		SUM(test_classifier.failure) AS failure,
+        ( SUM(test_classifier.success)+SUM(test_classifier.failure)) AS total
+FROM test_classifier
+LEFT JOIN classifier
+ON test_classifier.classifier_id = classifier.id
+WHERE `period_calculation` =
+	(SELECT IFNULL(MAX(t.period_calculation),0) as period_calculation
+     FROM test_classifier t
+     WHERE t.period = 1 )
+AND test_classifier.course_id = 2
+GROUP BY classifier.name
+ORDER BY SUM(test_classifier.success) DESC
+LIMIT 3
+
+--------------- TOTAL DE ACERTOS POR VARIAVEL DE TODOS OS CLASSIFICADORES
+SELECT test_classifier.id
+FROM test_classifier
+LEFT JOIN classifier
+ON test_classifier.classifier_id = classifier.id
+LEFT JOIN test_classifier_variable
+ON test_classifier.id = test_classifier_variable.test_classifier_id
+WHERE test_classifier.period_calculation = (
+    SELECT MAX(test_classifier.period_calculation)
+    FROM test_classifier
+    WHERE test_classifier.type = 3)
+AND test_classifier.type = 3
+AND test_classifier.course_id = 2
+ORDER BY test_classifier.success DESC
+
+SELECT variable.name, SUM(test_classifier.success) AS total
+FROM test_classifier
+LEFT JOIN classifier
+ON test_classifier.classifier_id = classifier.id
+LEFT JOIN test_classifier_variable
+ON test_classifier.id = test_classifier_variable.test_classifier_id
+LEFT JOIN variable
+ON variable.id = test_classifier_variable.variable_id
+WHERE test_classifier.period_calculation = (SELECT MAX(test_classifier.period_calculation) FROM test_classifier)
+GROUP BY variable.name
+ORDER BY total DESC
+
+--------------- TOTAL DE ACERTOS POR VARIAVEL POR CLASSIFICADOR
+SELECT variable.name, SUM(test_classifier.success) AS total
+FROM test_classifier
+LEFT JOIN classifier
+ON test_classifier.classifier_id = classifier.id
+LEFT JOIN test_classifier_variable
+ON test_classifier.id = test_classifier_variable.test_classifier_id
+LEFT JOIN variable
+ON variable.id = test_classifier_variable.variable_id
+WHERE test_classifier.period_calculation =
+    (SELECT IFNULL(MAX(t.period_calculation),0) as period_calculation FROM test_classifier t)
+AND test_classifier.course_id = :course_id
+AND classifier.id = 1
+GROUP BY variable.name
+ORDER BY total DESC
+
+
+
+SELECT classifier.*
+FROM test_classifier
+LEFT JOIN classifier
+ON test_classifier.classifier_id = classifier.id
+WHERE `period_calculation` = '14-1-2018'
+GROUP BY classifier.name
+ORDER BY SUM(test_classifier.success) DESC
+LIMIT 3 test_classifier.period_calculation
+
+
+-- ALUNOS POR PERIODO (SEM CONTAR O ULTIMO)
+SELECT student.codigo, student.nome, detail.periodo_carga, detail.periodo,situation.situation_long, situation.situation_short
+FROM student
+LEFT JOIN student_detail
+ON student.id = student_detail.student_id
+LEFT JOIN detail
+ON detail.id = student_detail.detail_id
+LEFT JOIN situation
+ON situation.id = detail.situation_id
+LEFT JOIN course
+ON course.id = student.course_id
+LEFT JOIN campus
+ON campus.id = course.campus_id
+WHERE detail.id =
+	(SELECT  max(detail.id)
+	FROM student s
+	LEFT JOIN student_detail
+	ON s.id = student_detail.student_id
+	LEFT JOIN detail
+	ON detail.id = student_detail.detail_id
+	WHERE detail.periodo_carga != (SELECT MAX(detail.periodo_carga) FROM detail)
+    AND detail.periodo =  6
+    AND s.id = student.id)
+AND course.id =  2
+AND (situation.situation_short LIKE 'Evadido' OR situation.situation_short LIKE 'Não Evadido')
+ORDER BY detail.periodo_carga DESC
