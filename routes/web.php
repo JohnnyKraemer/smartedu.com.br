@@ -18,7 +18,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth', 'namespace' => 'admi
     Route::resource('/situation', 'SituationController', ['as' => 'situation']);
 });
 
-Route::group(['prefix' => '/development', 'middleware' => 'auth', 'namespace' => 'development'], function () {
+Route::group(['prefix' => '/development', 'middleware' => 'developer', 'namespace' => 'development'], function () {
     Route::get('/upload', 'UploadController@index')->name('upload')->middleware('auth');
     Route::post('/upload/upload', 'UploadController@upload')->middleware('auth');
 

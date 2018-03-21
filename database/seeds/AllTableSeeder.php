@@ -29,15 +29,9 @@ class AllTableSeeder extends Seeder
             'visible' => false,
         ]);
 
-        $position_coordenador = Position::create([
-            'name' => 'Professor',
-            'description' => 'Professor de Curso',
-            'visible' => true,
-        ]);
-
-        $position_coordenador = Position::create([
-            'name' => 'Coordenador',
-            'description' => 'Coordenador de Curso',
+        $position_adm_instituicao = Position::create([
+            'name' => 'Administrador da Instituição',
+            'description' => 'Administrador da Instituição',
             'visible' => true,
         ]);
 
@@ -47,11 +41,19 @@ class AllTableSeeder extends Seeder
             'visible' => true,
         ]);
 
-        $position_adm_instituicao = Position::create([
-            'name' => 'Administrador da Instituição',
-            'description' => 'Administrador da Instituição',
+        $position_coordenador = Position::create([
+            'name' => 'Coordenador',
+            'description' => 'Coordenador de Curso',
             'visible' => true,
         ]);
+
+
+        $position_coordenador = Position::create([
+            'name' => 'Professor',
+            'description' => 'Professor de Curso',
+            'visible' => true,
+        ]);
+
 
         //------------------------- Campus -------------------------
         //$campus_pato = Campus::create([
