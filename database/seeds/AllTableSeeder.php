@@ -568,14 +568,34 @@ class AllTableSeeder extends Seeder
             'description' => 'Falecido',
         ]);
         Situation::create([
-            'situation_short' => 'Outro',
+            'situation_short' => 'Não Evadido',
             'situation_long' => 'Enade pendente',
             'description' => 'Enade pendente',
         ]);
         Situation::create([
-            'situation_short' => 'Outro',
+            'situation_short' => 'Não Evadido',
             'situation_long' => 'Afastado para estudos no exterior',
             'description' => 'Afastado para estudos no exterior',
+        ]);
+        Situation::create([
+            'situation_short' => 'Outro',
+            'situation_long' => 'Expulso',
+            'description' => 'Expulso',
+        ]);
+        Situation::create([
+            'situation_short' => 'Outro',
+            'situation_long' => 'Matrícula sub judice',
+            'description' => 'Matrícula sub judice',
+        ]);
+        Situation::create([
+            'situation_short' => 'Evadido',
+            'situation_long' => 'Mudou de Curso',
+            'description' => 'Mudou de Curso',
+        ]);
+        Situation::create([
+            'situation_short' => 'Outro',
+            'situation_long' => 'Em mobilidade (intercâmpus)',
+            'description' => 'Em mobilidade (intercâmpus)',
         ]);
     }
 }

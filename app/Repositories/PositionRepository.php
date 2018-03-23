@@ -16,4 +16,6 @@ class PositionRepository extends AbstractRepository
     {
         $this->model = $model;
     }
+
+
 }

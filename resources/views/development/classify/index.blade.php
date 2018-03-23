@@ -182,8 +182,9 @@
 
         <!--begin: Datatable -->
         <div class="m_datatable" id="local_data"></div>
-        <input type="hidden" id="objects" name="objects" value="{{$objects}}">
         <input type="hidden" id="grafic_one" name="grafic_one" value="{{$grafic_one}}">
+        <input type="hidden" id="objects" name="objects" value="{{$objects}}">
+
         <!--end: Datatable -->
     </div>
 </div>

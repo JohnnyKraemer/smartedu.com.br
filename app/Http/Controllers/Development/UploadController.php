@@ -46,6 +46,8 @@ class UploadController extends Controller
     {
         $data = $request->get('data');
 
+        //dd($data);
+
         try {
             foreach ($data as $mydata) {
                 try {
@@ -199,6 +201,17 @@ class UploadController extends Controller
                     return "Erro ao atribuir o Detalhe ao Aluno!";
                 }
             }
+
+            $courses = \App\Models\Course::all();
+
+            foreach ($courses as $course){
+                if($course->students_formed > 50 && $course->students_evaded > 50){
+                    $course->use_classify = 1;
+                }else{
+                    $course->use_classify = 0;
+                }
+            }
+
             return $data;
         } catch (Exception $e) {
             return $data;

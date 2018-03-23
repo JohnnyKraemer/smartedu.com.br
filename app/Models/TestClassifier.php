@@ -42,23 +42,6 @@ class TestClassifier extends Model
         'classifier_id',
         'course_id',];
 
-    public $TEST_BASE = 0;
-    public $TEST_ALL = 1;
-
-    public function getTest_Base(){
-        return $this->TEST_BASE;
-    }
-    //public static final int TEST_SINGLE = 2;
-    //public static final int TEST_PATTERN = 3;
-
-    //public static final int TEST_PERIOD_BASE = 4;
-    //public static final int TEST_PERIOD_ALL = 5;
-    //public static final int TEST_PERIOD_SINGLE = 6;
-    //public static final int TEST_PERIOD_PATTERN = 7;
-
-    //public static final int RESULT_ERROR = 0;
-    //public static final int RESULT_SUCCESS = 1;
-
     public function variables()
     {
         return $this->belongsToMany(Variable::class, 'test_classifier_variable', 'test_classifier_id', 'variable_id');
@@ -95,34 +78,58 @@ class TestClassifier extends Model
     //--------- Success and Failure : GENERAL
     public function getSuccessPercentAttribute()
     {
-        return ($this->success / ($this->success + $this->failure)) * 100;
+        if($this->success != 0){
+            return ($this->success / ($this->success + $this->failure)) * 100;
+        } else{
+            return 0;
+        }
     }
 
     public function getFailurePercentAttribute()
     {
-        return ($this->failure / ($this->success + $this->failure)) * 100;
+        if($this->failure != 0){
+            return ($this->failure / ($this->success + $this->failure)) * 100;
+        } else{
+            return 0;
+        }
     }
 
     //--------- Success and Failure : EVADED
     public function getSuccessEvadedPercentAttribute()
     {
-        return ($this->success_evaded / ($this->success_evaded + $this->failure_evaded)) * 100;
+        if($this->success_evaded != 0){
+            return ($this->success_evaded / ($this->success_evaded + $this->failure_evaded)) * 100;
+        } else{
+            return 0;
+        }
     }
 
     public function getFailureEvadedPercentAttribute()
     {
-        return ($this->failure_evaded / ($this->failure_evaded + $this->success_evaded)) * 100;
+        if($this->failure_evaded != 0){
+            return ($this->failure_evaded / ($this->failure_evaded + $this->success_evaded)) * 100;
+        } else{
+            return 0;
+        }
     }
 
     //--------- Success and Failure : NOT EVADED
     public function getSuccessNotEvadedPercentAttribute()
     {
-        return ($this->success_evaded / ($this->success_evaded + $this->failure_not_evaded)) * 100;
+        if($this->success_evaded != 0){
+            return ($this->success_evaded / ($this->success_evaded + $this->failure_not_evaded)) * 100;
+        } else{
+            return 0;
+        }
     }
 
     public function getFailureNotEvadedPercentAttribute()
     {
-        return ($this->failure_not_evaded / ($this->failure_not_evaded + $this->success_evaded)) * 100;
+        if($this->failure_not_evaded != 0){
+            return ($this->failure_not_evaded / ($this->failure_not_evaded + $this->success_evaded)) * 100;
+        } else{
+            return 0;
+        }
     }
 
     public function getClassifierNameAttribute()
@@ -137,6 +144,6 @@ class TestClassifier extends Model
 
     public function getCampusNameAttribute()
     {
-        return Course::find($this->course_id)->campus->name;
+        return Course::find($this->course_id)->campus;
     }
 }

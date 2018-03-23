@@ -68,6 +68,8 @@ class ClassifyController extends Controller
             $grafic_one = $this->repository->getBestXTestClassifiersByTypeAndPeriodCalculatio(9, $period_calculation);
             $grafic_one = json_encode($grafic_one);
 
+
+
             $classifiers = Classifier::where('use_classify', 1)
                 ->orderBy('name', 'asc')
                 ->get();
@@ -91,7 +93,11 @@ class ClassifyController extends Controller
                 ),
                 3
             );
+
             //$objects->load('variables','classifier','course');
+            //$objects = json_encode($objects);
+
+            //dd($objects);
 
             return view($this->way[0] . 'index', compact([
                 'objects', $objects,
@@ -105,7 +111,8 @@ class ClassifyController extends Controller
         } catch (Exception $e) {
             $request->session()->flash('type', 'danger');
             $request->session()->flash('message', 'Ocorreu um erro no sistema.');
-            return redirect('/');
+            dd($e);
+            //return redirect('/');
         }
     }
 

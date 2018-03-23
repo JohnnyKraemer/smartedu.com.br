@@ -218,7 +218,34 @@
 
 				if(worksheets.length){
 					worksheets.forEach(function (item) {
-						send_data(item, position);
+					    //console.log(item);
+
+					    var quant = parseInt(item.length / 10);
+                        var students;
+
+                        var inicio = 0;
+                        var final = quant;
+
+                        console.log(quant);
+
+					    for(var i = 1; i <= 10; i++){
+					        console.log(inicio);
+                            console.log(final);
+                            students = item.slice(inicio, final);
+                            send_data(students, position);
+
+                            if(i == 9){
+                                inicio = final +1;
+                                final = item.length;
+                            }else{
+                                inicio = final + 1;
+                                final = inicio + quant;
+                            }
+                        }
+
+                        //send_data(item, position);
+
+
 					});
 				}else{
 					if(worksheet_is_empty && !worksheet_is_not_correct_pattern){

@@ -189,7 +189,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item  m-menu__item" aria-haspopup="true">
-                                    <a href="{{ url('/instituicao') }}" class="m-menu__link ">
+                                    <a href="{{ url('/admin/institution/') }}" class="m-menu__link ">
                                         <span class="m-menu__item-here"></span>
                                         <span class="m-menu__link-text">
 												Instituição
@@ -197,7 +197,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item  m-menu__item" aria-haspopup="true">
-                                    <a href="{{ url('/campus') }}" class="m-menu__link ">
+                                    <a href="{{ url('/admin/campus/') }}" class="m-menu__link ">
                                         <span class="m-menu__item-here"></span>
                                         <span class="m-menu__link-text">
 												Câmpus
@@ -205,7 +205,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item  m-menu__item" aria-haspopup="true">
-                                    <a href="{{ url('/course') }}" class="m-menu__link ">
+                                    <a href="{{ url('/admin/course/') }}" class="m-menu__link ">
                                         <span class="m-menu__item-here"></span>
                                         <span class="m-menu__link-text">
 												Curso
@@ -213,7 +213,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item  m-menu__item" aria-haspopup="true">
-                                    <a href="{{ url('/student') }}" class="m-menu__link ">
+                                    <a href="{{ url('/admin/student/') }}" class="m-menu__link ">
                                         <span class="m-menu__item-here"></span>
                                         <span class="m-menu__link-text">
 												Aluno

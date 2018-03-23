@@ -656,7 +656,7 @@
 		data-menu-scrollable="false" data-menu-dropdown-timeout="500">
 		<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 			<li class="m-menu__item " aria-haspopup="true">
-				<a href="{{ url('/') }}" class="m-menu__link ">
+				<a href="{{ url('/admin/institution/') }}" class="m-menu__link ">
 					<i class="m-menu__link-icon flaticon-line-graph"></i>
 					<span class="m-menu__link-title">
 						<span class="m-menu__link-wrap">
@@ -673,7 +673,7 @@
 				</a>
 			</li>
 			<li class="m-menu__item " aria-haspopup="true">
-				<a href="{{ url('/') }}" class="m-menu__link ">
+				<a href="{{ url('/admin/campus/') }}" class="m-menu__link ">
 					<i class="m-menu__link-icon flaticon-line-graph"></i>
 					<span class="m-menu__link-title">
 						<span class="m-menu__link-wrap">
