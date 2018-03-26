@@ -23,7 +23,8 @@ class TestClassifier extends Model
         'success_evaded_percent',
         'failure_evaded_percent',
         'success_not_evaded_percent',
-        'failure_not_evaded_percent'];
+        'failure_not_evaded_percent',
+        'probabilitys'];
 
     protected $fillable = [
         'period_calculation',
@@ -145,5 +146,12 @@ class TestClassifier extends Model
     public function getCampusNameAttribute()
     {
         return Course::find($this->course_id)->campus;
+    }
+
+    public function getProbabilitysAttribute()
+    {
+        return DB::table('probability')
+            ->where('test_classifier_id', '=', $this->id)
+            ->get();
     }
 }

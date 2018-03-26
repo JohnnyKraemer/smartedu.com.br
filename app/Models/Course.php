@@ -93,14 +93,14 @@ class Course extends Model
                             LEFT JOIN detail ON student.id = detail.student_id
                             LEFT JOIN situation ON detail.situation_id = situation.id
                             WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
-                            AND situation.situation_short = "Nao Evadido"
+                            AND situation.situation_short = "Formado"
                             AND student.course_id = :course', ['course' => $this->id])[0]->total;
     }
 
     public function getStudentsEvadedPercentAttribute()
     {
         if ($this->getStudentsEvadedAttribute() != 0) {
-            return ($this->getStudentsEvadedAttribute() / $this->getStudentsAttribute()) * 100;
+            return  number_format((($this->getStudentsEvadedAttribute() / $this->getStudentsAttribute()) * 100),2, '.', ',' );
         } else {
             return 0;
         }
@@ -109,7 +109,7 @@ class Course extends Model
     public function getStudentsNotEvadedPercentAttribute()
     {
         if ($this->getStudentsNotEvadedAttribute() != 0) {
-            return ($this->getStudentsNotEvadedAttribute() / $this->getStudentsAttribute()) * 100;
+            return  number_format((($this->getStudentsNotEvadedAttribute() / $this->getStudentsAttribute()) * 100),2, '.', ',' );
         } else {
             return 0;
         }
@@ -118,7 +118,7 @@ class Course extends Model
     public function getStudentsFormedPercentAttribute()
     {
         if ($this->getStudentsFormedAttribute() != 0) {
-            return ($this->getStudentsFormedAttribute() / $this->getStudentsAttribute()) * 100;
+            return  number_format((($this->getStudentsFormedAttribute() / $this->getStudentsAttribute()) * 100),2, '.', ',' );
         } else {
             return 0;
         }

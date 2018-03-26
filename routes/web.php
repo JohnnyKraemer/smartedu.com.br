@@ -9,10 +9,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => '/admin', 'middleware' => 'auth', 'namespace' => 'admin'], function () {
-    Route::get('/course', 'CourseController@index')->name('course')->middleware('auth');
-    Route::get('/campus', 'CampusController@index')->name('campus')->middleware('auth');
-    Route::get('/position', 'PositionController@index')->name('position')->middleware('auth');
-    Route::get('/student', 'StudentController@index')->name('student')->middleware('auth');
+    Route::get('/course', 'CourseController@index')->name('course');
+    Route::post('/course/{state}/{id}', 'CourseController@alterState');
+
+    Route::get('/campus/{id}', 'CampusController@index');
+    Route::get('/course/{id}', 'CourseController@index');
+
+    Route::get('/position', 'PositionController@index')->name('position');
+    Route::get('/student', 'StudentController@index')->name('student');
 
     Route::resource('/user', 'UserController', ['as' => 'user']);
     Route::resource('/situation', 'SituationController', ['as' => 'situation']);

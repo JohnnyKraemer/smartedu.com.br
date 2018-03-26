@@ -33,11 +33,6 @@ class InstitutionController extends Controller
         $this->test_classifier_repository = $test_classifier_repository;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         try {
@@ -51,21 +46,21 @@ class InstitutionController extends Controller
                 ),
                 array(
                     array(0 => "success", 1 => "desc")
-                ),
-                3
+                )
             );
 
+
             $objects = Campus::all()->toJson();
-
+            $campus = Campus::all()->toArray();
             $evaded_by_yaer_semester = json_encode($this->repository->getEvadedByYearAndSemester());
-
+            $bests_test = json_encode($bests_test);
 
             $courses = Course::all()->toArray();
             usort($courses,function ($a, $b) {
                 return $a['students_evaded_percent'] < $b['students_evaded_percent'];
             });
-            if(count($courses) > 5){
-                $courses = array_slice($courses, 0, 5);
+            if(count($courses) > 8){
+                $courses = array_slice($courses, 0, 8);
             }
 
             $total_by_situation_short = DB::select('SELECT situation.situation_short, COUNT(student.id) AS total 
@@ -81,15 +76,27 @@ class InstitutionController extends Controller
             $total = DB::select('SELECT COUNT(student.id) AS total 
                                     FROM student')[0]->total;
 
+            $total_not_evaded_high_prob = DB::select('SELECT COUNT(probability.id) AS total
+                                        FROM probability
+                                        LEFT JOIN test_classifier
+                                        ON probability.test_classifier_id = test_classifier.id
+                                        WHERE test_classifier.type = 9
+                                        AND test_classifier.period_calculation = (SELECT MAX(test_classifier.period_calculation) AS period_calculation FROM test_classifier WHERE test_classifier.type = 9)
+                                        AND probability.state = "Não Evadido"
+                                        AND probability.probability_evasion > 0.5')[0]->total;
+
             foreach ($total_by_situation_short as $totals){
                 $totals->percent = (($totals->total / $total)*100 );
             }
 
             return view($this->way[0] . 'index', compact([
+                'campus',$campus,
                 'objects', $objects,
                 'courses', $courses,
                 'evaded_by_yaer_semester', $evaded_by_yaer_semester,
-                'total_by_situation_short', $total_by_situation_short
+                'total_by_situation_short', $total_by_situation_short,
+                'bests_test',$bests_test,
+                'total_not_evaded_high_prob',$total_not_evaded_high_prob
             ]));
         } catch (Exception $e) {
             $request->session()->flash('type', 'danger');
@@ -99,15 +106,4 @@ class InstitutionController extends Controller
             //return redirect('/');
         }
     }
-
-    public function campus(Request $request)
-    {
-        try {
-        } catch (Exception $e) {
-            $request->session()->flash('type', 'danger');
-            $request->session()->flash('message', 'Ocorreu um erro no sistema.');
-            return redirect('/');
-        }
-    }
-
 }

@@ -25,7 +25,16 @@
     <link href="<?php echo asset('assets/charts/amcharts/plugins/export/export.css') ?>" rel="stylesheet"
           type="text/css"/>
     <link rel="shortcut icon"
-          href="<?php echo asset('assets/demo/demo5/media/img/logo/favicon.ico') ?>"/> @yield('stylesheets')
+          href="<?php echo asset('assets/demo/demo5/media/img/logo/favicon.ico') ?>"/>
+
+    <link href="<?php echo asset('assets/datatables/Select-1.2.5/css/select.semanticui.min.css') ?>" rel="stylesheet"
+          type="text/css"/>
+    <link href="<?php echo asset('assets/datatables/Responsive-2.2.1/css/responsive.semanticui.min.css') ?>"
+          rel="stylesheet" type="text/css"/>
+    <link href="<?php echo asset('assets/datatables/SemanticUI-2.2.13/semantic.min.css') ?>" rel="stylesheet"
+          type="text/css"/>
+
+    @yield('stylesheets')
 </head>
 
 <body class="m-page--wide m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default"
@@ -180,14 +189,6 @@
                         <div id="m_header_menu"
                              class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-dark m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light ">
                             <ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
-                                <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
-                                    <a href="{{ url('/') }}" class="m-menu__link ">
-                                        <span class="m-menu__item-here"></span>
-                                        <span class="m-menu__link-text">
-												Dashboard
-											</span>
-                                    </a>
-                                </li>
                                 <li class="m-menu__item  m-menu__item" aria-haspopup="true">
                                     <a href="{{ url('/admin/institution/') }}" class="m-menu__link ">
                                         <span class="m-menu__item-here"></span>
@@ -197,7 +198,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item  m-menu__item" aria-haspopup="true">
-                                    <a href="{{ url('/admin/campus/') }}" class="m-menu__link ">
+                                    <a href="{{ url('/admin/campus/1') }}" class="m-menu__link ">
                                         <span class="m-menu__item-here"></span>
                                         <span class="m-menu__link-text">
 												Câmpus
@@ -205,7 +206,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item  m-menu__item" aria-haspopup="true">
-                                    <a href="{{ url('/admin/course/') }}" class="m-menu__link ">
+                                    <a href="{{ url('/admin/course/1') }}" class="m-menu__link ">
                                         <span class="m-menu__item-here"></span>
                                         <span class="m-menu__link-text">
 												Curso
@@ -474,6 +475,12 @@
     <script src="<?php echo asset('assets/charts/amcharts/plugins/export/export.min.js') ?>"
             type="text/javascript"></script>
     <script src="<?php echo asset('assets/charts/amcharts/themes/light.js') ?>" type="text/javascript"></script>
+
+    <script src="<?php echo asset('assets/datatables/datatables.min.js') ?>" type="text/javascript"></script>
+    <script src="<?php echo asset('assets/datatables/SemanticUI-2.2.13/semantic.min.js') ?>"
+            type="text/javascript"></script>
+    <script src="<?php echo asset('assets/datatables/DataTables-1.10.16/js/dataTables.semanticui.min.js') ?>"
+            type="text/javascript"></script>
 
     <script>
         @if (Session::has('type'))
