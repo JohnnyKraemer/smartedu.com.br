@@ -166,7 +166,7 @@ class StudentRepository extends AbstractRepository
     }
 
     //Quantidade de por situcao resumida e idade ingresso
-    public function getCountStudensBySituationShortAndColumn(array $column, array $criteria, $orderBy = null)
+    public function getCountStudens(array $column, array $criteria, array $groupby = null, $orderBy = null)
     {
         try {
             $sql = "SELECT ";
@@ -191,21 +191,21 @@ class StudentRepository extends AbstractRepository
                 }
             }
 
-            $sql = $sql . "\n GROUP BY ";
-            $i = 1;
-            if ($column != null) {
-                foreach ($column as $c) {
+            if ($groupby != null) {
+                $sql = $sql . "\n GROUP BY ";
+                $i = 1;
+                foreach ($groupby as $c) {
                     $sql = $sql . $c;
 
-                    if ($i != count($column)) {
+                    if ($i != count($groupby)) {
                         $sql = $sql . ", ";
                     }
                     $i = $i + 1;
                 }
             }
 
-            if($orderBy != null){
-                $sql = $sql . "\n ORDER BY " .$orderBy;
+            if ($orderBy != null) {
+                $sql = $sql . "\n ORDER BY " . $orderBy;
             }
             return DB::select($sql);
         } catch (\Exception $e) {

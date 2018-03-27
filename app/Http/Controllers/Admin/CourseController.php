@@ -69,42 +69,75 @@ class CourseController extends Controller
             );
 
             $all_campus = Campus::all();
-
             $objects = $this->student_repository->findBy(
                 array(
                     array(0 => "course_id", 1 => "=", 2 => $id)
                 )
             );
 
-            //dd($objects);
+            $wheres = array(array(0 => "course.id", 1 => "=", 2 => $id), array(0 => "situation.situation_short", 1 => "!=", 2 => "'Outro'"));
+            $group_bys = array(0 => "category", 1 => "situation_short");
 
-            //$objects = json_encode($objects);
-            //dd($objects->toJson());
+            $students_by_periodo = json_encode(
+                $this->student_repository->getCountStudens(
+                    array(0 => "detail.periodo AS category", 1 => "situation.situation_short"), $wheres, $group_bys
+                ));
 
-            $evaded_by_yaer_semester = json_encode($this->student_repository->getEvadedByYearAndSemesterAndCourse($id));
-            $students_evaded_by_genre = json_encode($this->student_repository->getEvadedByGenreAndCourse($id));
-            $students_evaded_by_period = json_encode($this->student_repository->getEvadedByPeriodAndCourse($id));
-            $students_evaded_by_genre_complete = json_encode($this->student_repository->getEvadedByGenreAndCourseComplete($id));
+            $students_by_ano_semestre = json_encode(
+                $this->student_repository->getCountStudens(
+                    array(0 => "CONCAT(detail.ano_situacao, '-',detail.semestre_situacao ) AS category", 1 => "situation.situation_short"), $wheres, $group_bys
+                ));
+
+            $students_by_genero = json_encode(
+                $this->student_repository->getCountStudens(
+                    array(0 => "student.genero AS category", 1 => "situation.situation_short"), $wheres, $group_bys
+                ));
 
             $students_by_idade_ingresso = json_encode(
-                $this->student_repository->getCountStudensBySituationShortAndColumn(
-                    array(0 => "student.idade_ingresso" , 1 => "situation.situation_short"),
-                    array(array(0 => "course.id", 1 => "=", 2 => $id)),
-                    "student.idade_ingresso"
+                $this->student_repository->getCountStudens(
+                    array(0 => "student.idade_ingresso AS category", 1 => "situation.situation_short"), $wheres, $group_bys
+                ));
+
+            $students_by_idade_situacao = json_encode(
+                $this->student_repository->getCountStudens(
+                    array(0 => "detail.idade_situacao AS category", 1 => "situation.situation_short"), $wheres, $group_bys
+                ));
+
+            $students_by_disciplinas_aprovadas = json_encode(
+                $this->student_repository->getCountStudens(
+                    array(0 => "detail.disciplinas_aprovadas AS category", 1 => "situation.situation_short"), $wheres, $group_bys
+                ));
+
+            $students_by_disciplinas_reprovadas_frequencia = json_encode(
+                $this->student_repository->getCountStudens(
+                    array(0 => "detail.disciplinas_reprovadas_frequencia AS category", 1 => "situation.situation_short"), $wheres, $group_bys
+                ));
+
+            $students_by_disciplinas_reprovadas_nota = json_encode(
+                $this->student_repository->getCountStudens(
+                    array(0 => "detail.disciplinas_reprovadas_nota AS category", 1 => "situation.situation_short"), $wheres, $group_bys
+                ));
+
+            $students_by_quant_semestre_cursados = json_encode(
+                $this->student_repository->getCountStudens(
+                    array(0 => "detail.quant_semestre_cursados AS category", 1 => "situation.situation_short"), $wheres, $group_bys
                 ));
 
 
             return view($this->way[0] . 'index', compact([
                 'object', $object,
                 'objects', $objects,
-                'evaded_by_yaer_semester', $evaded_by_yaer_semester,
-                'students_evaded_by_genre', $students_evaded_by_genre,
-                'students_evaded_by_period', $students_evaded_by_period,
                 'bests_test', $bests_test,
-                'courses', $courses,
                 'all_campus', $all_campus,
-                'students_evaded_by_genre_complete', $students_evaded_by_genre_complete,
-                'students_by_idade_ingresso', $students_by_idade_ingresso
+                'students_by_idade_ingresso', $students_by_idade_ingresso,
+                'students_by_idade_situacao', $students_by_idade_situacao,
+                'students_by_disciplinas_aprovadas', $students_by_disciplinas_aprovadas,
+                'students_by_disciplinas_reprovadas_frequencia', $students_by_disciplinas_reprovadas_frequencia,
+                'students_by_disciplinas_reprovadas_nota', $students_by_disciplinas_reprovadas_nota,
+                'students_by_quant_semestre_cursados', $students_by_quant_semestre_cursados,
+                'students_by_genero', $students_by_genero,
+                'students_by_ano_semestre', $students_by_ano_semestre,
+                'students_by_periodo', $students_by_periodo
             ]));
         } catch (Exception $e) {
             $request->session()->flash('type', 'danger');

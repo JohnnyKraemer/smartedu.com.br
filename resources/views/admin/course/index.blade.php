@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Campus')
+@section('title', 'Curso')
 
 @section('stylesheets')
     <style>
@@ -15,14 +15,14 @@
             <div class="m-portlet m-portlet--tab">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title" style="width: 670px;">
+                        <div class="m-portlet__head-title" style="width: 100%;">
                             <span class="m-portlet__head-icon m--hide">
                               <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text" style="text-align: left; width: 70px;">
                                 Curso:
                             </h3>
-                            <h3 class="m-portlet__head-text" style="text-align: left; width: 600px;">
+                            <h3 class="m-portlet__head-text" style="text-align: left; width: 80%;">
                                 <select class="form-control m-select2" id="m_select2_1" name="param"
                                         onchange="location = './'+this.value;">
                                     @foreach($all_campus as $campus)
@@ -174,6 +174,64 @@
     </div>
 
     <div class="row">
+
+        <div class="col-lg-6">
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                              <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Alunos por Idade de Ingresso
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body" style="padding: 0;">
+                    <div id="chart_idade_ingresso" style="height: 280px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                              <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Alunos por Idade de Situação
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body" style="padding: 0;">
+                    <div id="chart_idade_situacao" style="height: 280px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon m--hide">
+                                      <i class="la la-gear"></i>
+                                    </span>
+                            <h3 class="m-portlet__head-text">
+                                Alunos Evadidos por Ano/Semestre
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body" style="padding: 0;">
+                    <div id="chart_evaded_by_year_semester" style="height: 280px;"></div>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-6">
             <div class="m-portlet m-portlet--tab">
                 <div class="m-portlet__head">
@@ -198,59 +256,21 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <span class="m-portlet__head-icon m--hide">
-                              <i class="la la-gear"></i>
-                            </span>
-                            <h3 class="m-portlet__head-text">
-                                Alunos por Idade de Ingresso
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_idade_ingresso" style="height: 280px;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="m-portlet m-portlet--tab">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
                                     <span class="m-portlet__head-icon m--hide">
                                       <i class="la la-gear"></i>
                                     </span>
                             <h3 class="m-portlet__head-text">
-                                Alunos Evadidos por Gênero
+                                Alunos por Quantidade de Semestres Cursados
                             </h3>
                         </div>
                     </div>
                 </div>
                 <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_evaded_by_genre" style="height: 280px;"></div>
+                    <div id="chart_students_by_quant_semestre_cursados" style="height: 280px;"></div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-8">
-            <div class="m-portlet m-portlet--tab">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                                    <span class="m-portlet__head-icon m--hide">
-                                      <i class="la la-gear"></i>
-                                    </span>
-                            <h3 class="m-portlet__head-text">
-                                Alunos Evadidos por Ano/Semestre
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_short" style="height: 280px;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="m-portlet m-portlet--tab">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
@@ -266,6 +286,63 @@
                 </div>
                 <div class="m-portlet__body" style="padding: 0;">
                     <div id="chart_evaded_by_period" style="height: 280px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon m--hide">
+                                      <i class="la la-gear"></i>
+                                    </span>
+                            <h3 class="m-portlet__head-text">
+                                Alunos por Disciplinas Aprovadas
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body" style="padding: 0;">
+                    <div id="chart_disciplinas_aprovadas" style="height: 280px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon m--hide">
+                                      <i class="la la-gear"></i>
+                                    </span>
+                            <h3 class="m-portlet__head-text">
+                                Alunos por Disciplinas Reprovadas por Frequência
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body" style="padding: 0;">
+                    <div id="chart_students_by_disciplinas_reprovadas_frequencia" style="height: 280px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon m--hide">
+                                      <i class="la la-gear"></i>
+                                    </span>
+                            <h3 class="m-portlet__head-text">
+                                Alunos por Disciplinas Reprovadas por Nota
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body" style="padding: 0;">
+                    <div id="chart_students_by_disciplinas_reprovadas_nota" style="height: 280px;"></div>
                 </div>
             </div>
         </div>
@@ -324,34 +401,23 @@
             </table>
         </div>
     </div>
-
-    <input type="hidden" id="evaded_by_yaer_semester" name="evaded_by_yaer_semester"
-           value="{{$evaded_by_yaer_semester}}">
-    <input type="hidden" id="students_evaded_by_genre" name="students_evaded_by_genre"
-           value="{{$students_evaded_by_genre}}">
-    <input type="hidden" id="students_evaded_by_genre_complete" name="students_evaded_by_genre_complete"
-           value="{{$students_evaded_by_genre_complete}}">
-    <input type="hidden" id="students_evaded_by_period" name="students_evaded_by_period"
-           value="{{$students_evaded_by_period}}">
-    <input type="hidden" id="students_by_idade_ingresso" name="students_by_idade_ingresso"
-           value="{{$students_by_idade_ingresso}}">
-    <input type="hidden" id="bests_test" name="bests_test" value="{{$bests_test}}">
-    <input type="hidden" id="object" name="object" value="{{$object}}">
 @endsection
 @section('scripts')
 
 
     <script>
         $(document).ready(function () {
-            var object = JSON.parse(document.getElementById("object").value);
-            var bests_test = JSON.parse(document.getElementById("bests_test").value);
-            var evaded_by_yaer_semester = JSON.parse(document.getElementById("evaded_by_yaer_semester").value);
-            var students_evaded_by_genre = JSON.parse(document.getElementById("students_evaded_by_genre").value);
-            var students_evaded_by_period = JSON.parse(document.getElementById("students_evaded_by_period").value);
-            var students_evaded_by_genre_complete = JSON.parse(document.getElementById("students_evaded_by_genre_complete").value);
-            var students_by_idade_ingresso = JSON.parse(document.getElementById("students_by_idade_ingresso").value);
+            var bests_test = JSON.parse({!! json_encode($bests_test) !!});
+            var students_by_periodo = JSON.parse({!! json_encode($students_by_periodo) !!});
+            var students_by_idade_ingresso = JSON.parse({!! json_encode($students_by_idade_ingresso) !!});
+            var students_by_idade_situacao = JSON.parse({!! json_encode($students_by_idade_situacao) !!});
+            var students_by_disciplinas_aprovadas = JSON.parse({!! json_encode($students_by_disciplinas_aprovadas) !!});
+            var students_by_quant_semestre_cursados = JSON.parse({!! json_encode($students_by_quant_semestre_cursados) !!});
+            var students_by_disciplinas_reprovadas_frequencia = JSON.parse({!! json_encode($students_by_disciplinas_reprovadas_frequencia) !!});
+            var students_by_disciplinas_reprovadas_nota = JSON.parse({!! json_encode($students_by_disciplinas_reprovadas_nota) !!});
+            var students_by_genero = JSON.parse({!! json_encode($students_by_genero) !!});
+            var students_by_ano_semestre = JSON.parse({!! json_encode($students_by_ano_semestre) !!});
 
-            console.log(students_by_idade_ingresso);
 
 
             var table = $('#example').DataTable({
@@ -402,64 +468,319 @@
                 }
             });
 
-            var st;
-            var i = 0;
-            students_by_idade_ingresso.forEach(function(object){
-
-                if(object.idade_ingresso){
-
-                }
+            students_by_disciplinas_reprovadas_nota = normalizeData(students_by_disciplinas_reprovadas_nota);
+            AmCharts.makeChart("chart_students_by_disciplinas_reprovadas_nota", {
+                "type": "serial",
+                "categoryField": "category",
+                "startDuration": 1,
+                "categoryAxis": {
+                    "gridPosition": "start"
+                },
+                "chartCursor": {
+                    "enabled": true
+                },
+                "valueScrollbar": {
+                    "enabled": true
+                },
+                "graphs": [
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-1",
+                        "lineAlpha": 0,
+                        "title": "Evadidos",
+                        "valueField": "evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-2",
+                        "lineAlpha": 0,
+                        "title": "Não Evadidos",
+                        "valueField": "nao_evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-3",
+                        "lineAlpha": 0,
+                        "title": "Formados",
+                        "valueField": "formados"
+                    }
+                ],
+                "legend": {
+                    "enabled": true
+                },
+                "dataProvider": students_by_disciplinas_reprovadas_nota
             });
 
-            var chart_short = AmCharts.makeChart("chart_idade_ingresso",{
-                    "type": "serial",
-                    "categoryField": "idade_ingresso",
-                    "startDuration": 1,
-                    "categoryAxis": {
-                        "gridPosition": "start"
+            students_by_disciplinas_reprovadas_frequencia = normalizeData(students_by_disciplinas_reprovadas_frequencia);
+            AmCharts.makeChart("chart_students_by_disciplinas_reprovadas_frequencia", {
+                "type": "serial",
+                "categoryField": "category",
+                "startDuration": 1,
+                "categoryAxis": {
+                    "gridPosition": "start"
+                },
+                "chartCursor": {
+                    "enabled": true
+                },
+                "valueScrollbar": {
+                    "enabled": true
+                },
+                "graphs": [
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-1",
+                        "lineAlpha": 0,
+                        "title": "Evadidos",
+                        "valueField": "evadidos"
                     },
-                    "trendLines": [],
-                    "graphs": [
-                        {
-                            "balloonText": "[[title]] of [[category]]:[[value]]",
-                            "fillAlphas": 0.7,
-                            "id": "AmGraph-1",
-                            "lineAlpha": 0,
-                            "title": "Evadidos",
-                            "valueField": "total"
-                        },
-                        {
-                            "balloonText": "[[title]] of [[category]]:[[value]]",
-                            "fillAlphas": 0.7,
-                            "id": "AmGraph-1",
-                            "lineAlpha": 0,
-                            "title": "Formados",
-                            "valueField": "total"
-                        }
-                    ],
-                    "guides": [],
-                    "valueAxes": [
-                        {
-                            "id": "ValueAxis-1",
-                            "title": "Axis title"
-                        }
-                    ],
-                    "allLabels": [],
-                    "balloon": {},
-                    "legend": {
-                        "enabled": true
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-2",
+                        "lineAlpha": 0,
+                        "title": "Não Evadidos",
+                        "valueField": "nao_evadidos"
                     },
-                    "titles": [
-                        {
-                            "id": "Title-1",
-                            "size": 15,
-                            "text": "Chart Title"
-                        }
-                    ],
-                    "dataProvider": students_by_idade_ingresso
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-3",
+                        "lineAlpha": 0,
+                        "title": "Formados",
+                        "valueField": "formados"
+                    }
+                ],
+                "legend": {
+                    "enabled": true
+                },
+                "dataProvider": students_by_disciplinas_reprovadas_frequencia
             });
 
-            var chart_short1 = AmCharts.makeChart("chart_evaded_by_genre_complete", {
+            students_by_quant_semestre_cursados = normalizeData(students_by_quant_semestre_cursados);
+            AmCharts.makeChart("chart_students_by_quant_semestre_cursados", {
+                "type": "serial",
+                "categoryField": "category",
+                "startDuration": 1,
+                "categoryAxis": {
+                    "gridPosition": "start"
+                },
+                "chartCursor": {
+                    "enabled": true
+                },
+                "valueScrollbar": {
+                    "enabled": true
+                },
+                "graphs": [
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-1",
+                        "lineAlpha": 0,
+                        "title": "Evadidos",
+                        "valueField": "evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-2",
+                        "lineAlpha": 0,
+                        "title": "Não Evadidos",
+                        "valueField": "nao_evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-3",
+                        "lineAlpha": 0,
+                        "title": "Formados",
+                        "valueField": "formados"
+                    }
+                ],
+                "legend": {
+                    "enabled": true
+                },
+                "dataProvider": students_by_quant_semestre_cursados
+            });
+
+            students_by_disciplinas_aprovadas = normalizeData(students_by_disciplinas_aprovadas);
+            AmCharts.makeChart("chart_disciplinas_aprovadas", {
+                "type": "serial",
+                "categoryField": "category",
+                "startDuration": 1,
+                "categoryAxis": {
+                    "gridPosition": "start"
+                },
+                "chartCursor": {
+                    "enabled": true
+                },
+                "valueScrollbar": {
+                    "enabled": true
+                },
+                "graphs": [
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-1",
+                        "lineAlpha": 0,
+                        "title": "Evadidos",
+                        "valueField": "evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-2",
+                        "lineAlpha": 0,
+                        "title": "Não Evadidos",
+                        "valueField": "nao_evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-3",
+                        "lineAlpha": 0,
+                        "title": "Formados",
+                        "valueField": "formados"
+                    }
+                ],
+                "legend": {
+                    "enabled": true
+                },
+                "dataProvider": students_by_disciplinas_aprovadas
+            });
+
+            students_by_idade_situacao = normalizeData(students_by_idade_situacao);
+            AmCharts.makeChart("chart_idade_situacao", {
+                "type": "serial",
+                "categoryField": "category",
+                "startDuration": 1,
+                "categoryAxis": {
+                    "gridPosition": "start"
+                },
+                "chartCursor": {
+                    "enabled": true
+                },
+                "valueScrollbar": {
+                    "enabled": true
+                },
+                "graphs": [
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-1",
+                        "lineAlpha": 0,
+                        "title": "Evadidos",
+                        "valueField": "evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-2",
+                        "lineAlpha": 0,
+                        "title": "Não Evadidos",
+                        "valueField": "nao_evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-3",
+                        "lineAlpha": 0,
+                        "title": "Formados",
+                        "valueField": "formados"
+                    }
+                ],
+                "legend": {
+                    "enabled": true
+                },
+                "dataProvider": students_by_idade_situacao
+            });
+
+            students_by_idade_ingresso = normalizeData(students_by_idade_ingresso);
+            AmCharts.makeChart("chart_idade_ingresso", {
+                "type": "serial",
+                "categoryField": "category",
+                "startDuration": 1,
+                "categoryAxis": {
+                    "gridPosition": "start"
+                },
+                "chartCursor": {
+                    "enabled": true
+                },
+                "valueScrollbar": {
+                    "enabled": true
+                },
+                "graphs": [
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-1",
+                        "lineAlpha": 0,
+                        "title": "Evadidos",
+                        "valueField": "evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-2",
+                        "lineAlpha": 0,
+                        "title": "Não Evadidos",
+                        "valueField": "nao_evadidos"
+                    },
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-3",
+                        "lineAlpha": 0,
+                        "title": "Formados",
+                        "valueField": "formados"
+                    }
+                ],
+                "legend": {
+                    "enabled": true
+                },
+                "dataProvider": students_by_idade_ingresso
+            });
+
+            students_by_ano_semestre = normalizeData(students_by_ano_semestre);
+            AmCharts.makeChart("chart_evaded_by_year_semester", {
+                "type": "serial",
+                "categoryField": "category",
+                "startDuration": 1,
+                "categoryAxis": {
+                    "gridPosition": "start"
+                },
+                "chartCursor": {
+                    "enabled": true
+                },
+                "graphs": [
+                    {
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-1",
+                        "lineAlpha": 0,
+                        "title": "Evadidos",
+                        "valueField": "evadidos"
+                    },{
+                        "balloonText": "[[title]] de [[category]]:[[value]]",
+                        "fillAlphas": 0.7,
+                        "id": "AmGraph-2",
+                        "lineAlpha": 0,
+                        "title": "Formados",
+                        "valueField": "formados"
+                    }
+                ],
+                "legend": {
+                    "enabled": true
+                },
+                "dataProvider": students_by_ano_semestre
+            });
+
+
+            students_by_genero = normalizeData(students_by_genero);
+            AmCharts.makeChart("chart_evaded_by_genre_complete", {
                     "type": "serial",
                     "categoryField": "category",
                     "startDuration": 1,
@@ -469,32 +790,32 @@
                     "trendLines": [],
                     "graphs": [
                         {
-                            "balloonText": "[[title]]:[[value]] - [[percents]]%",
+                            "balloonText": "[[title]]: [[value]] - [[percents]]%",
                             "fillAlphas": 1,
                             "id": "AmGraph-1",
-                            "title": "Evadido",
+                            "title": "Evadidos",
                             "type": "column",
                             "labelText": "[[percents]]%",
-                            "valueField": "column-1"
+                            "valueField": "evadidos"
 
                         },
                         {
-                            "balloonText": "[[title]]:[[value]] - [[percents]]%",
+                            "balloonText": "[[title]]: [[value]] - [[percents]]%",
                             "fillAlphas": 1,
                             "id": "AmGraph-2",
-                            "title": "Formado",
+                            "title": "Formados",
                             "type": "column",
                             "labelText": "[[percents]]%",
-                            "valueField": "column-2"
+                            "valueField": "formados"
                         },
                         {
-                            "balloonText": "[[title]]:[[value]] - [[percents]]%",
+                            "balloonText": "[[title]]: [[value]] - [[percents]]%",
                             "fillAlphas": 1,
                             "id": "AmGraph-3",
-                            "title": "Não Evadido",
+                            "title": "Não Evadidos",
                             "type": "column",
                             "labelText": "[[percents]]%",
-                            "valueField": "column-3"
+                            "valueField": "nao_evadidos"
                         }
                     ],
                     "guides": [],
@@ -511,53 +832,61 @@
                         "enabled": true,
                         "useGraphSettings": true
                     },
-                    "dataProvider": [
-                        {
-                            "category": "Feminino",
-                            "column-1": students_evaded_by_genre_complete[0].total,
-                            "column-2": students_evaded_by_genre_complete[2].total,
-                            "column-3": students_evaded_by_genre_complete[4].total,
-                            "total": (students_evaded_by_genre_complete[0].total +
-                                students_evaded_by_genre_complete[2].total +
-                                students_evaded_by_genre_complete[4].total)
-                        },
-                        {
-                            "category": "Masculino",
-                            "column-1": students_evaded_by_genre_complete[1].total,
-                            "column-2": students_evaded_by_genre_complete[3].total,
-                            "column-3": students_evaded_by_genre_complete[5].total,
-                            "total": (students_evaded_by_genre_complete[1].total +
-                                students_evaded_by_genre_complete[3].total +
-                                students_evaded_by_genre_complete[5].total)
-
-                        }
-                    ]
+                    "dataProvider": students_by_genero
                 }
             );
 
-            AmCharts.makeChart("chart_evaded_by_genre", {
-                "type": "pie",
-                "theme": "light",
-                "dataProvider": [{
-                    "tipo": "Feminino",
-                    "resultado": students_evaded_by_genre["0"].total
-                }, {
-                    "tipo": "Masculino",
-                    "resultado": students_evaded_by_genre["1"].total
-                }],
-                "valueField": "resultado",
-                "titleField": "tipo",
-                "balloon": {
-                    "fixedPosition": true
-                },
-                "export": {
-                    "enabled": true
-                }
-            });
-
+            students_by_periodo = normalizeData(students_by_periodo);
             AmCharts.makeChart("chart_evaded_by_period", {
                     "type": "serial",
-                    "categoryField": "periodo",
+                    "categoryField": "category",
+                    "startDuration": 1,
+                    "categoryAxis": {
+                        "gridPosition": "start"
+                    },
+                    "trendLines": [],
+                    "graphs": [
+                        {
+                            "balloonText": "[[title]]: [[value]] - [[percents]]%",
+                            "fillAlphas": 1,
+                            "id": "AmGraph-1",
+                            "title": "Evadidos",
+                            "type": "column",
+                            "labelText": "[[percents]]%",
+                            "valueField": "evadidos"
+
+                        },
+                        {
+                            "balloonText": "[[title]]: [[value]] - [[percents]]%",
+                            "fillAlphas": 1,
+                            "id": "AmGraph-3",
+                            "title": "Não Evadidos",
+                            "type": "column",
+                            "labelText": "[[percents]]%",
+                            "valueField": "nao_evadidos"
+                        }
+                    ],
+                    "guides": [],
+                    "valueAxes": [
+                        {
+                            "id": "ValueAxis-1",
+                            "stackType": "regular",
+                            //"title": "Axis title"
+                        }
+                    ],
+                    "allLabels": [],
+                    "balloon": {},
+                    "legend": {
+                        "enabled": true,
+                        "useGraphSettings": true
+                    },
+                    "dataProvider": students_by_periodo
+                }
+            );
+            /*
+            AmCharts.makeChart("chart_evaded_by_period", {
+                    "type": "serial",
+                    "categoryField": "category",
                     "marginBottom": 0,
                     "startDuration": 1,
                     "theme": "light",
@@ -570,7 +899,7 @@
                     "trendLines": [],
                     "graphs": [
                         {
-                            "balloonText": "Alunos Evadidos: [[value]]",
+                            "balloonText": "Evadidos: [[value]]",
                             "fillAlphas": 1,
                             "fontSize": -2,
                             "id": "AmGraph-1",
@@ -578,18 +907,69 @@
                             "title": "graph 1",
                             "type": "column",
                             "labelText": "[[total]]",
-                            "valueField": "total"
+                            "valueField": "evadidos"
+                        },
+                        {
+                            "balloonText": "Não Evadidos: [[value]]",
+                            "fillAlphas": 1,
+                            "fontSize": -2,
+                            "id": "AmGraph-1",
+                            "lineThickness": 2,
+                            "title": "graph 1",
+                            "type": "column",
+                            "labelText": "[[total]]",
+                            "valueField": "nao_evadidos"
                         }
                     ],
                     "guides": [],
                     "allLabels": [],
                     "balloon": {},
-                    "dataProvider": students_evaded_by_period
+                    "dataProvider": students_by_periodo
                 }
             );
-
+            */
             $('#m_form_campus').selectpicker();
         });
+
+
+
+        function normalizeData(objects) {
+            var categorys = [];
+            var students = [];
+
+            for (var i = 0; i < objects.length; i++) {
+                categorys[i] = objects[i].category;
+            }
+            categorys = categorys.filter(function onlyUnique(value, index, self) {
+                return self.indexOf(value) === index;
+            });
+
+            for (var i = 0; i < categorys.length; i++) {
+                var item = objects.filter(function (v) {
+                    return v.category === categorys[i]; // Filter out the appropriate one
+                });
+
+                students[i] = {
+                    "category": categorys[i],
+                    "formados": 0,
+                    "evadidos": 0,
+                    "nao_evadidos": 0
+                }
+
+                if (item != []) {
+                    item.forEach(function (obj) {
+                        if (obj.situation_short === "Evadido") {
+                            students[i].evadidos = obj.total;
+                        } else if (obj.situation_short === "Não Evadido") {
+                            students[i].nao_evadidos = obj.total;
+                        } else if (obj.situation_short === "Formado") {
+                            students[i].formados = obj.total;
+                        }
+                    });
+                }
+            }
+            return students;
+        }
     </script>
     <script src="<?php echo asset('/public/assets/demo/default/custom/components/forms/widgets/select2.js') ?>"
             type="text/javascript"></script>
