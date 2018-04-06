@@ -63,7 +63,6 @@ class UploadController extends Controller
                     $course = Course::firstOrCreate([
                         'name' => $mydata["Curso"],
                         'nivel_ensino' => $mydata["Nível de ensino"],
-                        'turno' => "",
                         'grau' => $mydata["Grau"],
                         'periodicidade' => $mydata["Periodicidade"],
                         'funcionamento' => $mydata["Funcionamento"],
@@ -74,6 +73,7 @@ class UploadController extends Controller
                         'total_periodos' => $mydata["Total de períodos do curso"],
                         'campus_id' => $campus->id,
                     ]);
+
                 } catch (Exception $e) {
                     return "Erro ao criar/buscar o Curso!";
                 }
@@ -82,11 +82,23 @@ class UploadController extends Controller
                     $dataNascimento = $mydata["Data de nascimento"];
                     $dataIngresso = $mydata["Data de ingresso"];
 
-                    list($anoNascimento, $mesNascimento, $diaNascimento) = explode('-', $dataNascimento);
-                    list($anoIngresso, $mesIngresso, $diaIngresso) = explode('-', $dataIngresso);
-                    $ingresso = mktime(0, 0, 0, $mesIngresso, $diaIngresso, $anoIngresso);
-                    $nascimento = mktime( 0, 0, 0, $mesNascimento, $diaNascimento, $anoNascimento);
-                    $idadeIngresso = floor((((($ingresso - $nascimento) / 60) / 60) / 24) / 365.25);
+                    if($dataIngresso == "-"){
+                        $dataIngresso = null;
+                    }
+
+                    if($dataNascimento == "-"){
+                        $dataNascimento = null;
+                    }
+
+                    if($dataNascimento != null && $dataIngresso != null){
+                        list($anoNascimento, $mesNascimento, $diaNascimento) = explode('-', $dataNascimento);
+                        list($anoIngresso, $mesIngresso, $diaIngresso) = explode('-', $dataIngresso);
+                        $ingresso = mktime(0, 0, 0, $mesIngresso, $diaIngresso, $anoIngresso);
+                        $nascimento = mktime( 0, 0, 0, $mesNascimento, $diaNascimento, $anoNascimento);
+                        $idadeIngresso = floor((((($ingresso - $nascimento) / 60) / 60) / 24) / 365.25);
+                    }else{
+                        $idadeIngresso = null;
+                    }
 
                     $enemHumanas = null;
                     $enemLinguagem = null;
@@ -96,31 +108,31 @@ class UploadController extends Controller
                     $notaFinalSISU = null;
                     
 
-                    if ($mydata["Nota ENEM Humanas"] = !"-") {
+                    if ($mydata["Nota ENEM Humanas"] != "-") {
                         $enemHumanas = $mydata["Nota ENEM Humanas"];
                     }
 
-                    if ($mydata["Nota ENEM Liguagem"] = !"-") {
+                    if ($mydata["Nota ENEM Liguagem"] != "-") {
                         $enemLinguagem = $mydata["Nota ENEM Liguagem"];
                     }
 
-                    if ($mydata["Nota ENEM Matemática"] = !"-") {
+                    if ($mydata["Nota ENEM Matemática"] != "-") {
                         $enemMatematica = $mydata["Nota ENEM Matemática"];
                     }
 
-                    if ($mydata["Nota ENEM Natureza"] = !"-") {
+                    if ($mydata["Nota ENEM Natureza"] != "-") {
                         $enemNatureza = $mydata["Nota ENEM Natureza"];
                     }
 
-                    if ($mydata["Nota ENEM Redação"] = !"-") {
+                    if ($mydata["Nota ENEM Redação"] != "-") {
                         $enemRedacao = $mydata["Nota ENEM Redação"];
                     }
 
-                    if ($mydata["Nota final SISU"] = !"-") {
+                    if ($mydata["Nota final SISU"] != "-") {
                         $notaFinalSISU = $mydata["Nota final SISU"];
                     }
 
-                    if ($mydata["Nota ENEM Natureza"] = !"-") {
+                    if ($mydata["Nota ENEM Natureza"] != "-") {
                         $enemNatureza = $mydata["Nota ENEM Natureza"];
                     }
 
@@ -136,6 +148,7 @@ class UploadController extends Controller
                         'mudou_curso_outro_campus' => $mydata["Mudou de curso - outro câmpus"],
                         'municipio' => $mydata["Município"],
                         'municipio_sisu' => $mydata["Município SISU"],
+                        'email' => $mydata["E-mail"],
                         'enem_humanas' => $enemHumanas,
                         'enem_linguagem' => $enemLinguagem,
                         'enem_matematica' => $enemMatematica,
@@ -167,8 +180,10 @@ class UploadController extends Controller
                 try {
                     $cr = null;
 
-                    if ($mydata["Coeficiente de rendimento"] = !"-") {
-                        $cr = $mydata["Nota ENEM Humanas"];
+                    if ($mydata["Coeficiente de rendimento"] != "-") {
+                        $cr = $mydata["Coeficiente de rendimento"];
+                    }else{
+                        $cr = null;
                     }
 
                     $detail = Detail::firstOrCreate([
@@ -202,18 +217,19 @@ class UploadController extends Controller
                 }
             }
 
-            $courses = \App\Models\Course::all();
+            //$courses = \App\Models\Course::all();
 
-            foreach ($courses as $course){
-                if($course->students_formed > 50 && $course->students_evaded > 50){
-                    $course->use_classify = 1;
-                }else{
-                    $course->use_classify = 0;
-                }
-            }
+            //foreach ($courses as $course){
+            //    if($course->students_formed > 50 && $course->students_evaded > 50){
+            //        $course->use_classify = 1;
+           //     }else{
+           //         $course->use_classify = 0;
+            //    }
+           // }
 
             return $data;
         } catch (Exception $e) {
+            dd($e);
             return $data;
         }
     }

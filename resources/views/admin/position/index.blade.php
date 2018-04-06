@@ -1,99 +1,53 @@
-@extends('layouts.admin') @section('title', 'Cargos') @section('content')
+@extends('layouts.base') @section('title', 'Cargos') @section('content')
 
-<div class="m-portlet m-portlet--mobile">
-	<div class="m-portlet__head">
-		<div class="m-portlet__head-caption">
-			<div class="m-portlet__head-title">
-				<h3 class="m-portlet__head-text">
-					Cargos
-				</h3>
-			</div>
-		</div>
-	</div>
-	<div class="m-portlet__body">
-		<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-15">
-			<div class="row align-items-center">
-				<div class="col-xl-12 order-2 order-xl-1">
-					<div class="form-group m-form__group row align-items-center">
-						<div class="col-md-6">
-							<div class="m-input-icon m-input-icon--left">
-								<input type="text" class="form-control m-input m-input--solid" placeholder="Pesquisa..." id="m_form_search">
-								<span class="m-input-icon__icon m-input-icon__icon--left">
-									<span>
-										<i class="la la-search"></i>
-									</span>
-								</span>
-							</div>
+	<div class="m-portlet m-portlet--mobile">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+							<h3 class="m-portlet__head-text">
+								Cargos
+							</h3>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="m-portlet__head-tools">
+			</div>
 		</div>
-		<!--end: Search Form -->
-
-		<!--begin: Datatable -->
-		<div class="m_datatable" id="local_data"></div>
-		<input type="hidden" id="objects" name="objects" value="{{$objects}}">
-		<!--end: Datatable -->
+		<div class="m-portlet__body">
+			<table id="table" class="table table-striped table-bordered" style="width:100%">
+				<thead>
+				<tr>
+					<th>#</th>
+					<th>Nome</th>
+					<th>Descrição</th>
+				</tr>
+				</thead>
+				<tbody>
+				@foreach ($objects as $object)
+					<tr>
+						<td>{{$object->id}}</td>
+						<td>{{$object->name}}</td>
+						<td>{{$object->description}}</td>
+					</tr>
+				@endforeach
+				</tbody>
+			</table>
+		</div>
 	</div>
-</div>
+
 @endsection
 @section('scripts')
 <script>
 	$( document ).ready(function() {
-		var objects = JSON.parse(document.getElementById("objects").value);
-
-		var datatable = $('.m_datatable').mDatatable({
-			data: {
-				type: 'local',
-				source: objects,
-				pageSize: 10,
-				saveState: {
-					cookie: false,
-					webstorage: false
-				},
-			},
-			layout: {
-				theme: 'default',
-				class: '',
-				scroll: false,
-				height: 450,
-				footer: false
-			},
-			sortable: true,
-			filterable: false,
-			pagination: true,
-			columns: [{
-				field: "id",
-				title: "#",
-				width: 20,
-				selector: false,
-				textAlign: 'center',
-				sortable: 'asc',
-				responsive: {
-					visible: 'md',
-  					hidden: 'lg'
-				}
-			}, {
-				field: "name",
-				title: "Nome",
-				width: 200,
-			},{
-				field: "description",
-				title: "Descrição",
-				responsive: {
-					visible: 'md',
-  					hidden: ''
-				}
-			}]
-		});
-
-		var query = datatable.getDataSourceQuery();
-
-		$('#m_form_search').on('keyup', function (e) {
-			datatable.search($(this).val().toLowerCase());
-		}).val(query.generalSearch);
-
+        var table = $('#table').DataTable({
+            responsive: true,
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+            }
+        });
 	});
 </script>
 @endsection

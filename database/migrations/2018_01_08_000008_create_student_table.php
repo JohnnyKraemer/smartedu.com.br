@@ -17,6 +17,7 @@ class CreateStudentTable extends Migration
             $table->increments('id');            
             $table->bigInteger('codigo')->nullable();
             $table->string('nome')->nullable();
+            $table->string('email')->nullable();
             $table->string('genero')->nullable();
             $table->smallInteger('idade_ingresso')->nullable();
             $table->double('enem_humanas', 8, 2)->nullable();

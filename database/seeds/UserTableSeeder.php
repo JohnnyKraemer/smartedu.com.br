@@ -14,13 +14,48 @@ class UserTableSeeder extends Seeder
     public function run()
     {
 
+        User::create([
+            'name' => 'Coordenador Pato Branco',
+            'email' => 'patobranco@coordenador.com.br',
+            'password' => bcrypt('111111'),
+            'status' => 1,
+            'position_id' => 4,
+            'campus_id' => 5,
+        ]);
 
         User::create([
-            'name' => 'Johnny Rockembach',
-            'email' => 'johnny@alunos.utfpr.edu.br',
-            'password' => bcrypt('123456'),
+            'name' => 'Coordenador Curitiba',
+            'email' => 'curitiba@coordenador.com.br',
+            'password' => bcrypt('111111'),
             'status' => 1,
-            'position_id' => 1
+            'position_id' => 4,
+            'campus_id' => 1,
+        ]);
+
+        User::create([
+            'name' => 'Administrador Pato Branco',
+            'email' => 'patobranco@administrador.com.br',
+            'password' => bcrypt('111111'),
+            'status' => 1,
+            'position_id' => 3,
+            'campus_id' => 5,
+        ]);
+
+        User::create([
+            'name' => 'Administrador Curitiba',
+            'email' => 'curitiba@administrador.com.br',
+            'password' => bcrypt('111111'),
+            'status' => 1,
+            'position_id' => 3,
+            'campus_id' => 1,
+        ]);
+
+        User::create([
+            'name' => 'Administrador Instituição',
+            'email' => 'instituicao@administrador.com.br',
+            'password' => bcrypt('111111'),
+            'status' => 1,
+            'position_id' => 2,
         ]);
     }
 }

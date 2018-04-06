@@ -3,55 +3,119 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\DetailRepository;
 use Exception;
 use Illuminate\Http\Request;
+use App\Repositories\StudentRepository;
 use Illuminate\Support\Facades\DB;
 use Redirect;
+use App\Models\Student as ObjectClass;
 
 class StudentController extends Controller
 {
     private $way;
     private $name;
+    private $student_repository;
+    private $detail_repository;
 
-    public function __construct()
+    public function __construct(StudentRepository $student_repository, DetailRepository $detailRepository)
     {
         $this->way = array();
         array_push($this->way, 'admin.student.');
         array_push($this->way, 'admin/student');
 
         $this->name = 'aluno';
+        $this->student_repository = $student_repository;
+        $this->detailRepository = $detailRepository;
+
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
         try {
+            try {
+                $object = null;
+                $students = null;
+                $loggedUser = \Auth::user();
+                if ($loggedUser->position_id == 1 || $loggedUser->position_id == 2) {
+                    $object = ObjectClass::findOrFail($id);
 
-            $objects = DB::table('student')
-                ->leftJoin('detail', 'student.id', '=', 'detail.student_id')
-                ->leftJoin('course', 'student.course_id', '=', 'course.id')
-                ->leftJoin('situation', 'detail.situation_id', '=', 'situation.id')
-                ->select('student.codigo', 'student.nome','detail.periodo_carga', 'situation.situation_long', 'course.name')
-                ->where('detail.periodo_carga', '=',DB::raw("(SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)"))
-                ->distinct()
-                ->get()
-                ->toJson();
+                    $students = $this->student_repository->getStudents(
+                        array(0 => "student.id", 1 => "student.nome", 2 => "course.name", 3 => "student.codigo"),
+                        array(array(0 => "course.id", 1 => " = ", 2 => $object->course_id)),
+                        array(0 => "student.id", 1 => "student.nome", 2 => "course.name", 3 => "student.codigo")
+                    );
 
-            /*
-            $objects = DB::table('student')
-            ->leftJoin('course', 'student.course_id', '=', 'course.id')
-            ->select('student.codigo', 'student.nome', 'course.name')
-            ->distinct()
-            ->get()
-            ->toJson();*/
+                } else {
+                    if ($loggedUser->position_id == 3) {
+                        $courses = $loggedUser->campus->courses;
+                    } else if ($loggedUser->courses != "-") {
+                        $courses = $loggedUser->courses;
+                    } else {
+                        $request->session()->flash('type', 'danger');
+                        $request->session()->flash('message', 'Ocorreu um erro no sistema!');
+                        return redirect('/');
+                    }
 
-            //$objects = ObjectClass::base();
-            //dd($objects);
-            //$objects = ObjectClass::all()->toJson();
-            return view($this->way[0] . 'index', compact(['objects', $objects]));
+                    //dd($courses);
+                    $wher = "";
+
+                    for ($i = 0; $i < count($courses); $i++){
+                        if($i == (count($courses)-1)){
+                            $wher = $wher . " course.id = ".$courses[$i]->id;
+                        }else{
+                            $wher = $wher . " course.id = ".$courses[$i]->id." OR";
+                        }
+
+                    }
+                    //dd($wher);
+                    $students = $this->student_repository->getStudents(
+                        array(0 => "student.id", 1 => "student.nome", 2 => "course.name", 3 => "student.codigo"),
+                        array(array(0 => " ", 1 => " ", 2 => " ".$wher)),
+                        array(0 => "student.id", 1 => "student.nome", 2 => "course.name", 3 => "student.codigo")
+                    );
+
+
+                    foreach ($students as $student) {
+                        if ($student->id == $id) {
+                            try {
+                                $object = ObjectClass::findOrFail($id);
+                            } catch (Exception $e) {
+                                $request->session()->flash('type', 'danger');
+                                $request->session()->flash('message', 'Este ' . $this->name . '  não existe!');
+                                return redirect('/');
+                            }
+                        }
+                    }
+                    if ($object == null) {
+                        $request->session()->flash('type', 'danger');
+                        $request->session()->flash('message', 'Você não tem permissão para acessar está área!');
+                        return redirect('/admin/student/' . $students[0]->id);
+                    }
+                }
+            } catch (Exception $e) {
+                $request->session()->flash('type', 'danger');
+                $request->session()->flash('message', 'Ocorreu um erro no sistema!');
+                dd($e);
+                //return redirect('/');
+            }
+
+            $details = $this->detailRepository->findBy(
+                array(array(0 => "student_id", 1 => "=", 2 => $object->id))
+            );
+
+            //dd($details);
+
+            return view($this->way[0] . 'index', compact([
+                'object', $object,
+                'students', $students,
+                'details', $details
+            ]));
         } catch (Exception $e) {
             $request->session()->flash('type', 'danger');
             $request->session()->flash('message', 'Ocorreu um erro no sistema.');
@@ -72,7 +136,7 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -83,7 +147,7 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -94,7 +158,7 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -105,8 +169,8 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -117,7 +181,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

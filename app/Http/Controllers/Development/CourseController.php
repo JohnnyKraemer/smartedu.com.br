@@ -19,8 +19,8 @@ class CourseController extends Controller
     public function __construct()
     {
         $this->way = array();
-        array_push($this->way, 'admin.course.');
-        array_push($this->way, 'admin/course');
+        array_push($this->way, 'development.course.');
+        array_push($this->way, 'development/course');
 
         $this->name = 'curso';
     }
@@ -33,7 +33,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         try {
-            $objects = ObjectClass::all()->toJson();
+            $objects = ObjectClass::all();
             $campus = Campus::all();
 
             return view($this->way[0] . 'index', compact(['objects', $objects,'campus', $campus,]));

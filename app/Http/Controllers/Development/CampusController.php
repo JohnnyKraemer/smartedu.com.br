@@ -14,8 +14,8 @@ class CampusController extends Controller
     public function __construct()
     {
         $this->way = array();
-        array_push($this->way, 'admin.campus.');
-        array_push($this->way, 'admin/campus');
+        array_push($this->way, 'development.campus.');
+        array_push($this->way, 'development/campus');
 
         $this->name = 'campus';
     }
@@ -28,7 +28,7 @@ class CampusController extends Controller
     public function index(Request $request)
     {
         try {
-            $objects = ObjectClass::all()->toJson();
+            $objects = ObjectClass::all();
             return view($this->way[0] . 'index', compact(['objects', $objects]));
         } catch (Exception $e) {
             $request->session()->flash('type', 'danger');

@@ -1,12 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.base')
 @section('title', 'Curso')
 
 @section('stylesheets')
-    <style>
-        tfoot {
-            display: table-header-group;
-        }
-    </style>
+
 @endsection
 
 @section('content')
@@ -25,21 +21,35 @@
                             <h3 class="m-portlet__head-text" style="text-align: left; width: 80%;">
                                 <select class="form-control m-select2" id="m_select2_1" name="param"
                                         onchange="location = './'+this.value;">
-                                    @foreach($all_campus as $campus)
-                                        <optgroup label="{{$campus->name}}">
-                                            @foreach($campus->courses as $course)
-                                                @if($course->id == $object->id)
-                                                    <option value="{{$course->id}}" selected>
-                                                        {{$course->name}}
-                                                    </option>
-                                                @else
-                                                    <option value="{{$course->id}}">
-                                                        {{$course->name}}
-                                                    </option>
-                                                @endif
-                                            @endforeach
-                                        </optgroup>
-                                    @endforeach
+                                    @if(auth()->user()->position_id == 1 || auth()->user()->position_id == 2)
+                                        @foreach($all_campus as $campus)
+                                            <optgroup label="{{$campus->name}}">
+                                                @foreach($campus->courses as $course)
+                                                    @if($course->id == $object->id)
+                                                        <option value="{{$course->id}}" selected>
+                                                            {{$course->name}}
+                                                        </option>
+                                                    @else
+                                                        <option value="{{$course->id}}">
+                                                            {{$course->name}}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
+                                            </optgroup>
+                                        @endforeach
+                                    @else
+                                        @foreach($courses as $course)
+                                            @if($course->id == $object->id)
+                                                <option value="{{$course->id}}" selected>
+                                                    {{$course->name}}
+                                                </option>
+                                            @else
+                                                <option value="{{$course->id}}">
+                                                    {{$course->name}}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </select>
                             </h3>
                         </div>
@@ -222,7 +232,7 @@
                                       <i class="la la-gear"></i>
                                     </span>
                             <h3 class="m-portlet__head-text">
-                                Alunos Evadidos por Ano/Semestre
+                                Alunos por Ano/Semestre
                             </h3>
                         </div>
                     </div>
@@ -241,7 +251,7 @@
                               <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Alunos Evadidos Gênero
+                                Alunos por Gênero
                             </h3>
                         </div>
                     </div>
@@ -279,70 +289,13 @@
                                       <i class="la la-gear"></i>
                                     </span>
                             <h3 class="m-portlet__head-text">
-                                Alunos Evadidos por Período
+                                Alunos por Período
                             </h3>
                         </div>
                     </div>
                 </div>
                 <div class="m-portlet__body" style="padding: 0;">
                     <div id="chart_evaded_by_period" style="height: 280px;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="m-portlet m-portlet--tab">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                                    <span class="m-portlet__head-icon m--hide">
-                                      <i class="la la-gear"></i>
-                                    </span>
-                            <h3 class="m-portlet__head-text">
-                                Alunos por Disciplinas Aprovadas
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_disciplinas_aprovadas" style="height: 280px;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="m-portlet m-portlet--tab">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                                    <span class="m-portlet__head-icon m--hide">
-                                      <i class="la la-gear"></i>
-                                    </span>
-                            <h3 class="m-portlet__head-text">
-                                Alunos por Disciplinas Reprovadas por Frequência
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_students_by_disciplinas_reprovadas_frequencia" style="height: 280px;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="m-portlet m-portlet--tab">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                                    <span class="m-portlet__head-icon m--hide">
-                                      <i class="la la-gear"></i>
-                                    </span>
-                            <h3 class="m-portlet__head-text">
-                                Alunos por Disciplinas Reprovadas por Nota
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_students_by_disciplinas_reprovadas_nota" style="height: 280px;"></div>
                 </div>
             </div>
         </div>
@@ -369,10 +322,12 @@
                     <th>Quant. Sem. Cursados</th>
                     <th>Prob. Evasão</th>
                     <th>Status</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -388,12 +343,13 @@
                         <td>
                             <a href="{{ url('/admin/student/'.$object->id) }}">{{ucwords(strtolower($object->nome))}}</a>
                         </td>
-                        <td>{{$object->semestre_ingresso}}/{{$object->ano_ingresso}}</td>
-                        <td>{{$object->last_details->periodo}}</td>
+                        <td>{{$object->semestre_situacao}}/{{$object->ano_situacao}}</td>
+                        <td>{{$object->periodo}}</td>
                         <td>{{$object->cota}}</td>
-                        <td>{{$object->last_details->quant_semestre_cursados}}</td>
-                        <td>{{$object->prob_evaded}}</td>
-                        <td>{{$object->situation->situation_long}}</td>
+                        <td>{{$object->quant_semestre_cursados}}</td>
+                        <td>{{ number_format(($object->probability_evasion * 100), 2)}} %</td>
+                        <td>{{$object->situation_long}}</td>
+                        <td>{{$object->situation_short}}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -407,23 +363,19 @@
 
     <script>
         $(document).ready(function () {
-            var bests_test = JSON.parse({!! json_encode($bests_test) !!});
             var students_by_periodo = JSON.parse({!! json_encode($students_by_periodo) !!});
             var students_by_idade_ingresso = JSON.parse({!! json_encode($students_by_idade_ingresso) !!});
             var students_by_idade_situacao = JSON.parse({!! json_encode($students_by_idade_situacao) !!});
-            var students_by_disciplinas_aprovadas = JSON.parse({!! json_encode($students_by_disciplinas_aprovadas) !!});
             var students_by_quant_semestre_cursados = JSON.parse({!! json_encode($students_by_quant_semestre_cursados) !!});
-            var students_by_disciplinas_reprovadas_frequencia = JSON.parse({!! json_encode($students_by_disciplinas_reprovadas_frequencia) !!});
-            var students_by_disciplinas_reprovadas_nota = JSON.parse({!! json_encode($students_by_disciplinas_reprovadas_nota) !!});
             var students_by_genero = JSON.parse({!! json_encode($students_by_genero) !!});
             var students_by_ano_semestre = JSON.parse({!! json_encode($students_by_ano_semestre) !!});
-
 
 
             var table = $('#example').DataTable({
                 responsive: true,
                 dom: 'Bfrtip',
                 buttons: [
+                    'print',
                     'excelHtml5',
                     'csvHtml5',
                     'pdfHtml5'
@@ -439,125 +391,24 @@
                                 .appendTo($(column.footer()).empty());
                             $('input', column.footer()).on('keyup change', function () {
                                 if (column.search() !== this.value) {
-                                    column
-                                        .search(this.value)
-                                        .draw();
+                                    column.search(this.value).draw();
                                 }
                             });
                         } else {
-
-
                             var select = $('<select class="form-control"><option value="">Todos</option></select>')
                                 .appendTo($(column.footer()).empty())
                                 .on('change', function () {
                                     var val = $.fn.dataTable.util.escapeRegex(
                                         $(this).val()
                                     );
-                                    column
-                                        .search(val ? '^' + val + '$' : '', true, false)
-                                        .draw();
+                                    column.search(val ? '^' + val + '$' : '', true, false).draw();
                                 });
-
                             column.data().unique().sort().each(function (d, j) {
                                 select.append('<option value="' + d + '">' + d + '</option>')
                             });
-
                         }
                     });
-
                 }
-            });
-
-            students_by_disciplinas_reprovadas_nota = normalizeData(students_by_disciplinas_reprovadas_nota);
-            AmCharts.makeChart("chart_students_by_disciplinas_reprovadas_nota", {
-                "type": "serial",
-                "categoryField": "category",
-                "startDuration": 1,
-                "categoryAxis": {
-                    "gridPosition": "start"
-                },
-                "chartCursor": {
-                    "enabled": true
-                },
-                "valueScrollbar": {
-                    "enabled": true
-                },
-                "graphs": [
-                    {
-                        "balloonText": "[[title]] de [[category]]:[[value]]",
-                        "fillAlphas": 0.7,
-                        "id": "AmGraph-1",
-                        "lineAlpha": 0,
-                        "title": "Evadidos",
-                        "valueField": "evadidos"
-                    },
-                    {
-                        "balloonText": "[[title]] de [[category]]:[[value]]",
-                        "fillAlphas": 0.7,
-                        "id": "AmGraph-2",
-                        "lineAlpha": 0,
-                        "title": "Não Evadidos",
-                        "valueField": "nao_evadidos"
-                    },
-                    {
-                        "balloonText": "[[title]] de [[category]]:[[value]]",
-                        "fillAlphas": 0.7,
-                        "id": "AmGraph-3",
-                        "lineAlpha": 0,
-                        "title": "Formados",
-                        "valueField": "formados"
-                    }
-                ],
-                "legend": {
-                    "enabled": true
-                },
-                "dataProvider": students_by_disciplinas_reprovadas_nota
-            });
-
-            students_by_disciplinas_reprovadas_frequencia = normalizeData(students_by_disciplinas_reprovadas_frequencia);
-            AmCharts.makeChart("chart_students_by_disciplinas_reprovadas_frequencia", {
-                "type": "serial",
-                "categoryField": "category",
-                "startDuration": 1,
-                "categoryAxis": {
-                    "gridPosition": "start"
-                },
-                "chartCursor": {
-                    "enabled": true
-                },
-                "valueScrollbar": {
-                    "enabled": true
-                },
-                "graphs": [
-                    {
-                        "balloonText": "[[title]] de [[category]]:[[value]]",
-                        "fillAlphas": 0.7,
-                        "id": "AmGraph-1",
-                        "lineAlpha": 0,
-                        "title": "Evadidos",
-                        "valueField": "evadidos"
-                    },
-                    {
-                        "balloonText": "[[title]] de [[category]]:[[value]]",
-                        "fillAlphas": 0.7,
-                        "id": "AmGraph-2",
-                        "lineAlpha": 0,
-                        "title": "Não Evadidos",
-                        "valueField": "nao_evadidos"
-                    },
-                    {
-                        "balloonText": "[[title]] de [[category]]:[[value]]",
-                        "fillAlphas": 0.7,
-                        "id": "AmGraph-3",
-                        "lineAlpha": 0,
-                        "title": "Formados",
-                        "valueField": "formados"
-                    }
-                ],
-                "legend": {
-                    "enabled": true
-                },
-                "dataProvider": students_by_disciplinas_reprovadas_frequencia
             });
 
             students_by_quant_semestre_cursados = normalizeData(students_by_quant_semestre_cursados);
@@ -604,52 +455,6 @@
                     "enabled": true
                 },
                 "dataProvider": students_by_quant_semestre_cursados
-            });
-
-            students_by_disciplinas_aprovadas = normalizeData(students_by_disciplinas_aprovadas);
-            AmCharts.makeChart("chart_disciplinas_aprovadas", {
-                "type": "serial",
-                "categoryField": "category",
-                "startDuration": 1,
-                "categoryAxis": {
-                    "gridPosition": "start"
-                },
-                "chartCursor": {
-                    "enabled": true
-                },
-                "valueScrollbar": {
-                    "enabled": true
-                },
-                "graphs": [
-                    {
-                        "balloonText": "[[title]] de [[category]]:[[value]]",
-                        "fillAlphas": 0.7,
-                        "id": "AmGraph-1",
-                        "lineAlpha": 0,
-                        "title": "Evadidos",
-                        "valueField": "evadidos"
-                    },
-                    {
-                        "balloonText": "[[title]] de [[category]]:[[value]]",
-                        "fillAlphas": 0.7,
-                        "id": "AmGraph-2",
-                        "lineAlpha": 0,
-                        "title": "Não Evadidos",
-                        "valueField": "nao_evadidos"
-                    },
-                    {
-                        "balloonText": "[[title]] de [[category]]:[[value]]",
-                        "fillAlphas": 0.7,
-                        "id": "AmGraph-3",
-                        "lineAlpha": 0,
-                        "title": "Formados",
-                        "valueField": "formados"
-                    }
-                ],
-                "legend": {
-                    "enabled": true
-                },
-                "dataProvider": students_by_disciplinas_aprovadas
             });
 
             students_by_idade_situacao = normalizeData(students_by_idade_situacao);
@@ -755,6 +560,9 @@
                 "chartCursor": {
                     "enabled": true
                 },
+                "valueScrollbar": {
+                    "enabled": true
+                },
                 "graphs": [
                     {
                         "balloonText": "[[title]] de [[category]]:[[value]]",
@@ -763,7 +571,7 @@
                         "lineAlpha": 0,
                         "title": "Evadidos",
                         "valueField": "evadidos"
-                    },{
+                    }, {
                         "balloonText": "[[title]] de [[category]]:[[value]]",
                         "fillAlphas": 0.7,
                         "id": "AmGraph-2",
@@ -786,6 +594,12 @@
                     "startDuration": 1,
                     "categoryAxis": {
                         "gridPosition": "start"
+                    },
+                    "chartCursor": {
+                        "enabled": true
+                    },
+                    "valueScrollbar": {
+                        "enabled": true
                     },
                     "trendLines": [],
                     "graphs": [
@@ -844,6 +658,12 @@
                     "categoryAxis": {
                         "gridPosition": "start"
                     },
+                    "chartCursor": {
+                        "enabled": true
+                    },
+                    "valueScrollbar": {
+                        "enabled": true
+                    },
                     "trendLines": [],
                     "graphs": [
                         {
@@ -883,54 +703,11 @@
                     "dataProvider": students_by_periodo
                 }
             );
-            /*
-            AmCharts.makeChart("chart_evaded_by_period", {
-                    "type": "serial",
-                    "categoryField": "category",
-                    "marginBottom": 0,
-                    "startDuration": 1,
-                    "theme": "light",
-                    "categoryAxis": {
-                        "gridPosition": "start"
-                    },
-                    "chartCursor": {
-                        "enabled": true
-                    },
-                    "trendLines": [],
-                    "graphs": [
-                        {
-                            "balloonText": "Evadidos: [[value]]",
-                            "fillAlphas": 1,
-                            "fontSize": -2,
-                            "id": "AmGraph-1",
-                            "lineThickness": 2,
-                            "title": "graph 1",
-                            "type": "column",
-                            "labelText": "[[total]]",
-                            "valueField": "evadidos"
-                        },
-                        {
-                            "balloonText": "Não Evadidos: [[value]]",
-                            "fillAlphas": 1,
-                            "fontSize": -2,
-                            "id": "AmGraph-1",
-                            "lineThickness": 2,
-                            "title": "graph 1",
-                            "type": "column",
-                            "labelText": "[[total]]",
-                            "valueField": "nao_evadidos"
-                        }
-                    ],
-                    "guides": [],
-                    "allLabels": [],
-                    "balloon": {},
-                    "dataProvider": students_by_periodo
-                }
-            );
-            */
-            $('#m_form_campus').selectpicker();
-        });
 
+            $('#m_select2_1').select2({
+                placeholder: "Selecione"
+            });
+        });
 
 
         function normalizeData(objects) {
@@ -971,6 +748,4 @@
             return students;
         }
     </script>
-    <script src="<?php echo asset('/public/assets/demo/default/custom/components/forms/widgets/select2.js') ?>"
-            type="text/javascript"></script>
 @endsection

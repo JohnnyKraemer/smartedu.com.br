@@ -130,3 +130,47 @@ AND situation.situation_short != "Outro"
 AND student.course_id = 1
 GROUP BY situation.situation_short, student.idade_ingresso
 ORDER BY student.idade_ingresso ASC
+
+
+
+
+
+
+SELECT student.nome,detail.ano_situacao, detail.semestre_situacao, test_classifier.id, probability.probability_evasion
+FROM student
+LEFT JOIN detail ON student.id = detail.student_id
+LEFT JOIN course ON student.course_id = course.id
+LEFT JOIN campus ON course.campus_id = campus.id
+LEFT JOIN situation ON detail.situation_id = situation.id
+LEFT JOIN test_classifier ON course.id = test_classifier.course_id
+LEFT JOIN probability ON test_classifier.id = probability.test_classifier_id
+WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+AND course.id = 2
+AND test_classifier.type = 9
+AND test_classifier.period_calculation = (SELECT IFNULL(MAX(test_classifier.period_calculation),1) as period_calculation
+FROM test_classifier
+WHERE test_classifier.type = 9)
+AND probability.student_id = student.id
+
+
+SELECT student.nome,detail.ano_situacao, detail.semestre_situacao, test_classifier.id, probability.probability_evasion
+FROM student
+LEFT JOIN detail ON student.id = detail.student_id
+LEFT JOIN course ON student.course_id = course.id
+LEFT JOIN campus ON course.campus_id = campus.id
+LEFT JOIN situation ON detail.situation_id = situation.id
+LEFT JOIN probability ON student.id = probability.student_id
+WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+AND course.id = 2
+AND probability.test_classifier_id = 1868
+
+SELECT student.nome, detail.ano_situacao, detail.semestre_situacao, detail.periodo, student.cota, detail.quant_semestre_cursados, situation.situation_long, situation.situation_short, student.id, probability.probability_evasion
+FROM student
+LEFT JOIN detail ON student.id = detail.student_id
+LEFT JOIN course ON student.course_id = course.id
+LEFT JOIN campus ON course.campus_id = campus.id
+LEFT JOIN situation ON detail.situation_id = situation.id
+LEFT JOIN probability ON student.id = probability.student_id
+WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+AND course.id = 2
+AND probability.test_classifier_id = 1868

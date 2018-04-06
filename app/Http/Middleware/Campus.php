@@ -15,6 +15,17 @@ class Campus
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (!\Auth::check()) {
+            return redirect('login');
+        } else {
+            $loggedUser = \Auth::user();
+            if ($loggedUser->position_id == 1 || $loggedUser->position_id == 2 || $loggedUser->position_id == 3) {
+                return $next($request);
+            }else if ($loggedUser->position_id == 4 || $loggedUser->position_id == 5) {
+                $request->session()->flash('type', 'danger');
+                $request->session()->flash('message', 'Você não tem permissão para acessar está área!');
+                return redirect('admin/course');
+            }
+        }
     }
 }

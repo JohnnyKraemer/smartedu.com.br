@@ -43,7 +43,7 @@ class SituationController extends Controller
     public function index(Request $request)
     {
         try {
-            $objects = ObjectClass::all()->toJson();
+            $objects = ObjectClass::all();
 
             return view($this->way[0] . 'index', compact([
                 'objects', $objects,

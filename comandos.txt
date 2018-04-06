@@ -18,6 +18,7 @@ php artisan migrate:fresh
 -- Seeds
 php artisan db:seed
 php artisan db:seed --class=AllTableSeeder
+php artisan db:seed --class=UserTableSeeder
 
 -- Modificações XAMPP necessárias para este projeto
 max_execution_time=1000

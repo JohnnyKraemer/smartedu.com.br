@@ -1,48 +1,43 @@
 <?php
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'Admin\InstitutionController@index')->middleware('institution');
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => '/admin', 'middleware' => 'auth', 'namespace' => 'admin'], function () {
-    Route::get('/course', 'CourseController@index')->name('course');
-    Route::post('/course/{state}/{id}', 'CourseController@alterState');
-
-    Route::get('/campus/{id}', 'CampusController@index');
+    Route::get('/course', function () {
+        return redirect('/admin/course/1');
+    });
+    Route::get('/student', function () {
+        return redirect('/admin/student/1');
+    });
     Route::get('/course/{id}', 'CourseController@index');
-
     Route::get('/position', 'PositionController@index')->name('position');
-    Route::get('/student', 'StudentController@index')->name('student');
-
-    Route::resource('/user', 'UserController', ['as' => 'user']);
+    Route::get('/student/{id}', 'StudentController@index')->name('student');
+    Route::resource('/user', 'UserController');
+    Route::post('/user/delete', 'UserController@destroy');
     Route::resource('/situation', 'SituationController', ['as' => 'situation']);
 });
 
 Route::group(['prefix' => '/admin/institution', 'middleware' => 'institution', 'namespace' => 'admin'], function () {
-    Route::get('/', 'InstitutionController@index')->name('institution');
-    Route::get('/course', 'InstitutionController@index')->name('course');
-    Route::get('/campus', 'InstitutionController@index')->name('campus');
+    Route::get('/', 'InstitutionController@index');
+});
+
+Route::group(['prefix' => '/admin/campus', 'middleware' => 'campus', 'namespace' => 'admin'], function () {
+    Route::get('/', function () {
+        return redirect('/admin/campus/1');
+    });
+    Route::get('/{id}', 'CampusController@index');
 });
 
 Route::group(['prefix' => '/development', 'middleware' => 'developer', 'namespace' => 'development'], function () {
-    Route::get('/upload', 'UploadController@index')->name('upload')->middleware('auth');
-    Route::post('/upload/upload', 'UploadController@upload')->middleware('auth');
-
-    Route::get('/classifier', 'ClassifierController@index')->name('classifier')->middleware('auth');
-    Route::post('/classifier/{state}/{id}', 'ClassifierController@alterState')->middleware('auth');
-
-    Route::get('/classify', 'ClassifyController@index')->name('classify')->middleware('auth');
-    Route::get('/classify/campus', 'ClassifyController@campus')->name('classify-campus')->middleware('auth');
-    Route::get('/classify/course', 'ClassifyController@course')->name('classify-course')->middleware('auth');
-
-    Route::post('/classify/new', 'ClassifyController@new')->name('classify_new')->middleware('auth');
-    Route::get('/classify/period', 'ClassifyController@period')->name('classify-period')->middleware('auth');
-    Route::get('/classify/test', 'ClassifyController@test')->name('classify-test')->middleware('auth');
-
-    Route::get('/variable', 'VariableController@index')->name('variable')->middleware('auth');
-    Route::post('/variable/{state}/{id}', 'VariableController@alterState')->middleware('auth');
+    Route::get('/upload', 'UploadController@index');
+    Route::post('/upload/upload', 'UploadController@upload');
+    Route::get('/classifier', 'ClassifierController@index');
+    Route::post('/classifier/{state}/{id}', 'ClassifierController@alterState');
+    Route::get('/classify', 'ClassifyController@index');
+    Route::get('/variable', 'VariableController@index');
+    Route::post('/variable/{state}/{id}', 'VariableController@alterState');
+    Route::get('/course', 'CourseController@index');
+    Route::post('/course/{state}/{id}', 'CourseController@alterState');
+    Route::get('/campus', 'CampusController@index');
 });

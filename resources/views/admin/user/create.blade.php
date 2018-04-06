@@ -1,4 +1,4 @@
-@extends('layouts.admin') @section('title', 'Usuários') @section('content')
+@extends('layouts.base') @section('title', 'Usuários') @section('content')
 <div class="m-portlet">
 	<div class="m-portlet__head">
 		<div class="m-portlet__head-caption">

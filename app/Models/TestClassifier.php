@@ -80,7 +80,7 @@ class TestClassifier extends Model
     public function getSuccessPercentAttribute()
     {
         if($this->success != 0){
-            return ($this->success / ($this->success + $this->failure)) * 100;
+            return number_format((($this->success / ($this->success + $this->failure)) * 100), 2, '.', ',');;
         } else{
             return 0;
         }
@@ -89,7 +89,7 @@ class TestClassifier extends Model
     public function getFailurePercentAttribute()
     {
         if($this->failure != 0){
-            return ($this->failure / ($this->success + $this->failure)) * 100;
+            return number_format((($this->failure / ($this->success + $this->failure)) * 100), 2, '.', ',');;
         } else{
             return 0;
         }
@@ -99,7 +99,7 @@ class TestClassifier extends Model
     public function getSuccessEvadedPercentAttribute()
     {
         if($this->success_evaded != 0){
-            return ($this->success_evaded / ($this->success_evaded + $this->failure_evaded)) * 100;
+            return number_format((($this->success_evaded / ($this->success_evaded + $this->failure_evaded)) * 100), 2, '.', ',');;
         } else{
             return 0;
         }
@@ -108,7 +108,7 @@ class TestClassifier extends Model
     public function getFailureEvadedPercentAttribute()
     {
         if($this->failure_evaded != 0){
-            return ($this->failure_evaded / ($this->failure_evaded + $this->success_evaded)) * 100;
+            return number_format((($this->failure_evaded / ($this->failure_evaded + $this->success_evaded)) * 100), 2, '.', ',');;
         } else{
             return 0;
         }
@@ -118,7 +118,7 @@ class TestClassifier extends Model
     public function getSuccessNotEvadedPercentAttribute()
     {
         if($this->success_evaded != 0){
-            return ($this->success_evaded / ($this->success_evaded + $this->failure_not_evaded)) * 100;
+            return number_format((($this->success_evaded / ($this->success_evaded + $this->failure_not_evaded)) * 100), 2, '.', ',');;
         } else{
             return 0;
         }
@@ -127,7 +127,7 @@ class TestClassifier extends Model
     public function getFailureNotEvadedPercentAttribute()
     {
         if($this->failure_not_evaded != 0){
-            return ($this->failure_not_evaded / ($this->failure_not_evaded + $this->success_evaded)) * 100;
+            return number_format((($this->failure_not_evaded / ($this->failure_not_evaded + $this->success_evaded)) * 100), 2, '.', ',');;
         } else{
             return 0;
         }

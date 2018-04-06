@@ -165,24 +165,85 @@ class StudentRepository extends AbstractRepository
                                 GROUP BY detail.periodo ORDER BY detail.periodo;', ['course' => $course]);
     }
 
-    //Quantidade de por situcao resumida e idade ingresso
-    public function getCountStudens(array $column, array $criteria, array $groupby = null, $orderBy = null)
+        //Quantidade de por situcao resumida e idade ingresso
+    public function getStudents(array $column, array $criteria = null, array $groupby = null, $orderBy = null)
     {
         try {
             $sql = "SELECT ";
 
             if ($column != null) {
+                $i = 1;
                 foreach ($column as $c) {
-                    $sql = $sql . $c . ", ";
+                    $sql = $sql . $c;
+
+                    if ($i != count($column)) {
+                        $sql = $sql . ", ";
+                    }
+                    $i = $i + 1;
                 }
             }
 
-            $sql = $sql . " IFNULL(COUNT(student.id),0) AS total
+            $sql = $sql . "
                     FROM student
                     LEFT JOIN detail ON student.id = detail.student_id
                     LEFT JOIN course ON student.course_id = course.id
                     LEFT JOIN campus ON course.campus_id = campus.id
                     LEFT JOIN situation ON detail.situation_id = situation.id
+                    WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)";
+
+            if ($criteria != null) {
+                foreach ($criteria as $c) {
+                    $sql = $sql . "\nAND " . $c[0] . " " . $c[1] . " " . $c[2] . "";
+                }
+            }
+            //dd($sql);
+
+            if ($groupby != null) {
+                $sql = $sql . "\n GROUP BY ";
+                $i = 1;
+                foreach ($groupby as $c) {
+                    $sql = $sql . $c;
+
+                    if ($i != count($groupby)) {
+                        $sql = $sql . ", ";
+                    }
+                    $i = $i + 1;
+                }
+            }
+
+            if ($orderBy != null) {
+                $sql = $sql . "\n ORDER BY " . $orderBy;
+            }
+            return DB::select($sql);
+        } catch (\Exception $e) {
+            dd($e);
+        }
+    }
+
+    public function getStudentsProbability(array $column, array $criteria = null, array $groupby = null, $orderBy = null)
+    {
+        try {
+            $sql = "SELECT ";
+
+            if ($column != null) {
+                $i = 1;
+                foreach ($column as $c) {
+                    $sql = $sql . $c;
+
+                    if ($i != count($column)) {
+                        $sql = $sql . ", ";
+                    }
+                    $i = $i + 1;
+                }
+            }
+
+            $sql = $sql . "
+                    FROM student
+                    LEFT JOIN detail ON student.id = detail.student_id
+                    LEFT JOIN course ON student.course_id = course.id
+                    LEFT JOIN campus ON course.campus_id = campus.id
+                    LEFT JOIN situation ON detail.situation_id = situation.id
+                    LEFT JOIN probability ON student.id = probability.student_id
                     WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)";
 
             if ($criteria != null) {

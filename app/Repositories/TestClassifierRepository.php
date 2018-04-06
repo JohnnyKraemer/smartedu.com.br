@@ -39,7 +39,7 @@ class TestClassifierRepository extends AbstractRepository
                                   AND test_classifier.result = 1;', ['type' => $type])[0]->period_calculation;
     }
 
-    public function getBestXTestClassifiersByTypeAndPeriodCalculatio($type, $period_calculation, $limit = 3)
+    public function getBestsTestClassifiersByTypeAndPeriodCalculatio($type, $period_calculation)
     {
         return DB::select('SELECT SUM(test_classifier.success) AS success,
                                  SUM(test_classifier.failure) AS failure,
@@ -53,8 +53,7 @@ class TestClassifierRepository extends AbstractRepository
                                  WHERE test_classifier.period_calculation = :period_calculation
                                  AND test_classifier.type = :type
                                  AND test_classifier.result = 1
-                                 ORDER BY success DESC
-                                 LIMIT :limit ', ['type' => $type, 'period_calculation' => $period_calculation, 'limit' => $limit]);
+                                 ORDER BY success DESC;', ['type' => $type, 'period_calculation' => $period_calculation]);
     }
 
     public function getBestXTestClassifiersGroupByCampusByTypeAndPeriodCalculatio($type, $period_calculation, $limit = 3)

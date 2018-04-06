@@ -34,6 +34,12 @@
     <link href="<?php echo asset('assets/datatables/SemanticUI-2.2.13/semantic.min.css') ?>" rel="stylesheet"
           type="text/css"/>
 
+    <style>
+        tfoot {
+            display: table-header-group;
+        }
+    </style>
+
     @yield('stylesheets')
 </head>
 
@@ -52,7 +58,8 @@
                         <div class="m-stack m-stack--ver m-stack--general m-stack--inline">
                             <div class="m-stack__item m-stack__item--middle m-brand__logo">
                                 <a href="{{ url('/') }}" class="m-brand__logo-wrapper">
-                                    <img alt="" src="<?php echo asset('assets/smartedu.png') ?>" style="max-height: 25px;"/>
+                                    <img alt="" src="<?php echo asset('assets/smartedu.png') ?>"
+                                         style="max-height: 25px;"/>
                                 </a>
                             </div>
                         </div>
@@ -214,7 +221,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item  m-menu__item" aria-haspopup="true">
-                                    <a href="{{ url('/admin/student/') }}" class="m-menu__link ">
+                                    <a href="{{ url('/admin/student/1') }}" class="m-menu__link ">
                                         <span class="m-menu__item-here"></span>
                                         <span class="m-menu__link-text">
 												Aluno
@@ -251,30 +258,6 @@
                                                     <i class="m-menu__link-icon flaticon-users"></i>
                                                     <span class="m-menu__link-text">
 															Cargos
-														</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-menu__item " data-redirect="true" aria-haspopup="true">
-                                                <a href="{{ url('admin/campus') }}" class="m-menu__link ">
-                                                    <i class="m-menu__link-icon flaticon-users"></i>
-                                                    <span class="m-menu__link-text">
-															Campus
-														</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-menu__item " data-redirect="true" aria-haspopup="true">
-                                                <a href="{{ url('admin/course') }}" class="m-menu__link ">
-                                                    <i class="m-menu__link-icon flaticon-users"></i>
-                                                    <span class="m-menu__link-text">
-															Cursos
-														</span>
-                                                </a>
-                                            </li>
-                                            <li class="m-menu__item " data-redirect="true" aria-haspopup="true">
-                                                <a href="{{ url('admin/student') }}" class="m-menu__link ">
-                                                    <i class="m-menu__link-icon flaticon-users"></i>
-                                                    <span class="m-menu__link-text">
-															Alunos
 														</span>
                                                 </a>
                                             </li>
@@ -375,6 +358,30 @@
 														</span>
                                                 </a>
                                             </li>
+                                            <li class="m-menu__item " data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ url('development/campus') }}" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-users"></i>
+                                                    <span class="m-menu__link-text">
+															Campus
+														</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ url('development/course') }}" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-users"></i>
+                                                    <span class="m-menu__link-text">
+															Curso
+														</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item " data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ url('development/student') }}" class="m-menu__link ">
+                                                    <i class="m-menu__link-icon flaticon-users"></i>
+                                                    <span class="m-menu__link-text">
+															Aluno
+														</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>
@@ -394,9 +401,9 @@
     <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor-desktop m-grid--desktop m-body">
         <div class="m-grid__item m-grid__item--fluid  m-grid m-grid--ver	m-container m-container--responsive m-container--xxl m-page__container">
 
-            @yield('aside')
+        @yield('aside')
 
-            <!---->
+        <!---->
             <div class="m-grid__item m-grid__item--fluid m-wrapper" style="width: 80%;">
                 <!-- BEGIN: Subheader -->
                 <!--

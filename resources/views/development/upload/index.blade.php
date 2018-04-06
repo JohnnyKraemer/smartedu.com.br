@@ -1,4 +1,7 @@
-@extends('layouts.admin') @section('title', 'Upload') @section('content')
+@extends('layouts.base')
+@section('title', 'Upload')
+
+@section('content')
 
 <div class="m-portlet m-portlet--mobile">
 	<div class="m-portlet__head">
@@ -164,7 +167,7 @@
 			success: function (result) {
 				array[position].message = "Sucesso ao fazer upload.";
 				array[position].state = 2;
-				updateTable();
+				//updateTable();
 				console.log("Sucesso ao fazer upload!");
 				console.log(result);
 				mApp.unblockPage();
@@ -172,7 +175,7 @@
 			error: function (result) {
 				array[position].message = "Arquivo fora do padrão.";
 				array[position].state = 1;
-				updateTable();
+				//updateTable();
 				console.log("Erro ao fazer upload!");
 				console.log(result);
 				mApp.unblockPage();
@@ -219,7 +222,7 @@
 				if(worksheets.length){
 					worksheets.forEach(function (item) {
 					    //console.log(item);
-
+                        /*
 					    var quant = parseInt(item.length / 10);
                         var students;
 
@@ -242,10 +245,8 @@
                                 final = inicio + quant;
                             }
                         }
-
-                        //send_data(item, position);
-
-
+                         */
+                        send_data(item, position);
 					});
 				}else{
 					if(worksheet_is_empty && !worksheet_is_not_correct_pattern){

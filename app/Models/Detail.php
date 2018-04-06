@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Detail extends Model
 {
     protected $table = 'detail';
+    protected $appends = ['situation'];
 
     protected $fillable = [
         'id',
@@ -34,5 +35,10 @@ class Detail extends Model
     public function student()
     {
         return $this->belongsToMany(Student::class);
+    }
+
+    public function getSituationAttribute()
+    {
+        return Situation::find($this->situation_id);
     }
 }

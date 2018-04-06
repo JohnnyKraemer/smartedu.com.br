@@ -14,7 +14,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $table = 'user';
-    protected $appends = ['position', 'campus', 'course'];
+    protected $appends = ['position', 'campus', 'courses'];
 
     /**
      * The attributes that are mass assignable.
@@ -51,7 +51,12 @@ class User extends Authenticatable
 
     public function getCampusAttribute()
     {
-        return Campus::find($this->campus_id);
+        if ($this->campus_id != null) {
+            return Campus::find($this->campus_id);
+        } else {
+            return "-";
+        }
+
     }
 
     public function course()
@@ -59,7 +64,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class, 'user_course', 'user_id', 'course_id');
     }
 
-    public function getCourseAttribute()
+    public function getCoursesAttribute()
     {
         $user_courses = DB::table('user_course')->where('user_id', '=', $this->id)->get();
         $courses = array();
@@ -67,7 +72,12 @@ class User extends Authenticatable
             $course = DB::table('course')->where('id', '=', $user_course->course_id)->first();
             array_push($courses, $course);
         }
-        return $courses;
+
+        if ($courses != null) {
+            return $courses;
+        } else {
+            return "-";
+        }
     }
 
 }

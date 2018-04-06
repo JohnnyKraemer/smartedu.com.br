@@ -16,6 +16,7 @@ class Student extends Model
     protected $fillable = [
         'id',
         'nome',
+        'email',
         'codigo',
         'ano_ingresso',
         'data_nascimento',
@@ -111,13 +112,14 @@ class Student extends Model
 
     public function getCourseAttribute()
     {
-        return Course::find($this->course_id);
+        return Course::find($this->course_id)->name;
     }
 
     public function getCampusAttribute()
     {
+        $course = Course::find($this->course_id);
 
-        return Campus::find($this->getCourseAttribute()->campus_id);
+        return Campus::find($course->campus_id)->name;
     }
 
     public function base()

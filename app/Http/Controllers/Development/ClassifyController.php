@@ -65,7 +65,7 @@ class ClassifyController extends Controller
             //$test = $this->repository->getBestXTestClassifiersByTypeAndPeriodCalculationAndCourse(3, $period_calculation, 2, 10);
             //dd($test);
 
-            $grafic_one = $this->repository->getBestXTestClassifiersByTypeAndPeriodCalculatio(9, $period_calculation);
+            $grafic_one = $this->repository->getBestsTestClassifiersByTypeAndPeriodCalculatio(9, $period_calculation);
             $grafic_one = json_encode($grafic_one);
 
 
@@ -73,6 +73,8 @@ class ClassifyController extends Controller
             $classifiers = Classifier::where('use_classify', 1)
                 ->orderBy('name', 'asc')
                 ->get();
+
+            //dd($classifiers);
 
             $variables = Variable::where('use_classify', 1)
                 ->orderBy('name', 'asc')
@@ -90,9 +92,10 @@ class ClassifyController extends Controller
                 ),
                 array(
                     array(0 => "success", 1 => "desc")
-                ),
-                3
+                )
             );
+
+            //dd($objects);
 
             //$objects->load('variables','classifier','course');
             //$objects = json_encode($objects);

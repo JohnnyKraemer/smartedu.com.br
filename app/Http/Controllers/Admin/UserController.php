@@ -46,14 +46,19 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
-            $objects = ObjectClass::all()->toJson();
-            $positions = Position::all();
-            $campus = Campus::all();
+            $loggedUser = \Auth::user();
+            if($loggedUser->position_id == 1){
+                $objects = ObjectClass::all();
+            }else{
+                $objects = ObjectClass::where('position_id', '!=' ,1)
+                    ->orderBy('position_id', 'asc')
+                    ->get();
+
+            }
+
 
             return view($this->way[0] . 'index', compact([
                 'objects', $objects,
-                'positions', $positions,
-                'campus', $campus,
             ]));
         } catch (Exception $e) {
             $request->session()->flash('type', 'danger');
@@ -210,14 +215,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|min:6|max:191',
-            'email' => 'required|email|max:191',
-            'position_id' => 'required',
-            'status' => 'required',
-            'campus_id' => 'required',
-            'courses' => 'required',
-        ], $this->messages);
+        if ($request->position_id == 4 || $request->position_id == 5) {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|min:6|max:191',
+                'email' => 'required|email|max:191',
+                'position_id' => 'required',
+                'campus_id' => 'required',
+                'courses' => 'required',
+            ], $this->messages);
+        } else if($request->position_id == 3 ){
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|min:6|max:191',
+                'email' => 'required|email|max:191',
+                'position_id' => 'required',
+                'campus_id' => 'required',
+            ], $this->messages);
+        }else if($request->position_id == 1 || $request->position_id == 2){
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|min:6|max:191',
+                'email' => 'required|email|max:191',
+                'position_id' => 'required',
+            ], $this->messages);
+        }
 
         if ($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
@@ -234,17 +253,24 @@ class UserController extends Controller
                 $object->name = $request->name;
                 $object->email = $request->email;
                 $object->position_id = $request->position_id;
-                $object->campus_id = $request->campus_id;
                 $object->status = $request->status;
 
+                if ($request->position_id == 4 || $request->position_id == 5) {
+                    $object->campus_id = $request->campus_id;
+                } else if($request->position_id == 3 ){
+                    $object->campus_id = $request->campus_id;
+                }else if($request->position_id == 1 || $request->position_id == 2){
+                    $object->campus_id = null;
+                }
                 $object->save();
-
                 $object->course()->detach();
 
-                foreach ($request->get('courses') as $id) {
-                    $course = Course::find($id);
-                    if ($course->campus_id == $object->campus_id) {
-                        $object->course()->attach($course);
+                if ($request->position_id == 4 || $request->position_id == 5) {
+                    foreach ($request->get('courses') as $id) {
+                        $course = Course::find($id);
+                        if ($course->campus_id == $object->campus_id) {
+                            $object->course()->attach($course);
+                        }
                     }
                 }
 
@@ -277,7 +303,7 @@ class UserController extends Controller
                 $request->session()->flash('message', 'Este ' . $this->name . '  não existe!');
                 return redirect($this->way[1]);
             }
-
+            $object->course()->detach();
             $object->delete();
 
             $request->session()->flash('type', 'success');

@@ -17,7 +17,9 @@ class Course extends Model
         'students_formed',
         'students_evaded_percent',
         'students_not_evaded_percent',
-        'students_formed_percent'];
+        'students_formed_percent',
+        'students_high_prob',
+        'students_high_prob_percent'];
 
     protected $fillable = [
         'id',
@@ -119,6 +121,30 @@ class Course extends Model
     {
         if ($this->getStudentsFormedAttribute() != 0) {
             return  number_format((($this->getStudentsFormedAttribute() / $this->getStudentsAttribute()) * 100),2, '.', ',' );
+        } else {
+            return 0;
+        }
+    }
+
+    public function getStudentsHighProbAttribute()
+    {
+        return DB::select('SELECT COUNT(probability.id) AS total
+                                FROM probability
+                                LEFT JOIN test_classifier
+                                ON probability.test_classifier_id = test_classifier.id
+                                LEFT JOIN course
+                                ON test_classifier.course_id = course.id
+                                WHERE test_classifier.type = 9
+                                AND test_classifier.period_calculation = (SELECT MAX(test_classifier.period_calculation) AS period_calculation FROM test_classifier WHERE test_classifier.type = 9)
+                                AND probability.state = "Não Evadido"
+                                AND probability.probability_evasion > 0.5
+                                AND course.id = :course', ['course' => $this->id])[0]->total;
+    }
+
+    public function getStudentsHighProbPercentAttribute()
+    {
+        if ($this->getStudentsHighProbAttribute() != 0) {
+            return number_format((($this->getStudentsHighProbAttribute() / $this->getStudentsNotEvadedAttribute()) * 100), 2, '.', ',');
         } else {
             return 0;
         }
