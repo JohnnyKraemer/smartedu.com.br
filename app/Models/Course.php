@@ -24,16 +24,11 @@ class Course extends Model
     protected $fillable = [
         'id',
         'name',
-        'nivel_ensino',
-        'grau',
-        'periodicidade',
-        'funcionamento',
-        'turno',
-        'categoria_stricto_sensu',
-        'codigo_curso',
-        'codigo_inep_curso',
-        'regime_ensino',
-        'total_periodos',
+        'level',
+        'degree',
+        'frequency',
+        'operation',
+        'amount_periods',
         'use_classify',
         'campus_id',
     ];
@@ -72,7 +67,7 @@ class Course extends Model
                             FROM student
                             LEFT JOIN detail ON student.id = detail.student_id
                             LEFT JOIN situation ON detail.situation_id = situation.id
-                            WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+                            WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                             AND situation.situation_short = "Evadido"
                             AND student.course_id = :course', ['course' => $this->id])[0]->total;
     }
@@ -83,7 +78,7 @@ class Course extends Model
                             FROM student
                             LEFT JOIN detail ON student.id = detail.student_id
                             LEFT JOIN situation ON detail.situation_id = situation.id
-                            WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+                            WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                             AND situation.situation_short = "Nao Evadido"
                             AND student.course_id = :course', ['course' => $this->id])[0]->total;
     }
@@ -94,7 +89,7 @@ class Course extends Model
                             FROM student
                             LEFT JOIN detail ON student.id = detail.student_id
                             LEFT JOIN situation ON detail.situation_id = situation.id
-                            WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+                            WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                             AND situation.situation_short = "Formado"
                             AND student.course_id = :course', ['course' => $this->id])[0]->total;
     }
@@ -136,7 +131,7 @@ class Course extends Model
                                 ON test_classifier.course_id = course.id
                                 WHERE test_classifier.type = 9
                                 AND test_classifier.period_calculation = (SELECT MAX(test_classifier.period_calculation) AS period_calculation FROM test_classifier WHERE test_classifier.type = 9)
-                                AND probability.state = "Não Evadido"
+                                AND probability.situation = "Não Evadido"
                                 AND probability.probability_evasion > 0.5
                                 AND course.id = :course', ['course' => $this->id])[0]->total;
     }

@@ -24,7 +24,7 @@ class Campus extends Model
         'students_high_prob_percent'];
 
     protected $fillable = [
-        'id', 'name', 'city',
+        'id', 'name', 'city','use_classify',
     ];
 
     public function getCoursesAttribute()
@@ -59,7 +59,7 @@ class Campus extends Model
                             LEFT JOIN course ON student.course_id = course.id
                             LEFT JOIN campus ON course.campus_id = campus.id
                             LEFT JOIN situation ON detail.situation_id = situation.id
-                            WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+                            WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                             AND situation.situation_short = "Evadido"
                             AND campus.id = :campus', ['campus' => $this->id])[0]->total;
     }
@@ -72,7 +72,7 @@ class Campus extends Model
                             LEFT JOIN course ON student.course_id = course.id
                             LEFT JOIN campus ON course.campus_id = campus.id
                             LEFT JOIN situation ON detail.situation_id = situation.id
-                            WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+                            WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                             AND situation.situation_short = "Não Evadido"
                             AND campus.id = :campus', ['campus' => $this->id])[0]->total;
     }
@@ -85,7 +85,7 @@ class Campus extends Model
                             LEFT JOIN course ON student.course_id = course.id
                             LEFT JOIN campus ON course.campus_id = campus.id
                             LEFT JOIN situation ON detail.situation_id = situation.id
-                            WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+                            WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                             AND situation.situation_short = "Formado"
                             AND campus.id = :campus', ['campus' => $this->id])[0]->total;
     }
@@ -127,7 +127,7 @@ class Campus extends Model
                                 ON test_classifier.course_id = course.id
                                 WHERE test_classifier.type = 9
                                 AND test_classifier.period_calculation = (SELECT MAX(test_classifier.period_calculation) AS period_calculation FROM test_classifier WHERE test_classifier.type = 9)
-                                AND probability.state = "Não Evadido"
+                                AND probability.situation = "Não Evadido"
                                 AND probability.probability_evasion > 0.5
                                 AND course.campus_id = :campus', ['campus' => $this->id])[0]->total;
     }

@@ -46,9 +46,9 @@ class StudentController extends Controller
                     $object = ObjectClass::findOrFail($id);
 
                     $students = $this->student_repository->getStudents(
-                        array(0 => "student.id", 1 => "student.nome", 2 => "course.name", 3 => "student.codigo"),
+                        array(0 => "student.id", 1 => "student.name", 2 => "course.name AS course_name", 3 => "student.code"),
                         array(array(0 => "course.id", 1 => " = ", 2 => $object->course_id)),
-                        array(0 => "student.id", 1 => "student.nome", 2 => "course.name", 3 => "student.codigo")
+                        array(0 => "student.id", 1 => "student.name", 2 => "course_name", 3 => "student.code")
                     );
 
                 } else {
@@ -75,9 +75,9 @@ class StudentController extends Controller
                     }
                     //dd($wher);
                     $students = $this->student_repository->getStudents(
-                        array(0 => "student.id", 1 => "student.nome", 2 => "course.name", 3 => "student.codigo"),
+                        array(0 => "student.id", 1 => "student.name", 2 => "course.name", 3 => "student.code"),
                         array(array(0 => " ", 1 => " ", 2 => " ".$wher)),
-                        array(0 => "student.id", 1 => "student.nome", 2 => "course.name", 3 => "student.codigo")
+                        array(0 => "student.id", 1 => "student.name", 2 => "course.name", 3 => "student.code")
                     );
 
 

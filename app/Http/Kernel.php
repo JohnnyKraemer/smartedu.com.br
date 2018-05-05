@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'institution' => \App\Http\Middleware\Institution::class,
         'campus' => \App\Http\Middleware\Campus::class,
         'course' => \App\Http\Middleware\Course::class,
+        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }

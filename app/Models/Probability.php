@@ -8,4 +8,11 @@ class Probability extends Model
 {
     protected $table = 'probability';
     public $timestamps = false;
+
+    protected $fillable = [
+        'id',
+        'probability_evasion',
+        'test_classifier_id',
+        'student_id',
+    ];
 }

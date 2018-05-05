@@ -17,7 +17,7 @@ class CreateSituationTable extends Migration
             $table->increments('id');
 
             $table->string('situation_short')->nullable();
-            $table->string('situation_long')->nullable();
+            $table->string('situation_long');
             $table->string('description')->nullable();
 
             $table->timestamps();

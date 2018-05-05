@@ -17,6 +17,7 @@ class CreateCampusTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('city')->nullable();
+            $table->smallInteger('use_classify')->default(0);
             $table->timestamps();
         });
     }

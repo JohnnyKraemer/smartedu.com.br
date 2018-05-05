@@ -9,6 +9,6 @@ class Classifier extends Model
     protected $table = 'classifier';
 
     protected $fillable = [
-        'id', 'name', 'selected', 'pattern',
+        'id', 'name', 'selected',
     ];
 }

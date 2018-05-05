@@ -15,22 +15,16 @@ class CreateCourseTable extends Migration
     {
         Schema::create('course', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
 
-            $table->string('nivel_ensino')->nullable();
-            $table->string('grau')->nullable();
-            $table->string('periodicidade')->nullable();
-            $table->string('funcionamento')->nullable();
-            $table->string('turno')->nullable();
-            $table->string('categoria_stricto_sensu')->nullable();
-            $table->string('codigo_curso')->nullable();
-            $table->string('codigo_inep_curso')->nullable();
-            $table->string('regime_ensino')->nullable();
-            $table->integer('total_periodos')->nullable();
+            $table->string('name');
+            $table->string('level')->nullable();
+            $table->string('degree')->nullable();
+            $table->string('frequency')->nullable();
+            $table->string('operation')->nullable();
+            $table->integer('amount_periods')->nullable();
 
             $table->smallInteger('use_classify')->default(0);
-
-            $table->integer('campus_id')->unsigned()->nullable();
+            $table->integer('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campus');
 
             $table->timestamps();
@@ -50,4 +44,15 @@ class CreateCourseTable extends Migration
 
         Schema::dropIfExists('course');
     }
+
+    /*$table->string('nivel_ensino')->nullable();
+    $table->string('grau')->nullable();
+    $table->string('periodicidade')->nullable();
+    $table->string('funcionamento')->nullable();
+    $table->string('turno')->nullable();
+    $table->string('categoria_stricto_sensu')->nullable();
+    $table->string('codigo_curso')->nullable();
+    $table->string('codigo_inep_curso')->nullable();
+    $table->string('regime_ensino')->nullable();
+    $table->integer('total_periodos')->nullable();*/
 }

@@ -25479,7 +25479,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -25612,7 +25612,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -25962,7 +25962,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -27290,7 +27290,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -27566,7 +27566,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -27695,7 +27695,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/* WEBPACK VAR INJECTION */(function(process, setImmediate, global) {// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -28968,7 +28968,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -29187,7 +29187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -29558,7 +29558,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, process) {// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -35999,7 +35999,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a
+	// Permissao is hereby granted, free of charge, to any person obtaining a
 	// copy of this software and associated documentation files (the
 	// "Software"), to deal in the Software without restriction, including
 	// without limitation the rights to use, copy, modify, merge, publish,
@@ -36681,7 +36681,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// Originally from narwhal.js (http://narwhaljs.org)
 	// Copyright (c) 2009 Thomas Robinson <280north.com>
 	//
-	// Permission is hereby granted, free of charge, to any person obtaining a copy
+	// Permissao is hereby granted, free of charge, to any person obtaining a copy
 	// of this software and associated documentation files (the 'Software'), to
 	// deal in the Software without restriction, including without limitation the
 	// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
@@ -41598,7 +41598,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var DSIG = new r.Struct({
 	  ulVersion: r.uint32, // Version number of the DSIG table (0x00000001)
 	  usNumSigs: r.uint16, // Number of signatures in the table
-	  usFlag: r.uint16, // Permission flags
+	  usFlag: r.uint16, // Permissao flags
 	  signatures: new r.Array(Signature, 'usNumSigs'),
 	  signatureBlocks: new r.Array(SignatureBlock, 'usNumSigs')
 	});
@@ -65662,7 +65662,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	# MIT LICENSE
 	# Copyright (c) 2011 Devon Govett
 	# 
-	# Permission is hereby granted, free of charge, to any person obtaining a copy of this 
+	# Permissao is hereby granted, free of charge, to any person obtaining a copy of this 
 	# software and associated documentation files (the "Software"), to deal in the Software 
 	# without restriction, including without limitation the rights to use, copy, modify, merge, 
 	# publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons 

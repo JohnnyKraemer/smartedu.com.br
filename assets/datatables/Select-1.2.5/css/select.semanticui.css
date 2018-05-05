@@ -1,6 +1,8 @@
 table.dataTable tbody > tr.selected,
 table.dataTable tbody > tr > .selected {
-  background-color: rgba(0, 0, 0, 0.05);
+  /*background-color: rgba(0, 0, 0, 0.05);*/
+  background-color: #00c5dc !important;
+
 }
 table.dataTable.stripe tbody > tr.odd.selected,
 table.dataTable.stripe tbody > tr.odd > .selected, table.dataTable.display tbody > tr.odd.selected,
@@ -106,5 +108,7 @@ div.dataTables_wrapper span.select-item {
 table.dataTable tbody tr.selected,
 table.dataTable tbody th.selected,
 table.dataTable tbody td.selected {
-  color: rgba(0, 0, 0, 0.95);
+/*  color: #00c5dc !important;*/
+  background-color: #00c5dc !important;
+
 }

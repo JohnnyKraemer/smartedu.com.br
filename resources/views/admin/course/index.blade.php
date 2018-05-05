@@ -276,7 +276,7 @@
                     </div>
                 </div>
                 <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_students_by_quant_semestre_cursados" style="height: 280px;"></div>
+                    <div id="chart_students_by_semesters" style="height: 280px;"></div>
                 </div>
             </div>
         </div>
@@ -312,7 +312,7 @@
             </div>
         </div>
         <div class="m-portlet__body">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <table id="table" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
                     <th>Nome</th>
@@ -341,12 +341,12 @@
                 @foreach ($objects as $object)
                     <tr>
                         <td>
-                            <a href="{{ url('/admin/student/'.$object->id) }}">{{ucwords(strtolower($object->nome))}}</a>
+                            <a href="{{ url('/admin/student/'.$object->id) }}">{{ucwords(strtolower($object->name))}}</a>
                         </td>
-                        <td>{{$object->semestre_situacao}}/{{$object->ano_situacao}}</td>
-                        <td>{{$object->periodo}}</td>
-                        <td>{{$object->cota}}</td>
-                        <td>{{$object->quant_semestre_cursados}}</td>
+                        <td>{{$object->semester_situation}}/{{$object->year_situation}}</td>
+                        <td>{{$object->period}}</td>
+                        <td>{{$object->quota}}</td>
+                        <td>{{$object->semesters}}</td>
                         <td>{{ number_format(($object->probability_evasion * 100), 2)}} %</td>
                         <td>{{$object->situation_long}}</td>
                         <td>{{$object->situation_short}}</td>
@@ -363,56 +363,21 @@
 
     <script>
         $(document).ready(function () {
-            var students_by_periodo = JSON.parse({!! json_encode($students_by_periodo) !!});
+            var students_by_period = JSON.parse({!! json_encode($students_by_period) !!});
             var students_by_idade_ingresso = JSON.parse({!! json_encode($students_by_idade_ingresso) !!});
             var students_by_idade_situacao = JSON.parse({!! json_encode($students_by_idade_situacao) !!});
-            var students_by_quant_semestre_cursados = JSON.parse({!! json_encode($students_by_quant_semestre_cursados) !!});
-            var students_by_genero = JSON.parse({!! json_encode($students_by_genero) !!});
+            var students_by_semesters = JSON.parse({!! json_encode($students_by_semesters) !!});
+            var students_by_genre = JSON.parse({!! json_encode($students_by_genre) !!});
             var students_by_ano_semestre = JSON.parse({!! json_encode($students_by_ano_semestre) !!});
 
 
-            var table = $('#example').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                buttons: [
-                    'print',
-                    'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5'
-                ],
-                language: {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                },
-                initComplete: function () {
-                    table.columns().eq(0).each(function (index) {
-                        var column = table.column(index);
-                        if (index == 0) {
-                            var select = $('<input type="text" class="form-control m-input" placeholder="Pesquisar" />')
-                                .appendTo($(column.footer()).empty());
-                            $('input', column.footer()).on('keyup change', function () {
-                                if (column.search() !== this.value) {
-                                    column.search(this.value).draw();
-                                }
-                            });
-                        } else {
-                            var select = $('<select class="form-control"><option value="">Todos</option></select>')
-                                .appendTo($(column.footer()).empty())
-                                .on('change', function () {
-                                    var val = $.fn.dataTable.util.escapeRegex(
-                                        $(this).val()
-                                    );
-                                    column.search(val ? '^' + val + '$' : '', true, false).draw();
-                                });
-                            column.data().unique().sort().each(function (d, j) {
-                                select.append('<option value="' + d + '">' + d + '</option>')
-                            });
-                        }
-                    });
-                }
-            });
+            var ocultas = null;
+            var texto = [0];
+            var selecionar = [1, 2];
+            var table = initTable(true, false, texto, selecionar, ocultas);
 
-            students_by_quant_semestre_cursados = normalizeData(students_by_quant_semestre_cursados);
-            AmCharts.makeChart("chart_students_by_quant_semestre_cursados", {
+            students_by_semesters = normalizeData(students_by_semesters);
+            AmCharts.makeChart("chart_students_by_semesters", {
                 "type": "serial",
                 "categoryField": "category",
                 "startDuration": 1,
@@ -454,7 +419,7 @@
                 "legend": {
                     "enabled": true
                 },
-                "dataProvider": students_by_quant_semestre_cursados
+                "dataProvider": students_by_semesters
             });
 
             students_by_idade_situacao = normalizeData(students_by_idade_situacao);
@@ -587,7 +552,7 @@
             });
 
 
-            students_by_genero = normalizeData(students_by_genero);
+            students_by_genre = normalizeData(students_by_genre);
             AmCharts.makeChart("chart_evaded_by_genre_complete", {
                     "type": "serial",
                     "categoryField": "category",
@@ -646,11 +611,11 @@
                         "enabled": true,
                         "useGraphSettings": true
                     },
-                    "dataProvider": students_by_genero
+                    "dataProvider": students_by_genre
                 }
             );
 
-            students_by_periodo = normalizeData(students_by_periodo);
+            students_by_period = normalizeData(students_by_period);
             AmCharts.makeChart("chart_evaded_by_period", {
                     "type": "serial",
                     "categoryField": "category",
@@ -700,7 +665,7 @@
                         "enabled": true,
                         "useGraphSettings": true
                     },
-                    "dataProvider": students_by_periodo
+                    "dataProvider": students_by_period
                 }
             );
 

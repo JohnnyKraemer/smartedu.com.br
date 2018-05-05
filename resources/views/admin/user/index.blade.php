@@ -35,6 +35,14 @@
                     <th>Ações</th>
                 </tr>
                 </thead>
+                <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </tfoot>
                 <tbody>
                 @foreach ($objects as $object)
                     <tr>
@@ -109,13 +117,13 @@
             document.getElementById("var_delete").value = id;
         }
 
+        var ocultas = null;
+        var texto = [0];
+        var selecionar = [1,2];
+
+
         $(document).ready(function () {
-            var table = $('#table').DataTable({
-                responsive: true,
-                language: {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                }
-            });
+            var table = initTable(true, true,texto,selecionar,ocultas);
         });
     </script>
 @endsection

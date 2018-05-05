@@ -44,6 +44,7 @@ class CourseController extends Controller
                 $object = null;
                 $courses = null;
                 $loggedUser = \Auth::user();
+
                 if($loggedUser->position_id == 1 || $loggedUser->position_id == 2){
                     $object = Course::findOrFail($id);
                 }else{
@@ -103,12 +104,12 @@ class CourseController extends Controller
             $objects =
                 $this->student_repository->getStudentsProbability(
                     array(
-                        0 => "student.nome",
-                        1 => "detail.ano_situacao",
-                        2 => "detail.semestre_situacao",
-                        3 => "detail.periodo",
-                        4 => "student.cota",
-                        5 => "detail.quant_semestre_cursados",
+                        0 => "student.name",
+                        1 => "detail.year_situation",
+                        2 => "detail.semester_situation",
+                        3 => "detail.period",
+                        4 => "student.quota",
+                        5 => "detail.semesters",
                         6 => "situation.situation_long",
                         7 => "situation.situation_short",
                         8 => "student.id",
@@ -119,34 +120,34 @@ class CourseController extends Controller
             $wheres = array(array(0 => "course.id", 1 => "=", 2 => $id), array(0 => "situation.situation_short", 1 => "!=", 2 => "'Outro'"));
             $group_bys = array(0 => "category", 1 => "situation_short");
 
-            $students_by_periodo = json_encode(
+            $students_by_period = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.periodo AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.period AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_ano_semestre = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "CONCAT(detail.ano_situacao, '-',detail.semestre_situacao ) AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "CONCAT(detail.year_situation, '-',detail.semester_situation ) AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_genero = json_encode(
+            $students_by_genre = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "student.genero AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "student.genre AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_idade_ingresso = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "student.idade_ingresso AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "student.age AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_idade_situacao = json_encode(
+            $students_by_age_situation = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.idade_situacao AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.age_situation AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_quant_semestre_cursados = json_encode(
+            $students_by_semesters = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.quant_semestre_cursados AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.semesters AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
 
@@ -156,13 +157,14 @@ class CourseController extends Controller
                 'all_campus', $all_campus,
                 'courses', $courses,
                 'students_by_idade_ingresso', $students_by_idade_ingresso,
-                'students_by_idade_situacao', $students_by_idade_situacao,
-                'students_by_quant_semestre_cursados', $students_by_quant_semestre_cursados,
-                'students_by_genero', $students_by_genero,
+                'students_by_age_situation', $students_by_age_situation,
+                'students_by_semesters', $students_by_semesters,
+                'students_by_genre', $students_by_genre,
                 'students_by_ano_semestre', $students_by_ano_semestre,
-                'students_by_periodo', $students_by_periodo
+                'students_by_period', $students_by_period
             ]));
         } catch (Exception $e) {
+            return $e;
             $request->session()->flash('type', 'danger');
             $request->session()->flash('message', 'Ocorreu um erro no sistema.');
             return redirect('/');

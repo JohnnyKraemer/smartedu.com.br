@@ -78,34 +78,34 @@ class CampusController extends Controller
             $wheres = array(array(0 => "campus.id", 1 => "=", 2 => $id), array(0 => "situation.situation_short", 1 => "!=", 2 => "'Outro'"));
             $group_bys = array(0 => "category", 1 => "situation_short");
 
-            $students_by_periodo = json_encode(
+            $students_by_period = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.periodo AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.period AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_ano_semestre = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "CONCAT(detail.ano_situacao, '-',detail.semestre_situacao ) AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "CONCAT(detail.year_situation, '-',detail.semester_situation ) AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_genero = json_encode(
+            $students_by_genre = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "student.genero AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "student.genre AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_idade_ingresso = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "student.idade_ingresso AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "student.age AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_idade_situacao = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.idade_situacao AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.age_situation AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_quant_semestre_cursados = json_encode(
+            $students_by_semesters = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.quant_semestre_cursados AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.semesters AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_course = json_encode(
@@ -120,10 +120,10 @@ class CampusController extends Controller
                 'campus', $campus,
                 'students_by_idade_ingresso', $students_by_idade_ingresso,
                 'students_by_idade_situacao', $students_by_idade_situacao,
-                'students_by_quant_semestre_cursados', $students_by_quant_semestre_cursados,
-                'students_by_genero', $students_by_genero,
+                'students_by_semesters', $students_by_semesters,
+                'students_by_genre', $students_by_genre,
                 'students_by_ano_semestre', $students_by_ano_semestre,
-                'students_by_periodo', $students_by_periodo,
+                'students_by_period', $students_by_period,
                 'students_by_course', $students_by_course
             ]));
         } catch (Exception $e) {

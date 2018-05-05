@@ -33,13 +33,13 @@
                                     @foreach($students as $student)
                                         @if($student->id == $object->id)
                                             <option value="{{$student->id}}" selected>
-                                                {{$student->codigo}} - {{ucwords(strtolower($student->nome))}}
-                                                - {{$student->name}}
+                                                {{$student->code}} - {{ucwords(strtolower($student->name))}}
+                                                - {{$student->course_name}}
                                             </option>
                                         @else
                                             <option value="{{$student->id}}">
-                                                {{$student->codigo}} - {{ucwords(strtolower($student->nome))}}
-                                                - {{$student->name}}
+                                                {{$student->code}} - {{ucwords(strtolower($student->name))}}
+                                                - {{$student->course_name}}
                                             </option>
                                         @endif
                                     @endforeach
@@ -68,7 +68,7 @@
                         </div>
                         <div class="m-card-profile__details">
                             <span class="m-card-profile__name">
-                                {{ucwords(strtolower($object->nome))}}
+                                {{ucwords(strtolower($object->name))}}
                             </span>
                             <br/>
                             <a href="" class="m-card-profile__email m-link">
@@ -166,7 +166,7 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{ucwords(strtolower($object->nome))}}
+                                        {{ucwords(strtolower($object->name))}}
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -176,7 +176,7 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{$object->codigo}}
+                                        {{$object->code}}
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -186,7 +186,7 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{$object->data_nascimento}}
+                                        {{$object->birth_date}}
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -196,7 +196,7 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{$object->idade_ingresso}}
+                                        {{$object->age}}
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -206,7 +206,7 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{$object->genero}}
+                                        {{$object->genre}}
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -216,7 +216,7 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{$object->municipio}} - {{$object->uf}}
+                                        {{$object->municipality}} - {{$object->state}}
                                     </label>
                                 </div>
                                 <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
@@ -227,7 +227,7 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{$object->semestre_ingresso}} / {{$object->ano_ingresso}}
+                                        {{$object->semester_ingress}} / {{$object->year_ingress}}
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -237,7 +237,7 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{$object->forma_ingresso}}
+                                        {{$object->type_ingress}}
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -247,7 +247,7 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{$object->cota}}
+                                        {{$object->quota}}
                                     </label>
                                 </div>
                             </div>
@@ -263,10 +263,10 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        @if($object->enem_humanas == null)
+                                        @if($object->enem_human == null)
                                             Não Consta
                                         @else
-                                            {{$object->enem_humanas}}
+                                            {{$object->enem_human}}
                                         @endif
                                     </label>
                                 </div>
@@ -277,10 +277,10 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        @if($object->enem_linguagem == null)
+                                        @if($object->enem_language == null)
                                             Não Consta
                                         @else
-                                            {{$object->enem_linguagem}}
+                                            {{$object->enem_language}}
                                         @endif
                                     </label>
                                 </div>
@@ -291,10 +291,10 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        @if($object->enem_matematica == null)
+                                        @if($object->enem_math == null)
                                             Não Consta
                                         @else
-                                            {{$object->enem_matematica}}
+                                            {{$object->enem_math}}
                                         @endif
                                     </label>
                                 </div>
@@ -305,10 +305,10 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        @if($object->enem_natureza == null)
+                                        @if($object->enem_nature == null)
                                             Não Consta
                                         @else
-                                            {{$object->enem_natureza}}
+                                            {{$object->enem_nature}}
                                         @endif
                                     </label>
                                 </div>
@@ -319,10 +319,10 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        @if($object->enem_redacao == null)
+                                        @if($object->enem_redaction == null)
                                             Não Consta
                                         @else
-                                            {{$object->enem_redacao}}
+                                            {{$object->enem_redaction}}
                                         @endif
                                     </label>
                                 </div>
@@ -334,10 +334,10 @@
 
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        @if($object->nota_final_sisu == null)
+                                        @if($object->sisu == null)
                                             Não Consta
                                         @else
-                                            {{$object->nota_final_sisu}}
+                                            {{$object->sisu}}
                                         @endif
                                     </label>
                                 </div>
@@ -356,13 +356,13 @@
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        Detalhes por Semestre Cursado - {{ucwords(strtolower($object->nome))}}
+                        Detalhes por Semestre Cursado - {{ucwords(strtolower($object->name))}}
                     </h3>
                 </div>
             </div>
         </div>
         <div class="m-portlet__body">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <table id="table" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
                     <th></th>
@@ -380,15 +380,15 @@
                 <tbody>
                 @foreach ($details as $object)
                     <tr>
-                        <td>{{$object->periodo_carga}}</td>
-                        <td>{{$object->cr}}</td>
-                        <td>{{$object->disciplinas_aprovadas}}</td>
-                        <td>{{$object->disciplinas_consignadas}}</td>
-                        <td>{{$object->disciplinas_matriculadas}}</td>
-                        <td>{{$object->disciplinas_reprovadas_frequencia}}</td>
-                        <td>{{$object->disciplinas_reprovadas_nota}}</td>
-                        <td>{{$object->idade_situacao}}</td>
-                        <td>{{$object->periodo}}</td>
+                        <td>{{$object->loading_period}}</td>
+                        <td>{{$object->coefficient}}</td>
+                        <td>{{$object->disciplines_approved}}</td>
+                        <td>{{$object->disciplines_consigned}}</td>
+                        <td>{{$object->disciplines_matriculate}}</td>
+                        <td>{{$object->disciplines_reprovated_frequency}}</td>
+                        <td>{{$object->disciplines_reprovated_note}}</td>
+                        <td>{{$object->age_situation}}</td>
+                        <td>{{$object->period}}</td>
                         <td>{{$object->situation->situation_long}}</td>
                     </tr>
                 @endforeach
@@ -401,18 +401,11 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            var table = $('#example').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                buttons: [
-                    'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5'
-                ],
-                language: {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                }
-            });
+            var ocultas = null;
+            var texto = [0];
+            var selecionar = [1, 2];
+            var table = initTable(true, false, texto, selecionar, ocultas);
+
             $('#m_select2_1').select2({
                 placeholder: "Selecione"
             });

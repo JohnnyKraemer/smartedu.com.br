@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div class="m-portlet__body">
-			<table id="example" class="table table-striped table-bordered" style="width:100%">
+			<table id="table" class="table table-striped table-bordered" style="width:100%">
 				<thead>
 				<tr>
 					<th>Nome</th>
@@ -37,12 +37,12 @@
 				@foreach ($objects as $object)
 					<tr>
 						<td>
-							<a href="{{ url('/admin/student/'.$object->id) }}">{{ucwords(strtolower($object->nome))}}</a>
+							<a href="{{ url('/admin/student/'.$object->id) }}">{{ucwords(strtolower($object->name))}}</a>
 						</td>
-						<td>{{$object->semestre_situacao}}/{{$object->ano_situacao}}</td>
-						<td>{{$object->periodo}}</td>
-						<td>{{$object->cota}}</td>
-						<td>{{$object->quant_semestre_cursados}}</td>
+						<td>{{$object->semester_situation}}/{{$object->year_situation}}</td>
+						<td>{{$object->period}}</td>
+						<td>{{$object->quota}}</td>
+						<td>{{$object->semesters}}</td>
 						<td>{{$object->situation_long}}</td>
 						<td>{{$object->situation_short}}</td>
 					</tr>
@@ -56,44 +56,10 @@
 @section('scripts')
 <script>
 	$( document ).ready(function() {
-        var table = $('#example').DataTable({
-            responsive: true,
-            dom: 'Bfrtip',
-            buttons: [
-                'excelHtml5',
-                'csvHtml5',
-                'pdfHtml5'
-            ],
-            language: {
-                "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-            },
-            initComplete: function () {
-                table.columns().eq(0).each(function (index) {
-                    var column = table.column(index);
-                    if (index == 0) {
-                        var select = $('<input type="text" class="form-control m-input" placeholder="Pesquisar" />')
-                            .appendTo($(column.footer()).empty());
-                        $('input', column.footer()).on('keyup change', function () {
-                            if (column.search() !== this.value) {
-                                column.search(this.value).draw();
-                            }
-                        });
-                    } else {
-                        var select = $('<select class="form-control"><option value="">Todos</option></select>')
-                            .appendTo($(column.footer()).empty())
-                            .on('change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                    $(this).val()
-                                );
-                                column.search(val ? '^' + val + '$' : '', true, false).draw();
-                            });
-                        column.data().unique().sort().each(function (d, j) {
-                            select.append('<option value="' + d + '">' + d + '</option>')
-                        });
-                    }
-                });
-            }
-        });
+        var ocultas = null;
+        var texto = [0];
+        var selecionar = [1, 2];
+        var table = initTable(true, false, texto, selecionar, ocultas);
 	});
 </script>
 @endsection

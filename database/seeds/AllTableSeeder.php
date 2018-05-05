@@ -26,128 +26,28 @@ class AllTableSeeder extends Seeder
         $position_dev = Position::create([
             'name' => 'Desenvolvedor',
             'description' => 'Desenvolvedor do Sistema',
-            'visible' => false,
         ]);
 
         $position_adm_instituicao = Position::create([
             'name' => 'Administrador da Instituição',
             'description' => 'Administrador da Instituição',
-            'visible' => true,
         ]);
 
         $position_adm_campus = Position::create([
             'name' => 'Administrador do Campus',
             'description' => 'Administrador do Campus',
-            'visible' => true,
         ]);
 
         $position_coordenador = Position::create([
             'name' => 'Coordenador',
             'description' => 'Coordenador de Curso',
-            'visible' => true,
         ]);
 
 
         $position_coordenador = Position::create([
             'name' => 'Professor',
             'description' => 'Professor de Curso',
-            'visible' => true,
         ]);
-
-
-        //------------------------- Campus -------------------------
-        //$campus_pato = Campus::create([
-        //    'name' => 'Pato Branco',
-        //    'city' => 'Pato Branco',
-        //]);
-
-        //$campus_apucarana = Campus::create([
-        //    'name' => 'Apucarana',
-        //    'city' => 'Apucarana',
-        //]);
-
-        //$campus_campo = Campus::create([
-        //    'name' => 'Campo Mourão',
-        //    'city' => 'Campo Mourão',
-        //]);
-
-        //------------------------- Course -------------------------
-        /*
-        $course_administracao = Course::create([
-        'name' => 'Administração',
-        'nivel_ensino' => 'Graduação',
-        'grau' => 'Bacharelado (outros)',
-        'periodicidade' => 'Anual',
-        'funcionamento' => 'Em Atividade',
-        'turno' => 'Manhã',
-        'categoria_stricto_sensu' => '-',
-        'codigo_curso' => '167',
-        'codigo_inep_curso' => '14537',
-        'regime_ensino' => 'Anual',
-        'total_periodos' => '5',
-        'campus_id' => $campus_pato->id,
-        ]);
-
-        $course_contabeis = Course::create([
-        'name' => 'Ciências Contábeis',
-        'nivel_ensino' => 'Graduação',
-        'grau' => 'Bacharelado (outros)',
-        'periodicidade' => 'Anual',
-        'funcionamento' => 'Em Atividade',
-        'turno' => 'Integral (T/N)',
-        'categoria_stricto_sensu' => '-',
-        'codigo_curso' => '166',
-        'codigo_inep_curso' => '14539',
-        'regime_ensino' => 'Anual',
-        'total_periodos' => '5',
-        'campus_id' => $campus_pato->id,
-        ]);
-
-        $course_textil = Course::create([
-        'name' => 'Engenharia Têxtil',
-        'nivel_ensino' => 'Graduação',
-        'grau' => 'Bacharelado (engenharia)',
-        'periodicidade' => 'Semestral',
-        'funcionamento' => 'Em Atividade',
-        'turno' => 'Diurno (M/T)',
-        'categoria_stricto_sensu' => '-',
-        'codigo_curso' => '7',
-        'codigo_inep_curso' => '1114930',
-        'regime_ensino' => 'Semestral',
-        'total_periodos' => '10',
-        'campus_id' => $campus_apucarana->id,
-        ]);
-
-        $course_quimica = Course::create([
-        'name' => 'Licenciatura Em Química',
-        'nivel_ensino' => 'Graduação',
-        'grau' => 'Licenciatura',
-        'periodicidade' => 'Semestral',
-        'funcionamento' => 'Em Atividade',
-        'turno' => 'Noite',
-        'categoria_stricto_sensu' => '-',
-        'codigo_curso' => '9',
-        'codigo_inep_curso' => '1126431',
-        'regime_ensino' => 'Semestral',
-        'total_periodos' => '8',
-        'campus_id' => $campus_apucarana->id,
-        ]);
-
-        $course_computacao = Course::create([
-        'name' => 'Ciência Da Computação',
-        'nivel_ensino' => 'Graduação',
-        'grau' => 'Bacharelado (outros)',
-        'periodicidade' => 'Semestral',
-        'funcionamento' => 'Em Atividade',
-        'turno' => 'Integral (T/N)',
-        'categoria_stricto_sensu' => '-',
-        'codigo_curso' => '35',
-        'codigo_inep_curso' => '1164656',
-        'regime_ensino' => 'Semestral',
-        'total_periodos' => '8',
-        'campus_id' => $campus_campo->id,
-        ]);
-         */
 
         //------------------------- User -------------------------
         User::create([
@@ -215,18 +115,10 @@ class AllTableSeeder extends Seeder
         ]);
          */
         //------------------------- Variable -------------------------
-        Variable::create([
-            'name' => 'Turno',
-            'name_database' => 'turno',
-            'table' => 'course',
-            'description' => 'Turno',
-            'use_classify' => 1,
-            'discretize' => 0,
-            'nominal' => 1,
-        ]);
+
         Variable::create([
             'name' => 'Ano',
-            'name_database' => 'ano_situacao',
+            'name_database' => 'year_situation',
             'table' => 'detail',
             'description' => 'Ano',
             'use_classify' => 1,
@@ -235,7 +127,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Semestre',
-            'name_database' => 'semestre_situacao',
+            'name_database' => 'semester_situation',
             'table' => 'detail',
             'description' => 'Semestre',
             'use_classify' => 1,
@@ -244,7 +136,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Coeficiente de rendimento',
-            'name_database' => 'cr',
+            'name_database' => 'coefficient',
             'table' => 'detail',
             'description' => 'Coeficiente de rendimento',
             'use_classify' => 1,
@@ -253,7 +145,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Disciplinas aprovadas',
-            'name_database' => 'disciplinas_aprovadas',
+            'name_database' => 'disciplines_approved',
             'table' => 'detail',
             'description' => 'Disciplinas aprovadas',
             'use_classify' => 1,
@@ -262,7 +154,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Disciplinas consignadas',
-            'name_database' => 'disciplinas_consignadas',
+            'name_database' => 'disciplines_consigned',
             'table' => 'detail',
             'description' => 'Disciplinas consignadas',
             'use_classify' => 1,
@@ -271,7 +163,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Disciplinas matriculadas',
-            'name_database' => 'disciplinas_matriculadas',
+            'name_database' => 'disciplines_matriculate',
             'table' => 'detail',
             'description' => 'Disciplinas matriculadas',
             'use_classify' => 1,
@@ -280,7 +172,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Disciplinas reprovadas por frequência',
-            'name_database' => 'disciplinas_reprovadas_frequencia',
+            'name_database' => 'disciplines_reprovated_frequency',
             'table' => 'detail',
             'description' => 'Disciplinas reprovadas por frequência',
             'use_classify' => 1,
@@ -289,7 +181,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Disciplinas reprovadas por nota',
-            'name_database' => 'disciplinas_reprovadas_nota',
+            'name_database' => 'disciplines_reprovated_note',
             'table' => 'detail',
             'description' => 'Disciplinas reprovadas por nota',
             'use_classify' => 1,
@@ -298,7 +190,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Idade',
-            'name_database' => 'idade_situacao',
+            'name_database' => 'age_situation',
             'table' => 'detail',
             'description' => 'Idade',
             'use_classify' => 1,
@@ -307,7 +199,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Matriz curricular',
-            'name_database' => 'matriz',
+            'name_database' => 'matrix',
             'table' => 'detail',
             'description' => 'Matriz curricular',
             'use_classify' => 1,
@@ -316,7 +208,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Período',
-            'name_database' => 'periodo',
+            'name_database' => 'period',
             'table' => 'detail',
             'description' => 'Período',
             'use_classify' => 1,
@@ -325,7 +217,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Total de semestres cursados',
-            'name_database' => 'quant_semestre_cursados',
+            'name_database' => 'semesters',
             'table' => 'detail',
             'description' => 'Total de semestres cursados',
             'use_classify' => 1,
@@ -334,7 +226,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Ano de ingresso',
-            'name_database' => 'ano_ingresso',
+            'name_database' => 'year_ingress',
             'table' => 'student',
             'description' => 'Ano de ingresso',
             'use_classify' => 1,
@@ -343,7 +235,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Forma de ingresso',
-            'name_database' => 'forma_ingresso',
+            'name_database' => 'type_ingress',
             'table' => 'student',
             'description' => 'Forma de ingresso',
             'use_classify' => 1,
@@ -352,7 +244,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Gênero',
-            'name_database' => 'genero',
+            'name_database' => 'genre',
             'table' => 'student',
             'description' => 'Gênero',
             'use_classify' => 1,
@@ -361,7 +253,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Mudou de curso - mesmo câmpus',
-            'name_database' => 'mudou_curso_mesmo_campus',
+            'name_database' => 'changed_course',
             'table' => 'student',
             'description' => 'Mudou de curso - mesmo câmpus',
             'use_classify' => 1,
@@ -370,7 +262,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Mudou de curso - outro câmpus',
-            'name_database' => 'mudou_curso_outro_campus',
+            'name_database' => 'changed_course_campus',
             'table' => 'student',
             'description' => 'Mudou de curso - outro câmpus',
             'use_classify' => 1,
@@ -379,7 +271,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Nota ENEM Humanas',
-            'name_database' => 'enem_humanas',
+            'name_database' => 'enem_human',
             'table' => 'student',
             'description' => 'Nota ENEM Humanas',
             'use_classify' => 1,
@@ -388,7 +280,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Nota ENEM Liguagem',
-            'name_database' => 'enem_linguagem',
+            'name_database' => 'enem_language',
             'table' => 'student',
             'description' => 'Nota ENEM Liguagem',
             'use_classify' => 1,
@@ -397,7 +289,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Nota ENEM Matemática',
-            'name_database' => 'enem_matematica',
+            'name_database' => 'enem_math',
             'table' => 'student',
             'description' => 'Nota ENEM Matemática',
             'use_classify' => 1,
@@ -406,7 +298,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Nota ENEM Natureza',
-            'name_database' => 'enem_natureza',
+            'name_database' => 'enem_nature',
             'table' => 'student',
             'description' => 'Nota ENEM Natureza',
             'use_classify' => 1,
@@ -415,7 +307,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Nota ENEM Redação',
-            'name_database' => 'enem_redacao',
+            'name_database' => 'enem_redaction',
             'table' => 'student',
             'description' => 'Nota ENEM Redação',
             'use_classify' => 1,
@@ -424,7 +316,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Nota final SISU',
-            'name_database' => 'nota_final_sisu',
+            'name_database' => 'sisu',
             'table' => 'student',
             'description' => 'Nota final SISU',
             'use_classify' => 1,
@@ -433,7 +325,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Número de entradas em outros cursos',
-            'name_database' => 'entradas_outro_curso',
+            'name_database' => 'entries_other_course',
             'table' => 'student',
             'description' => 'Número de entradas em outros cursos',
             'use_classify' => 1,
@@ -442,7 +334,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Número de entradas no curso',
-            'name_database' => 'entradas_curso',
+            'name_database' => 'entries_course',
             'table' => 'student',
             'description' => 'Número de entradas no curso',
             'use_classify' => 1,
@@ -451,7 +343,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Semestre de ingresso no curso',
-            'name_database' => 'semestre_ingresso',
+            'name_database' => 'semester_ingress',
             'table' => 'student',
             'description' => 'Semestre de ingresso no curso',
             'use_classify' => 1,
@@ -460,7 +352,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Tipo de cota',
-            'name_database' => 'cota',
+            'name_database' => 'quota',
             'table' => 'student',
             'description' => 'Tipo de cota',
             'use_classify' => 1,
@@ -469,7 +361,7 @@ class AllTableSeeder extends Seeder
         ]);
         Variable::create([
             'name' => 'Idade Ingresso',
-            'name_database' => 'idade_ingresso',
+            'name_database' => 'age',
             'table' => 'student',
             'description' => 'Idade Ingresso',
             'use_classify' => 1,

@@ -16,13 +16,14 @@ class CreateProbabilityTable extends Migration
         Schema::create('probability', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->double('probability_evasion', 8, 2)->nullable();
-            $table->string('state')->nullable();
+            $table->double('probability_evasion', 8, 2);
 
-            $table->integer('student_id')->unsigned()->nullable();
+            $table->string('situation')->nullable();
+
+            $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('student');
 
-            $table->integer('test_classifier_id')->unsigned()->nullable();
+            $table->integer('test_classifier_id')->unsigned();
             $table->foreign('test_classifier_id')->references('id')->on('test_classifier');
         });
     }

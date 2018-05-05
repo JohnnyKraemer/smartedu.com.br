@@ -144,10 +144,12 @@
                                 <div class="m-form__actions">
                                     <div class="row">
                                         <div class="col-6">
+                                            <!--
                                             <a href="{{ url('/admin/user/'.$object->id.'/edit') }}"
                                                class="btn btn-accent m-btn m-btn--air m-btn--custom">
                                                 Alterar Senha
                                             </a>
+                                            -->
                                         </div>
                                         <div class="col-6">
                                             <a href="{{ url('/admin/user/'.$object->id.'/edit') }}"

@@ -26,13 +26,22 @@ max_input_vars = 100000
 post_max_size=50M
 upload_max_filesize=50M
 
-SELECT student.codigo, student.nome, detail.periodoCarga, situation.situation_long, course.name
+SELECT student.id, student.code, student.name, count(detail.id)
+FROM student
+LEFT JOIN detail ON student.id = detail.student_id
+LEFT JOIN course ON student.course_id = course.id
+LEFT JOIN campus ON campus.id = course.campus_id
+WHERE campus.name = 'Apucarana'N
+GROUP BY student.id
+ORDER BY student.name ASC
+
+SELECT student.code, student.name, detail.loading_period, situation.situation_long, course.name
 FROM student
 LEFT JOIN detail ON student.id = detail.student_id
 LEFT JOIN course ON student.course_id = course.id
 LEFT JOIN situation ON detail.situation_id = situation.id
-WHERE detail.periodoCarga = (SELECT MAX(detail.periodoCarga) FROM detail WHERE detail.student_id = student.id)
-ORDER BY student.nome ASC
+WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
+ORDER BY student.name ASC
 
 --------------- TOTAL DE ACERTOS POR TEST
 SELECT test_classifier.id, classifier.name, test_classifier.success, variable.name
@@ -71,6 +80,16 @@ AND test_classifier.course_id = 2
 GROUP BY classifier.name
 ORDER BY SUM(test_classifier.success) DESC
 LIMIT 3
+
+-- QUANTIADE DE DE ESTUDANTES POR CAMPUS, CURSO E SITUACAO RESUMIDA
+SELECT campus.name as campus, course.name as curso, situation.situation_short as situacao, COUNT(student.id) as total
+FROM student
+LEFT JOIN detail ON student.id = detail.student_id
+LEFT JOIN course ON student.course_id = course.id
+LEFT JOIN campus ON campus.id = course.campus_id
+LEFT JOIN situation ON detail.situation_id = situation.id
+WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
+GROUP BY campus, curso, situacao
 
 --------------- TOTAL DE ACERTOS POR VARIAVEL DE TODOS OS CLASSIFICADORES
 SELECT test_classifier.id
@@ -128,7 +147,7 @@ LIMIT 3 test_classifier.period_calculation
 
 
 -- ALUNOS POR PERIODO (SEM CONTAR O ULTIMO)
-SELECT student.codigo, student.nome, detail.periodo_carga, detail.periodo,situation.situation_long, situation.situation_short
+SELECT student.code, student.name, detail.loading_period, detail.period,situation.situation_long, situation.situation_short
 FROM student
 LEFT JOIN student_detail
 ON student.id = student_detail.student_id
@@ -147,9 +166,9 @@ WHERE detail.id =
 	ON s.id = student_detail.student_id
 	LEFT JOIN detail
 	ON detail.id = student_detail.detail_id
-	WHERE detail.periodo_carga != (SELECT MAX(detail.periodo_carga) FROM detail)
-    AND detail.periodo =  6
+	WHERE detail.loading_period != (SELECT MAX(detail.loading_period) FROM detail)
+    AND detail.period =  6
     AND s.id = student.id)
 AND course.id =  2
 AND (situation.situation_short LIKE 'Evadido' OR situation.situation_short LIKE 'Não Evadido')
-ORDER BY detail.periodo_carga DESC
+ORDER BY detail.loading_period DESC

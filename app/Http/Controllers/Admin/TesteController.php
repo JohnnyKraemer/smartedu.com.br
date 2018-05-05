@@ -52,7 +52,7 @@ class TesteController extends Controller
                                     LEFT JOIN course ON student.course_id = course.id
                                     LEFT JOIN campus ON course.campus_id = campus.id
                                     LEFT JOIN situation ON detail.situation_id = situation.id
-                                    WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+                                    WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                                     AND situation.situation_short != "Outro"
                                     GROUP BY situation.situation_short ORDER BY situation.situation_short');
 
@@ -65,7 +65,7 @@ class TesteController extends Controller
                                         ON probability.test_classifier_id = test_classifier.id
                                         WHERE test_classifier.type = 9
                                         AND test_classifier.period_calculation = (SELECT MAX(test_classifier.period_calculation) AS period_calculation FROM test_classifier WHERE test_classifier.type = 9)
-                                        AND probability.state = "Não Evadido"
+                                        AND probability.situation = "Não Evadido"
                                         AND probability.probability_evasion > 0.5')[0]->total;
 
             foreach ($total_by_situation_short as $totals){
@@ -84,49 +84,49 @@ class TesteController extends Controller
             $wheres = array( array(0 => "situation.situation_short", 1 => "!=", 2 => "'Outro'"));
             $group_bys = array(0 => "category", 1 => "situation_short");
 
-            $students_by_periodo = json_encode(
+            $students_by_period = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.periodo AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.period AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_ano_semestre = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "CONCAT(detail.ano_situacao, '-',detail.semestre_situacao ) AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "CONCAT(detail.year_situation, '-',detail.semester_situation ) AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_genero = json_encode(
+            $students_by_genre = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "student.genero AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "student.genre AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_idade_ingresso = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "student.idade_ingresso AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "student.age AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_idade_situacao = json_encode(
+            $students_by_age_situation = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.idade_situacao AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.age_situation AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_disciplinas_aprovadas = json_encode(
+            $students_by_disciplines_approved = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.disciplinas_aprovadas AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.disciplines_approved AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_disciplinas_reprovadas_frequencia = json_encode(
+            $students_by_disciplines_reprovated_frequency = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.disciplinas_reprovadas_frequencia AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.disciplines_reprovated_frequency AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_disciplinas_reprovadas_nota = json_encode(
+            $students_by_disciplines_reprovated_note = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.disciplinas_reprovadas_nota AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.disciplines_reprovated_note AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_quant_semestre_cursados = json_encode(
+            $students_by_semesters = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.quant_semestre_cursados AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.semesters AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
 
@@ -142,14 +142,14 @@ class TesteController extends Controller
                 'campus', $campus,
                 'courses',$courses,
                 'students_by_idade_ingresso', $students_by_idade_ingresso,
-                'students_by_idade_situacao', $students_by_idade_situacao,
-                'students_by_disciplinas_aprovadas', $students_by_disciplinas_aprovadas,
-                'students_by_disciplinas_reprovadas_frequencia', $students_by_disciplinas_reprovadas_frequencia,
-                'students_by_disciplinas_reprovadas_nota', $students_by_disciplinas_reprovadas_nota,
-                'students_by_quant_semestre_cursados', $students_by_quant_semestre_cursados,
-                'students_by_genero', $students_by_genero,
+                'students_by_age_situation', $students_by_age_situation,
+                'students_by_disciplines_approved', $students_by_disciplines_approved,
+                'students_by_disciplines_reprovated_frequency', $students_by_disciplines_reprovated_frequency,
+                'students_by_disciplines_reprovated_note', $students_by_disciplines_reprovated_note,
+                'students_by_semesters', $students_by_semesters,
+                'students_by_genre', $students_by_genre,
                 'students_by_ano_semestre', $students_by_ano_semestre,
-                'students_by_periodo', $students_by_periodo,
+                'students_by_period', $students_by_period,
                 'students_by_campus', $students_by_campus
             ]));
         } catch (Exception $e) {

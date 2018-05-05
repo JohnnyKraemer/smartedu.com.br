@@ -43,12 +43,10 @@
 @endsection @section('scripts')
 	<script>
         $(document).ready(function () {
-            var table = $('#table').DataTable({
-                responsive: true,
-                language: {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                }
-            });
+            var ocultas = null;
+            var texto = [0];
+            var selecionar = [1, 2];
+            var table = initTable(true, false, texto, selecionar, ocultas);
         });
 	</script>
 @endsection

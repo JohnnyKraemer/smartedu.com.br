@@ -33753,14 +33753,14 @@ a.ui.nag {
 }
 
 /*--------------
-    Category
+    Categoria
 ---------------*/
 
 .ui.category.search .results {
   width: 28em;
 }
 
-/* Category */
+/* Categoria */
 
 .ui.category.search > .results .category {
   background: #F3F4F5;
@@ -33770,7 +33770,7 @@ a.ui.nag {
   transition: background 0.1s ease, border-color 0.1s ease;
 }
 
-/* Last Category */
+/* Last Categoria */
 
 .ui.category.search > .results .category:last-child {
   border-bottom: none;
@@ -33786,7 +33786,7 @@ a.ui.nag {
   border-radius: 0em 0em 0.28571429rem 0em;
 }
 
-/* Category Result */
+/* Categoria Result */
 
 .ui.category.search > .results .category .result {
   background: #FFFFFF;
@@ -33802,7 +33802,7 @@ a.ui.nag {
   border-bottom: none;
 }
 
-/* Category Result Name */
+/* Categoria Result Name */
 
 .ui.category.search > .results .category > .name {
   width: 100px;

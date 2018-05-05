@@ -36,12 +36,12 @@ class StudentController extends Controller
             $objects =
                 $this->student_repository->getStudents(
                     array(
-                        0 => "student.nome",
-                        1 => "detail.ano_situacao",
-                        2 => "detail.semestre_situacao",
-                        3 => "detail.periodo",
-                        4 => "student.cota",
-                        5 => "detail.quant_semestre_cursados",
+                        0 => "student.name",
+                        1 => "detail.year_situation",
+                        2 => "detail.semester_situation",
+                        3 => "detail.period",
+                        4 => "student.quota",
+                        5 => "detail.semesters",
                         6 => "situation.situation_long",
                         7 => "situation.situation_short",
                         8 => "student.id")
@@ -50,7 +50,7 @@ class StudentController extends Controller
             /*
             $objects = DB::table('student')
             ->leftJoin('course', 'student.course_id', '=', 'course.id')
-            ->select('student.codigo', 'student.nome', 'course.name')
+            ->select('student.code', 'student.name', 'course.name')
             ->distinct()
             ->get()
             ->toJson();*/

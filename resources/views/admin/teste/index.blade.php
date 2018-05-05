@@ -189,7 +189,7 @@
                     </div>
                 </div>
                 <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_idade_situacao" style="height: 280px;"></div>
+                    <div id="chart_age_situation" style="height: 280px;"></div>
                 </div>
 
             </div>
@@ -299,7 +299,7 @@
                     </div>
                 </div>
                 <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_students_by_quant_semestre_cursados" style="height: 280px;"></div>
+                    <div id="chart_students_by_semesters" style="height: 280px;"></div>
                 </div>
             </div>
         </div>
@@ -337,7 +337,7 @@
                     </div>
                 </div>
                 <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_disciplinas_aprovadas" style="height: 280px;"></div>
+                    <div id="chart_disciplines_approved" style="height: 280px;"></div>
                 </div>
             </div>
         </div>
@@ -356,7 +356,7 @@
                     </div>
                 </div>
                 <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_students_by_disciplinas_reprovadas_frequencia" style="height: 280px;"></div>
+                    <div id="chart_students_by_disciplines_reprovated_frequency" style="height: 280px;"></div>
                 </div>
             </div>
         </div>
@@ -375,7 +375,7 @@
                     </div>
                 </div>
                 <div class="m-portlet__body" style="padding: 0;">
-                    <div id="chart_students_by_disciplinas_reprovadas_nota" style="height: 280px;"></div>
+                    <div id="chart_students_by_disciplines_reprovated_note" style="height: 280px;"></div>
                 </div>
             </div>
         </div>
@@ -429,14 +429,14 @@
 
     <script>
         $(document).ready(function () {
-            var students_by_periodo = JSON.parse({!! json_encode($students_by_periodo) !!});
+            var students_by_period = JSON.parse({!! json_encode($students_by_period) !!});
             var students_by_idade_ingresso = JSON.parse({!! json_encode($students_by_idade_ingresso) !!});
-            var students_by_idade_situacao = JSON.parse({!! json_encode($students_by_idade_situacao) !!});
-            var students_by_disciplinas_aprovadas = JSON.parse({!! json_encode($students_by_disciplinas_aprovadas) !!});
-            var students_by_quant_semestre_cursados = JSON.parse({!! json_encode($students_by_quant_semestre_cursados) !!});
-            var students_by_disciplinas_reprovadas_frequencia = JSON.parse({!! json_encode($students_by_disciplinas_reprovadas_frequencia) !!});
-            var students_by_disciplinas_reprovadas_nota = JSON.parse({!! json_encode($students_by_disciplinas_reprovadas_nota) !!});
-            var students_by_genero = JSON.parse({!! json_encode($students_by_genero) !!});
+            var students_by_age_situation = JSON.parse({!! json_encode($students_by_age_situation) !!});
+            var students_by_disciplines_approved = JSON.parse({!! json_encode($students_by_disciplines_approved) !!});
+            var students_by_semesters = JSON.parse({!! json_encode($students_by_semesters) !!});
+            var students_by_disciplines_reprovated_frequency = JSON.parse({!! json_encode($students_by_disciplines_reprovated_frequency) !!});
+            var students_by_disciplines_reprovated_note = JSON.parse({!! json_encode($students_by_disciplines_reprovated_note) !!});
+            var students_by_genre = JSON.parse({!! json_encode($students_by_genre) !!});
             var students_by_ano_semestre = JSON.parse({!! json_encode($students_by_ano_semestre) !!});
             var students_by_campus = JSON.parse({!! json_encode($students_by_campus) !!});
 
@@ -480,8 +480,8 @@
                 }
             });
 
-            students_by_disciplinas_reprovadas_nota = normalizeData(students_by_disciplinas_reprovadas_nota);
-            AmCharts.makeChart("chart_students_by_disciplinas_reprovadas_nota", {
+            students_by_disciplines_reprovated_note = normalizeData(students_by_disciplines_reprovated_note);
+            AmCharts.makeChart("chart_students_by_disciplines_reprovated_note", {
                 "type": "serial",
                 "categoryField": "category",
                 "startDuration": 1,
@@ -526,11 +526,11 @@
                 "legend": {
                     "enabled": true
                 },
-                "dataProvider": students_by_disciplinas_reprovadas_nota
+                "dataProvider": students_by_disciplines_reprovated_note
             });
 
-            students_by_disciplinas_reprovadas_frequencia = normalizeData(students_by_disciplinas_reprovadas_frequencia);
-            AmCharts.makeChart("chart_students_by_disciplinas_reprovadas_frequencia", {
+            students_by_disciplines_reprovated_frequency = normalizeData(students_by_disciplines_reprovated_frequency);
+            AmCharts.makeChart("chart_students_by_disciplines_reprovated_frequency", {
                 "type": "serial",
                 "categoryField": "category",
                 "startDuration": 1,
@@ -574,11 +574,11 @@
                 "legend": {
                     "enabled": true
                 },
-                "dataProvider": students_by_disciplinas_reprovadas_frequencia
+                "dataProvider": students_by_disciplines_reprovated_frequency
             });
 
-            students_by_quant_semestre_cursados = normalizeData(students_by_quant_semestre_cursados);
-            AmCharts.makeChart("chart_students_by_quant_semestre_cursados", {
+            students_by_semesters = normalizeData(students_by_semesters);
+            AmCharts.makeChart("chart_students_by_semesters", {
                 "type": "serial",
                 "categoryField": "category",
                 "startDuration": 1,
@@ -622,11 +622,11 @@
                 "legend": {
                     "enabled": true
                 },
-                "dataProvider": students_by_quant_semestre_cursados
+                "dataProvider": students_by_semesters
             });
 
-            students_by_disciplinas_aprovadas = normalizeData(students_by_disciplinas_aprovadas);
-            AmCharts.makeChart("chart_disciplinas_aprovadas", {
+            students_by_disciplines_approved = normalizeData(students_by_disciplines_approved);
+            AmCharts.makeChart("chart_disciplines_approved", {
                 "type": "serial",
                 "categoryField": "category",
                 "startDuration": 1,
@@ -670,11 +670,11 @@
                 "legend": {
                     "enabled": true
                 },
-                "dataProvider": students_by_disciplinas_aprovadas
+                "dataProvider": students_by_disciplines_approved
             });
 
-            students_by_idade_situacao = normalizeData(students_by_idade_situacao);
-            AmCharts.makeChart("chart_idade_situacao", {
+            students_by_age_situation = normalizeData(students_by_age_situation);
+            AmCharts.makeChart("chart_age_situation", {
                 "type": "serial",
                 "categoryField": "category",
                 "startDuration": 1,
@@ -718,7 +718,7 @@
                 "legend": {
                     "enabled": true
                 },
-                "dataProvider": students_by_idade_situacao
+                "dataProvider": students_by_age_situation
             });
 
             students_by_idade_ingresso = normalizeData(students_by_idade_ingresso);
@@ -809,7 +809,7 @@
             });
 
 
-            students_by_genero = normalizeData(students_by_genero);
+            students_by_genre = normalizeData(students_by_genre);
             AmCharts.makeChart("chart_evaded_by_genre_complete", {
                     "type": "serial",
                     "categoryField": "category",
@@ -870,11 +870,11 @@
                         "enabled": true,
                         "useGraphSettings": true
                     },
-                    "dataProvider": students_by_genero
+                    "dataProvider": students_by_genre
                 }
             );
 
-            students_by_periodo = normalizeData(students_by_periodo);
+            students_by_period = normalizeData(students_by_period);
             AmCharts.makeChart("chart_evaded_by_period", {
                     "type": "serial",
                     "categoryField": "category",
@@ -926,7 +926,7 @@
                         "enabled": true,
                         "useGraphSettings": true
                     },
-                    "dataProvider": students_by_periodo
+                    "dataProvider": students_by_period
                 }
             );
 

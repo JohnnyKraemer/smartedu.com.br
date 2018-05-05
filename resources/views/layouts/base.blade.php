@@ -90,61 +90,6 @@
                 </div>
                 <!-- END: Brand -->
                 <div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
-                    <!-- BEGIN: Horizontal Menu -->
-                    <div id="m_header_menu"
-                         class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark ">
-                        <ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
-                            <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"
-                                data-menu-submenu-toggle="click" aria-haspopup="true">
-                                <a href="#" class="m-menu__link m-menu__toggle">
-                                    <i class="m-menu__link-icon flaticon-add"></i>
-                                    <span class="m-menu__link-text">
-									Relatórios
-								</span>
-                                    <i class="m-menu__hor-arrow la la-angle-down"></i>
-                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
-                                </a>
-                                <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
-                                    <span class="m-menu__arrow m-menu__arrow--adjust"></span>
-                                    <ul class="m-menu__subnav">
-                                        <li class="m-menu__item " aria-haspopup="true">
-                                            <a href="{{ url('/report/student') }}" class="m-menu__link ">
-                                                <i class="m-menu__link-icon flaticon-file"></i>
-                                                <span class="m-menu__link-text">
-												Aluno
-											</span>
-                                            </a>
-                                        </li>
-                                        <li class="m-menu__item " aria-haspopup="true">
-                                            <a href="{{ url('/report/course') }}" class="m-menu__link ">
-                                                <i class="m-menu__link-icon flaticon-file"></i>
-                                                <span class="m-menu__link-text">
-												Curso
-											</span>
-                                            </a>
-                                        </li>
-                                        <li class="m-menu__item " aria-haspopup="true">
-                                            <a href="{{ url('/report/campus') }}" class="m-menu__link ">
-                                                <i class="m-menu__link-icon flaticon-file"></i>
-                                                <span class="m-menu__link-text">
-												Campus
-											</span>
-                                            </a>
-                                        </li>
-                                        <li class="m-menu__item " aria-haspopup="true">
-                                            <a href="{{ url('/report/institutuin') }}" class="m-menu__link ">
-                                                <i class="m-menu__link-icon flaticon-file"></i>
-                                                <span class="m-menu__link-text">
-												Instituição
-											</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- END: Horizontal Menu -->
                     <!-- BEGIN: Topbar -->
                     <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
                         <div class="m-stack__item m-topbar__nav-wrapper">
@@ -252,13 +197,13 @@
                                         <span class="m-menu__link-text">
                                             Instituição
                                         </span>
-                                        <!--
-                                        <span class="m-menu__link-badge">
-                                            <span class="m-badge m-badge--danger">
-                                                2
-                                            </span>
+                                    <!--
+                                    <span class="m-menu__link-badge">
+                                        <span class="m-badge m-badge--danger">
+                                            2
                                         </span>
-                                        -->
+                                    </span>
+                                    -->
                                     </span>
                                 </span>
                             </a>
@@ -392,16 +337,6 @@
                                 <span class="m-menu__arrow"></span>
                                 <ul class="m-menu__subnav">
                                     <li class="m-menu__item " aria-haspopup="true">
-                                        <a href="{{ url('development/variable') }}" class="m-menu__link ">
-                                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                                <span></span>
-                                            </i>
-                                            <span class="m-menu__link-text">
-									Variaveis
-								</span>
-                                        </a>
-                                    </li>
-                                    <li class="m-menu__item " aria-haspopup="true">
                                         <a href="{{ url('development/classifier') }}" class="m-menu__link ">
                                             <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                                 <span></span>
@@ -411,6 +346,17 @@
 								</span>
                                         </a>
                                     </li>
+                                    <li class="m-menu__item " aria-haspopup="true">
+                                        <a href="{{ url('development/variable') }}" class="m-menu__link ">
+                                            <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                                <span></span>
+                                            </i>
+                                            <span class="m-menu__link-text">
+									Variaveis
+								</span>
+                                        </a>
+                                    </li>
+
                                     <li class="m-menu__item " aria-haspopup="true">
                                         <a href="{{ url('development/campus') }}" class="m-menu__link ">
                                             <i class="m-menu__link-bullet m-menu__link-bullet--dot">
@@ -473,18 +419,16 @@
                 <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
                     <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 								<span class="m-footer__copyright">
-									2018 &copy; Desenvolvido por
-									<a href="{{ url('') }}" class="m-link">
-										InnovaSis
-									</a>
+									2018 &copy; Desenvolvido por SmartEdu
 								</span>
                     </div>
                     <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
                         <ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
                             <li class="m-nav__item">
+
                                 <a href="{{ url('') }}" class="m-nav__link">
 											<span class="m-nav__link-text">
-												Sobre
+												Início
 											</span>
                                 </a>
                             </li>
@@ -503,6 +447,9 @@
         <i class="la la-arrow-up"></i>
     </div>
     <!-- end::Scroll Top -->
+
+    <script src="<?php echo asset('assets/js/meu.js') ?>"></script>
+
 
     <!--begin::Base Scripts -->
     <script src="<?php echo asset('assets/vendors/base/vendors.bundle.js') ?>" type="text/javascript"></script>

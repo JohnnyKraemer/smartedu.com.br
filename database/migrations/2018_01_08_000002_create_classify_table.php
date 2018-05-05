@@ -15,16 +15,9 @@ class CreateClassifyTable extends Migration
     {
         Schema::create('classify', function (Blueprint $table) {
             $table->increments('id');
-            $table->smallInteger('period')->nullable()->default(0);
-            $table->integer('period_calculation')->unsigned()->nullable();
-            //$table->smallInteger('success')->nullable();
-            //$table->smallInteger('failure')->nullable();
-            //$table->smallInteger('success_evaded')->nullable();
-            //$table->smallInteger('success_evaded')->nullable();
-            //$table->smallInteger('failure_evaded')->nullable();
-            //$table->smallInteger('failure_not_evaded')->nullable();
-
-            $table->integer('classifier_id')->unsigned()->nullable();
+            //$table->smallInteger('period')->nullable()->default(0);
+            $table->integer('period_calculation')->unsigned();
+            $table->integer('classifier_id')->unsigned();
             $table->foreign('classifier_id')->references('id')->on('classifier');
         });
     }

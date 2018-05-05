@@ -51,7 +51,7 @@ class InstitutionController extends Controller
                                     LEFT JOIN course ON student.course_id = course.id
                                     LEFT JOIN campus ON course.campus_id = campus.id
                                     LEFT JOIN situation ON detail.situation_id = situation.id
-                                    WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+                                    WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                                     AND situation.situation_short != "Outro"
                                     GROUP BY situation.situation_short ORDER BY situation.situation_short');
             /*
@@ -61,7 +61,7 @@ class InstitutionController extends Controller
                                     LEFT JOIN course ON student.course_id = course.id
                                     LEFT JOIN campus ON course.campus_id = campus.id
                                     LEFT JOIN situation ON detail.situation_id = situation.id
-                                    WHERE detail.periodo_carga = (SELECT MAX(detail.periodo_carga) FROM detail WHERE detail.student_id = student.id)
+                                    WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                                     AND situation.situation_long = "Formado"
                                     GROUP BY situation.situation_long ORDER BY situation.situation_long')[0];
             */
@@ -74,7 +74,7 @@ class InstitutionController extends Controller
                                         ON probability.test_classifier_id = test_classifier.id
                                         WHERE test_classifier.type = 9
                                         AND test_classifier.period_calculation = (SELECT MAX(test_classifier.period_calculation) AS period_calculation FROM test_classifier WHERE test_classifier.type = 9)
-                                        AND probability.state = "Não Evadido"
+                                        AND probability.situation = "Não Evadido"
                                         AND probability.probability_evasion > 0.5')[0]->total;
 
             //$total_by_situation_short[1]->total = $total_by_situation_short[1]->total - $total_formado->total;
@@ -98,34 +98,34 @@ class InstitutionController extends Controller
             $wheres = array( array(0 => "situation.situation_short", 1 => "!=", 2 => "'Outro'"));
             $group_bys = array(0 => "category", 1 => "situation_short");
 
-            $students_by_periodo = json_encode(
+            $students_by_period = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.periodo AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.period AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_ano_semestre = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "CONCAT(detail.ano_situacao, '-',detail.semestre_situacao ) AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "CONCAT(detail.year_situation, '-',detail.semester_situation ) AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_genero = json_encode(
+            $students_by_genre = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "student.genero AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "student.genre AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
             $students_by_idade_ingresso = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "student.idade_ingresso AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "student.age AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_idade_situacao = json_encode(
+            $students_by_age_situation = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.idade_situacao AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.age_situation AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
-            $students_by_quant_semestre_cursados = json_encode(
+            $students_by_semesters = json_encode(
                 $this->student_repository->getStudents(
-                    array(0 => "detail.quant_semestre_cursados AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
+                    array(0 => "detail.semesters AS category", 1 => "situation.situation_short", 2 => "IFNULL(COUNT(student.id),0) AS total"), $wheres, $group_bys
                 ));
 
 
@@ -141,14 +141,15 @@ class InstitutionController extends Controller
                 'campus', $campus,
                 'courses',$courses,
                 'students_by_idade_ingresso', $students_by_idade_ingresso,
-                'students_by_idade_situacao', $students_by_idade_situacao,
-                'students_by_quant_semestre_cursados', $students_by_quant_semestre_cursados,
-                'students_by_genero', $students_by_genero,
+                'students_by_age_situation', $students_by_age_situation,
+                'students_by_semesters', $students_by_semesters,
+                'students_by_genre', $students_by_genre,
                 'students_by_ano_semestre', $students_by_ano_semestre,
-                'students_by_periodo', $students_by_periodo,
+                'students_by_period', $students_by_period,
                 'students_by_campus', $students_by_campus
             ]));
         } catch (Exception $e) {
+            return $e;
             $request->session()->flash('type', 'danger');
             $request->session()->flash('message', 'Ocorreu um erro no sistema.');
             return redirect('/');

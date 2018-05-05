@@ -709,7 +709,7 @@ var i,
 
 	// Used for iframes
 	// See setDocument()
-	// Removing the function wrapper causes a "Permission Denied"
+	// Removing the function wrapper causes a "Permissao Denied"
 	// error in IE
 	unloadHandler = function() {
 		setDocument();
@@ -9858,7 +9858,7 @@ jQuery.fn.load = function( url, params, callback ) {
 			self.html( selector ?
 
 				// If a selector was specified, locate the right elements in a dummy div
-				// Exclude scripts to avoid IE 'Permission Denied' errors
+				// Exclude scripts to avoid IE 'Permissao Denied' errors
 				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
 
 				// Otherwise use the full result
@@ -10258,7 +10258,7 @@ return jQuery;
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * Permissao is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -14278,7 +14278,7 @@ License: MIT License (MIT)
 /*
 Copyright Manos Malihutsakis (email: manos@malihu.gr)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
+Permissao is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -31192,7 +31192,7 @@ S2.define('jquery.select2',[
 
 Copyright (C) 2011-2016 by Yehuda Katz
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
+Permissao is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -45036,7 +45036,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *
  * Copyright (c) 2012, Matias Meno
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * Permissao is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell

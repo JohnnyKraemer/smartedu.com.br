@@ -161,7 +161,9 @@
 
 		$.ajax({
 			url: "upload/upload",
+			//url: "http://localhost:8080/student/upload",
 			type: "POST",
+            //contentType: "application/json",
 			dataType: "JSON",
 			data: {'data': dados_json},
 			success: function (result) {

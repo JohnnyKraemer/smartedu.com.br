@@ -13,12 +13,12 @@ class CreateStudentDetailTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_detail', function (Blueprint $table) {
+        /*Schema::create('student_detail', function (Blueprint $table) {
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('student');
             $table->integer('detail_id')->unsigned();
             $table->foreign('detail_id')->references('id')->on('detail');
-        });
+        });*/
     }
 
     /**
@@ -28,6 +28,6 @@ class CreateStudentDetailTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_detail');
+        /*Schema::dropIfExists('student_detail');*/
     }
 }

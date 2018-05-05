@@ -10,11 +10,11 @@
             </div>
         </div>
         <div class="m-portlet__body">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <table id="table" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
                     <th rowspan="2">Nome</th>
-                    <th colspan="4">Alunos</th>
+                    <th colspan="6">Alunos</th>
                 </tr>
                 <tr>
                     <th>Evadidos</th>
@@ -28,7 +28,7 @@
                 <tbody>
                 @foreach ($objects as $object)
                     <tr>
-                        <td><a href="{{ url('/development/course/'.$object['id']) }}">{{$object['name']}}</a></td>
+                        <td><a href="{{ url('/admin/course/'.$object['id']) }}">{{$object['name']}}</a></td>
                         <td>{{$object['students_evaded']}}</td>
                         <td>{{$object['students_not_evaded']}}</td>
                         <td>{{$object['students_formed']}}</td>
@@ -94,12 +94,10 @@
         }
 
         $(document).ready(function () {
-            var table = $('#example').DataTable({
-                responsive: true,
-                language: {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                }
-            });
+            var ocultas = null;
+            var texto = [0];
+            var selecionar = [1, 2];
+            var table = initTable(true, false, texto, selecionar, ocultas);
         });
     </script>
 @endsection

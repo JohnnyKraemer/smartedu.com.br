@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="m-portlet__body">
-        <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <table id="table" class="table table-striped table-bordered" style="width:100%">
             <thead>
             <tr>
                 <th>Classificador</th>
@@ -97,19 +97,13 @@
     <script>
         $(document).ready(function () {
             var test = JSON.parse({!! json_encode($grafic_one) !!});
-            var table = $('#example').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                buttons: [
-                    'print',
-                    'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5'
-                ],
-                language: {
-                    "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                }
-            });
+
+            console.log(test);
+
+            var ocultas = null;
+            var texto = [0];
+            var selecionar = [1, 2];
+            var table = initTable(true, false, texto, selecionar, ocultas);
 
             var chart_short;
             var chart_detail;

@@ -15,11 +15,8 @@ class CreateClassifierTable extends Migration
     {
         Schema::create('classifier', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->string('name')->nullable();
+            $table->string('name');
             $table->smallInteger('use_classify')->default(0);
-            $table->smallInteger('pattern')->default(0);
-
             $table->timestamps();
         });
     }
