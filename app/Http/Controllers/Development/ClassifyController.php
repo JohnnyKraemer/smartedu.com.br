@@ -62,7 +62,7 @@ class ClassifyController extends Controller
 
             $period_calculation = $this->repository->getLastPeriodCalculationByType($this->PATTERN_RESULT);
 
-            dd($period_calculation);
+            //dd($period_calculation);
 
             //$test = $this->repository->getBestXTestClassifiersByTypeAndPeriodCalculationAndCourse(3, $period_calculation, 2, 10);
             //dd($test);
@@ -70,7 +70,7 @@ class ClassifyController extends Controller
             $grafic_one = $this->repository->getBestsTestClassifiersByTypeAndPeriodCalculatio(9, $period_calculation);
             $grafic_one = json_encode($grafic_one);
 
-            dd($grafic_one);
+            //dd($grafic_one);
 
 
 

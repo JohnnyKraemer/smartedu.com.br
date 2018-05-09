@@ -365,7 +365,7 @@
         $(document).ready(function () {
             var students_by_period = JSON.parse({!! json_encode($students_by_period) !!});
             var students_by_idade_ingresso = JSON.parse({!! json_encode($students_by_idade_ingresso) !!});
-            var students_by_idade_situacao = JSON.parse({!! json_encode($students_by_idade_situacao) !!});
+            var students_by_idade_situacao = JSON.parse({!! json_encode($students_by_age_situation) !!});
             var students_by_semesters = JSON.parse({!! json_encode($students_by_semesters) !!});
             var students_by_genre = JSON.parse({!! json_encode($students_by_genre) !!});
             var students_by_ano_semestre = JSON.parse({!! json_encode($students_by_ano_semestre) !!});
@@ -373,8 +373,8 @@
 
             var ocultas = null;
             var texto = [0];
-            var selecionar = [1, 2];
-            var table = initTable(true, false, texto, selecionar, ocultas);
+            var selecionar = [1, 2,3,4,5,6,7];
+            var table = initTable(true, true, texto, selecionar, ocultas);
 
             students_by_semesters = normalizeData(students_by_semesters);
             AmCharts.makeChart("chart_students_by_semesters", {
