@@ -20,7 +20,6 @@
                     <th>Evadidos</th>
                     <th>Não Evadidos</th>
                     <th>Formados</th>
-                    <th>APE</th>
                     <th>Total</th>
                     <th>Classificar</th>
                 </tr>
@@ -32,7 +31,6 @@
                         <td>{{$object['students_evaded']}}</td>
                         <td>{{$object['students_not_evaded']}}</td>
                         <td>{{$object['students_formed']}}</td>
-                        <td>{{$object['students_high_prob']}}</td>
                         <td>{{$object['students']}}</td>
                         <td>
                             @if($object['use_classify'] == 1)

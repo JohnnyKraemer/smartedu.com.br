@@ -374,6 +374,8 @@
                 },
                 "valueScrollbar": {
                     "enabled": true
+                }, "export": {
+                    "enabled": true
                 },
                 "graphs": [
                     {
@@ -419,6 +421,8 @@
                     "enabled": true
                 },
                 "valueScrollbar": {
+                    "enabled": true
+                }, "export": {
                     "enabled": true
                 },
                 "graphs": [
@@ -466,6 +470,8 @@
                 },
                 "valueScrollbar": {
                     "enabled": true
+                }, "export": {
+                    "enabled": true
                 },
                 "graphs": [
                     {
@@ -512,6 +518,8 @@
                 },
                 "valueScrollbar": {
                     "enabled": true
+                }, "export": {
+                    "enabled": true
                 },
                 "graphs": [
                     {
@@ -549,6 +557,8 @@
                         "enabled": true
                     },
                     "valueScrollbar": {
+                        "enabled": true
+                    }, "export": {
                         "enabled": true
                     },
                     "trendLines": [],
@@ -613,6 +623,8 @@
                     },
                     "valueScrollbar": {
                         "enabled": true
+                    }, "export": {
+                        "enabled": true
                     },
                     "trendLines": [],
                     "graphs": [
@@ -675,6 +687,8 @@
                         "enabled": true
                     },
                     "valueScrollbar": {
+                        "enabled": true
+                    }, "export": {
                         "enabled": true
                     },
                     "trendLines": [],

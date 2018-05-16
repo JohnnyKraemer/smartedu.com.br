@@ -11,14 +11,10 @@ var DefaultDatatableDemo = function () {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'http://keenthemes.com/metronic/preview/inc/api/datatables/demos/default.php'
+						url: 'https://keenthemes.com/metronic/preview/inc/api/datatables/demos/default.php'
 					}
 				},
 				pageSize: 20,
-				saveState: {
-					cookie: true,
-					webstorage: true
-				},
 				serverPaging: true,
 				serverFiltering: true,
 				serverSorting: true
@@ -37,6 +33,10 @@ var DefaultDatatableDemo = function () {
 			filterable: false,
 
 			pagination: true,
+
+			search: {
+				input: $('#generalSearch')
+			},
 
 			columns: [{
 				field: "RecordID",
@@ -104,8 +104,8 @@ var DefaultDatatableDemo = function () {
 				title: "Actions",
 				sortable: false,
 				overflow: 'visible',
-				template: function (row) {
-					var dropup = (row.getDatatable().getPageSize() - row.getIndex()) <= 4 ? 'dropup' : '';
+				template: function (row, index, datatable) {
+					var dropup = (datatable.getPageSize() - index) <= 4 ? 'dropup' : '';
 
 					return '\
 						<div class="dropdown '+ dropup +'">\
@@ -128,20 +128,6 @@ var DefaultDatatableDemo = function () {
 				}
 			}]
 		});
-
-		var query = datatable.getDataSourceQuery();
-
-		$('#m_form_search').on('keyup', function (e) {
-			// shortcode to datatable.getDataSourceParam('query');
-			var query = datatable.getDataSourceQuery();
-			query.generalSearch = $(this).val().toLowerCase();
-			// shortcode to datatable.setDataSourceParam('query', query);
-			datatable.setDataSourceQuery(query);
-			datatable.load();
-		}).val(query.generalSearch);
-
-		$('#m_form_status, #m_form_type').selectpicker();
-
 	};
 
 	return {

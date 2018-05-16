@@ -20,6 +20,7 @@ class TestClassifier extends Model
         'campus_name',
         'success_percent',
         'failure_percent',
+        'neuter_percent',
         'success_evaded_percent',
         'failure_evaded_percent',
         'success_not_evaded_percent',
@@ -31,8 +32,11 @@ class TestClassifier extends Model
         'period',
         'success',
         'failure',
+        'neuter',
         'success_evaded',
-        'success_evaded',
+        'success_not_evaded',
+        'neuter_evaded',
+        'neuter_not_evaded',
         'failure_evaded',
         'failure_not_evaded',
         'start',
@@ -80,7 +84,7 @@ class TestClassifier extends Model
     public function getSuccessPercentAttribute()
     {
         if($this->success != 0){
-            return number_format((($this->success / ($this->success + $this->failure)) * 100), 2, '.', ',');;
+            return number_format((($this->success / ($this->success + $this->failure + $this->neuter )) * 100), 2, '.', ',');;
         } else{
             return 0;
         }
@@ -89,7 +93,16 @@ class TestClassifier extends Model
     public function getFailurePercentAttribute()
     {
         if($this->failure != 0){
-            return number_format((($this->failure / ($this->success + $this->failure)) * 100), 2, '.', ',');;
+            return number_format((($this->failure / ($this->success + $this->failure + $this->neuter )) * 100), 2, '.', ',');;
+        } else{
+            return 0;
+        }
+    }
+
+    public function getNeuterPercentAttribute()
+    {
+        if($this->failure != 0){
+            return number_format((($this->neuter / ($this->success + $this->failure + $this->neuter )) * 100), 2, '.', ',');;
         } else{
             return 0;
         }

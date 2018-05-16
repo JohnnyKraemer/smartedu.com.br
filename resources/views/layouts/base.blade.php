@@ -1,31 +1,18 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
-
 <head>
-
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="author" content="SmartEdu"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>SmartEdu - @yield('title')</title>
 
-    <!--begin::Web font -->
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-    <script>
-        WebFont.load({
-            google: {"families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]},
-            active: function () {
-                sessionStorage.fonts = true;
-            }
-        });
-    </script>
-
-    <!--============================ Stylesheets ============================-->
+    <link href="<?php echo asset('assets/css/Roboto.css') ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo asset('assets/css/Poppins.css') ?>" rel="stylesheet" type="text/css"/>
     <link href="<?php echo asset('assets/vendors/base/vendors.bundle.css') ?>" rel="stylesheet" type="text/css"/>
     <link href="<?php echo asset('assets/demo/default/base/style.bundle.css') ?>" rel="stylesheet" type="text/css"/>
     <link href="<?php echo asset('assets/charts/amcharts/plugins/export/export.css') ?>" rel="stylesheet"
           type="text/css"/>
     <link rel="shortcut icon" href="<?php echo asset('assets/ico1.jpg') ?>"/>
-
     <link href="<?php echo asset('assets/datatables/Select-1.2.5/css/select.semanticui.min.css') ?>" rel="stylesheet"
           type="text/css"/>
     <link href="<?php echo asset('assets/datatables/Responsive-2.2.1/css/responsive.semanticui.min.css') ?>"
@@ -38,20 +25,16 @@
             display: table-header-group;
         }
     </style>
-
     @yield('stylesheets')
 </head>
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"
       style="background-color: #f2f3f8;">
-<!-- begin:: Page -->
 <div class="m-grid m-grid--hor m-grid--root m-page">
-    <!-- BEGIN: Header -->
     <header class="m-grid__item    m-header " data-minimize-mobile="hide" data-minimize-offset="200"
             data-minimize-mobile-offset="200"
             data-minimize="minimize">
         <div class="m-container m-container--fluid m-container--full-height">
             <div class="m-stack m-stack--ver m-stack--desktop">
-                <!-- BEGIN: Brand -->
                 <div class="m-stack__item m-brand  m-brand--skin-dark ">
                     <div class="m-stack m-stack--ver m-stack--general">
                         <div class="m-stack__item m-stack__item--middle m-brand__logo">
@@ -61,36 +44,26 @@
                             </a>
                         </div>
                         <div class="m-stack__item m-stack__item--middle m-brand__tools">
-                            <!-- BEGIN: Left Aside Minimize Toggle -->
                             <a href="javascript:;" id="m_aside_left_minimize_toggle"
                                class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-desktop-inline-block m-brand__toggler--active">
                                 <span></span>
                             </a>
-                            <!-- END -->
-                            <!-- BEGIN: Responsive Aside Left Menu Toggler -->
                             <a href="javascript:;" id="m_aside_left_offcanvas_toggle"
                                class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
                                 <span></span>
                             </a>
-                            <!-- END -->
-                            <!-- BEGIN: Responsive Header Menu Toggler -->
                             <a id="m_aside_header_menu_mobile_toggle" href="javascript:;"
                                class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
                                 <span></span>
                             </a>
-                            <!-- END -->
-                            <!-- BEGIN: Topbar Toggler -->
                             <a id="m_aside_header_topbar_mobile_toggle" href="javascript:;"
                                class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
                                 <i class="flaticon-more"></i>
                             </a>
-                            <!-- BEGIN: Topbar Toggler -->
                         </div>
                     </div>
                 </div>
-                <!-- END: Brand -->
                 <div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
-                    <!-- BEGIN: Topbar -->
                     <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
                         <div class="m-stack__item m-topbar__nav-wrapper">
                             <ul class="m-topbar__nav m-nav m-nav--inline">
@@ -165,19 +138,12 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- END: Topbar -->
                 </div>
             </div>
         </div>
     </header>
-    <!-- END: Header -->
-
-
-    <!-- begin::Body -->
     <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
-        <!-- BEGIN: Left Aside -->
         <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
-            <!-- BEGIN: Aside Menu -->
             <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark "
                  data-menu-vertical="true"
                  data-menu-scrollable="false" data-menu-dropdown-timeout="500">
@@ -197,13 +163,6 @@
                                         <span class="m-menu__link-text">
                                             Instituição
                                         </span>
-                                    <!--
-                                    <span class="m-menu__link-badge">
-                                        <span class="m-badge m-badge--danger">
-                                            2
-                                        </span>
-                                    </span>
-                                    -->
                                     </span>
                                 </span>
                             </a>
@@ -383,27 +342,10 @@
                     @endif
                 </ul>
             </div>
-            <!-- END: Aside Menu -->
         </div>
-        <!-- END: Left Aside -->
-
-
         <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor-desktop m-grid--desktop m-body">
             <div class="m-grid__item m-grid__item--fluid  m-grid m-grid--ver	m-container m-container--responsive m-container--xxl m-page__container">
                 <div class="m-grid__item m-grid__item--fluid m-wrapper" style="width: 80%;">
-                    <!-- BEGIN: Subheader -->
-                    <!--
-                    <div class="m-subheader ">
-                        <div class="d-flex align-items-center">
-                            <div class="mr-auto">
-                                <h3 class="m-subheader__title ">
-                                    Dashboard
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-                    <!-- END: Subheader -->
                     <div class="m-content">
                         @yield('content')
                     </div>
@@ -411,8 +353,6 @@
             </div>
         </div>
     </div>
-    <!-- end:: Body -->
-    <!-- begin::Footer -->
     <footer class="m-grid__item m-footer ">
         <div class="m-container m-container--responsive m-container--xxl m-container--full-height m-page__container">
             <div class="m-footer__wrapper">
@@ -438,51 +378,34 @@
             </div>
         </div>
     </footer>
-    <!-- end::Footer -->
-
-
-    <!-- begin::Scroll Top -->
     <div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500"
          data-scroll-speed="300">
         <i class="la la-arrow-up"></i>
     </div>
-    <!-- end::Scroll Top -->
-
-    <script src="<?php echo asset('assets/js/meu.js') ?>"></script>
-
-
-    <!--begin::Base Scripts -->
     <script src="<?php echo asset('assets/vendors/base/vendors.bundle.js') ?>" type="text/javascript"></script>
     <script src="<?php echo asset('assets/demo/default/base/scripts.bundle.js') ?>" type="text/javascript"></script>
-    <!--end::Base Scripts -->
-    <!--begin::Page Snippets -->
-    <!--end::Page Snippets -->
     <script src="<?php echo asset('assets/js/notification.js') ?>" type="text/javascript"></script>
     <script src="<?php echo asset('assets/js/my.functions.js') ?>" type="text/javascript"></script>
-
     <script src="<?php echo asset('assets/charts/amcharts/amcharts.js') ?>" type="text/javascript"></script>
     <script src="<?php echo asset('assets/charts/amcharts/serial.js') ?>" type="text/javascript"></script>
     <script src="<?php echo asset('assets/charts/amcharts/radar.js') ?>" type="text/javascript"></script>
     <script src="<?php echo asset('assets/charts/amcharts/pie.js') ?>" type="text/javascript"></script>
     <script src="<?php echo asset('assets/charts/amcharts/plugins/animate/animate.min.js') ?>"
             type="text/javascript"></script>
-    <script src="<?php echo asset('assets/charts/amcharts/plugins/export/export.min.js') ?>"
+    <script src="<?php echo asset('assets/charts/amcharts/plugins/export/export.js') ?>"
+    <script src="<?php echo asset('assets/charts/amcharts/plugins/export/lang/pt.js') ?>"
             type="text/javascript"></script>
     <script src="<?php echo asset('assets/charts/amcharts/themes/light.js') ?>" type="text/javascript"></script>
-
     <script src="<?php echo asset('assets/datatables/datatables.min.js') ?>" type="text/javascript"></script>
     <script src="<?php echo asset('assets/datatables/SemanticUI-2.2.13/semantic.min.js') ?>"
             type="text/javascript"></script>
     <script src="<?php echo asset('assets/datatables/DataTables-1.10.16/js/dataTables.semanticui.min.js') ?>"
             type="text/javascript"></script>
-
     <script>
         @if (Session::has('type'))
         notification('{{ Session::get('message')}}', '{{ Session::get('type')}}');
         @endif
     </script>
-
 @yield('scripts')
 </body>
-
 </html>

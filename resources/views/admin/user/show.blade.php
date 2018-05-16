@@ -34,7 +34,7 @@
                                 {{ucwords(strtolower($object->name))}}
                             </span>
                             <br/>
-                            <a href="" class="m-card-profile__email m-link">
+                            <a class="m-card-profile__email m-link">
                                 {{$object->position->name}}
                             </a>
                         </div>
