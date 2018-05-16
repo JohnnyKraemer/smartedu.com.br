@@ -72,7 +72,7 @@ var Typeahead = function() {
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             // url points to a json file that contains an array of country names, see
             // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
-            prefetch: 'http://keenthemes.com/metronic/preview/inc/api/typeahead/countries.json'
+            prefetch: 'https://keenthemes.com/metronic/preview/inc/api/typeahead/countries.json'
         });
 
         // passing in `null` for the `options` arguments will result in the default
@@ -87,7 +87,7 @@ var Typeahead = function() {
         var bestPictures = new Bloodhound({
           datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
           queryTokenizer: Bloodhound.tokenizers.whitespace,
-          prefetch: 'http://keenthemes.com/metronic/preview/inc/api/typeahead/movies.json'
+          prefetch: 'inc/api/typeahead/movies.json'
         });
 
         $('#m_typeahead_4').typeahead(null, {
@@ -109,13 +109,13 @@ var Typeahead = function() {
         var nbaTeams = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('team'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: 'http://keenthemes.com/metronic/preview/inc/api/typeahead/nba.json'
+            prefetch: 'inc/api/typeahead/nba.json'
         });
 
         var nhlTeams = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('team'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: 'http://keenthemes.com/metronic/preview/inc/api/typeahead/nhl.json'
+            prefetch: 'inc/api/typeahead/nhl.json'
         });
 
         $('#m_typeahead_5').typeahead({

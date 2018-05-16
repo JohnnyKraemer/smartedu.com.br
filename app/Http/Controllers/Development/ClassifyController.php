@@ -37,7 +37,9 @@ class ClassifyController extends Controller
     public $RESULT_ERROR = 0;
     public $RESULT_SUCCESS = 1;
 
-    public function __construct(Repository $repository)
+    private $cache;
+
+    public function __construct(Repository $repository, \Illuminate\Cache\Repository $cache)
     {
         $this->way = array();
         array_push($this->way, 'development.classify.');
@@ -47,6 +49,7 @@ class ClassifyController extends Controller
 
         $this->repository = $repository;
         $this->test_classifier = new TestClassifier();
+        $this->cache = $cache;
     }
 
     /**
@@ -62,16 +65,19 @@ class ClassifyController extends Controller
 
             $period_calculation = $this->repository->getLastPeriodCalculationByType($this->PATTERN_RESULT);
 
-            dd($period_calculation);
+            //dd($period_calculation);
 
             //$test = $this->repository->getBestXTestClassifiersByTypeAndPeriodCalculationAndCourse(3, $period_calculation, 2, 10);
             //dd($test);
 
-            $grafic_one = $this->repository->getBestsTestClassifiersByTypeAndPeriodCalculatio(9, $period_calculation);
-            $grafic_one = json_encode($grafic_one);
+            if(!$this->cache->has('grafic_one')){
 
-            dd($grafic_one);
-
+                $grafic_one = $this->repository->getBestsTestClassifiersByTypeAndPeriodCalculatio(9, $period_calculation);
+                $grafic_one = json_encode($grafic_one);
+                $this->cache->put('grafic_one', $grafic_one, 1);
+                //dd($grafic_one);
+            }
+            $grafic_one = $this->cache->get('grafic_one');
 
 
             $classifiers = Classifier::where('use_classify', 1)

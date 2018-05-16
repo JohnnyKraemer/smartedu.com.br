@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class Student extends Model
 {
     protected $table = 'student';
-    protected $appends = ['last_details', 'course', 'campus', 'situation', 'prob_evaded'];
+    protected $appends = ['last_details', 'course','course_name', 'campus', 'situation', 'prob_evaded'];
 
     protected $fillable = [
         'id',

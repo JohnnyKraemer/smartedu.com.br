@@ -316,12 +316,12 @@
                 <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Sem/Ano Ingresso</th>
+                    <th>Ingresso</th>
                     <th>Período</th>
                     <th>Cota</th>
                     <th>Quant. Sem. Cursados</th>
                     <th>Prob. Evasão</th>
-                    <th>Status</th>
+                    <th>Situação</th>
                     <th>Status</th>
                 </tr>
                 </thead>
@@ -343,7 +343,7 @@
                         <td>
                             <a href="{{ url('/admin/student/'.$object->id) }}">{{ucwords(strtolower($object->name))}}</a>
                         </td>
-                        <td>{{$object->semester_situation}}/{{$object->year_situation}}</td>
+                        <td>{{$object->semester_ingress}}/{{$object->year_ingress}}</td>
                         <td>{{$object->period}}</td>
                         <td>{{$object->quota}}</td>
                         <td>{{$object->semesters}}</td>
@@ -365,16 +365,16 @@
         $(document).ready(function () {
             var students_by_period = JSON.parse({!! json_encode($students_by_period) !!});
             var students_by_idade_ingresso = JSON.parse({!! json_encode($students_by_idade_ingresso) !!});
-            var students_by_idade_situacao = JSON.parse({!! json_encode($students_by_idade_situacao) !!});
+            var students_by_idade_situacao = JSON.parse({!! json_encode($students_by_age_situation) !!});
             var students_by_semesters = JSON.parse({!! json_encode($students_by_semesters) !!});
             var students_by_genre = JSON.parse({!! json_encode($students_by_genre) !!});
             var students_by_ano_semestre = JSON.parse({!! json_encode($students_by_ano_semestre) !!});
 
 
-            var ocultas = null;
+            var ocultas = [3,4];
             var texto = [0];
-            var selecionar = [1, 2];
-            var table = initTable(true, false, texto, selecionar, ocultas);
+            var selecionar = [1, 2, 3, 4, 5, 6, 7];
+            var table = initTable(true, true, texto, selecionar, ocultas);
 
             students_by_semesters = normalizeData(students_by_semesters);
             AmCharts.makeChart("chart_students_by_semesters", {
@@ -388,6 +388,8 @@
                     "enabled": true
                 },
                 "valueScrollbar": {
+                    "enabled": true
+                }, "export": {
                     "enabled": true
                 },
                 "graphs": [
@@ -435,6 +437,8 @@
                 },
                 "valueScrollbar": {
                     "enabled": true
+                }, "export": {
+                    "enabled": true
                 },
                 "graphs": [
                     {
@@ -480,6 +484,8 @@
                     "enabled": true
                 },
                 "valueScrollbar": {
+                    "enabled": true
+                }, "export": {
                     "enabled": true
                 },
                 "graphs": [
@@ -527,6 +533,8 @@
                 },
                 "valueScrollbar": {
                     "enabled": true
+                }, "export": {
+                    "enabled": true
                 },
                 "graphs": [
                     {
@@ -564,6 +572,8 @@
                         "enabled": true
                     },
                     "valueScrollbar": {
+                        "enabled": true
+                    }, "export": {
                         "enabled": true
                     },
                     "trendLines": [],
@@ -627,6 +637,8 @@
                         "enabled": true
                     },
                     "valueScrollbar": {
+                        "enabled": true
+                    }, "export": {
                         "enabled": true
                     },
                     "trendLines": [],

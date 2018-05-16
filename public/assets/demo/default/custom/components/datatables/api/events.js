@@ -12,14 +12,10 @@ var DefaultDatatableDemo = function () {
 				type: 'remote',
 				source: {
 					read: {
-						url: 'http://keenthemes.com/metronic/preview/inc/api/datatables/demos/default.php'
+						url: 'https://keenthemes.com/metronic/preview/inc/api/datatables/demos/default.php'
 					}
 				},
 				pageSize: 5, // display 20 records per page
-				saveState: {
-					cookie: true,
-					webstorage: true
-				}, // save datatable state(pagination, filtering, sorting, etc) in cookie or browser webstorage
 				serverPaging: true,
 				serverFiltering: true,
 				serverSorting: true
@@ -34,7 +30,7 @@ var DefaultDatatableDemo = function () {
 				footer: false // display/hide footer
 			},
 
-			// column sorting(refer to Kendo UI)
+			// column sorting
 			sortable: true,
 
 			// toolbar
@@ -50,6 +46,10 @@ var DefaultDatatableDemo = function () {
 						pageSizeSelect: [5, 10, 20, 30, 50] // display dropdown to select pagination size. -1 is used for "ALl" option
 					},
 				}
+			},
+
+			search: {
+				input: $('#generalSearch')
 			},
 
 			// columns definition
@@ -124,9 +124,8 @@ var DefaultDatatableDemo = function () {
 				title: "Actions",
 				sortable: false,
 				overflow: 'visible',
-				template: function (row) {
-					var dropup = (row.getDatatable().getPageSize() - row.getIndex()) <= 4 ? 'dropup' : '';
-					
+				template: function (row, index, datatable) {
+					var dropup = (datatable.getPageSize() - index) <= 4 ? 'dropup' : '';
 					return '\
 						<div class="dropdown '+ dropup +'">\
 							<a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">\
@@ -149,20 +148,6 @@ var DefaultDatatableDemo = function () {
 			}]
 		});
 
-		var query = datatable.getDataSourceQuery();
-
-		$('#m_form_search').on('keyup', function (e) {
-			// shortcode to datatable.getDataSourceParam('query');
-			var query = datatable.getDataSourceQuery();
-			query.generalSearch = $(this).val().toLowerCase();
-			// shortcode to datatable.setDataSourceParam('query', query);
-			datatable.setDataSourceQuery(query);
-			datatable.load();
-		}).val(query.generalSearch);
-
-		$('#m_form_status, #m_form_type').selectpicker();
-
-
 		$('#m_datatable_clear').on('click', function () {
 			$('#m_datatable_console').html('');
 		});
@@ -183,7 +168,7 @@ var DefaultDatatableDemo = function () {
 			.on('m-datatable--on-ajax-done', function () {
 				eventsWriter('Ajax data successfully updated');
 			})
-			.on('m-datatable--on-ajax-fail', function () {
+			.on('m-datatable--on-ajax-fail', function (e, jqXHR) {
 				eventsWriter('Ajax error');
 			})
 			.on('m-datatable--on-goto-page', function (e, args) {

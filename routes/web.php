@@ -11,12 +11,16 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth', 'namespace' => 'admi
         return redirect('/admin/student/1');
     });
     Route::get('/course/{id}', 'CourseController@index');
-    Route::get('/position', 'PositionController@index')->name('position');
     Route::get('/student/{id}', 'StudentController@index')->name('student');
+});
+
+Route::group(['prefix' => '/admin', 'middleware' => 'admin', 'namespace' => 'admin'], function () {
+    Route::get('/position', 'PositionController@index')->name('position');
     Route::resource('/user', 'UserController');
     Route::post('/user/delete', 'UserController@destroy');
     Route::resource('/situation', 'SituationController', ['as' => 'situation']);
 });
+
 
 Route::group(['prefix' => '/admin/institution', 'middleware' => 'institution', 'namespace' => 'admin'], function () {
     Route::get('/', 'InstitutionController@index');

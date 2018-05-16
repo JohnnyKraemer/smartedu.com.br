@@ -46,7 +46,6 @@
                                 </select>
                             </h3>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -365,7 +364,7 @@
             <table id="table" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>Sem/Ano Situação</th>
                     <th>CR</th>
                     <th>Disc. Aprovadas</th>
                     <th>Disc. Consignadas</th>

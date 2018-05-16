@@ -18,3 +18,38 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 </IfModule>
+
+# Ativa o cache
+<FilesMatch "\.(?i:ico|gif|jpe?g|png|css|js|svg)$">
+    <IfModule mod_expires.c>
+        ExpiresActive On
+    </IfModule>
+
+    FileETag None
+</FilesMatch>
+
+# Cache de 1 semana pras imagens
+<FilesMatch "\.(?i:gif|jpg|jpeg|png)$">
+    <IfModule mod_expires.c>
+        ExpiresDefault "access plus 1 mouth"
+    </IfModule>
+</FilesMatch>
+
+# Cache de 1 ano pros icones (geralmente favicon)
+<FilesMatch "\.(?i:ico)$">
+    <IfModule mod_expires.c>
+        ExpiresDefault "access plus 1 year"
+    </IfModule>
+</FilesMatch>
+
+# Cache de 6 meses pra arquivos js e css
+<FilesMatch "\.(?i:css|js)$">
+    <IfModule mod_expires.c>
+        ExpiresDefault "access plus 6 mouths"
+    </IfModule>
+</FilesMatch>
+
+# Remove o Etag no final
+<FilesMatch "\.(?i:ico|gif|jpg|jpeg|png|css|js|svg)$">
+    FileETag None
+</FilesMatch>

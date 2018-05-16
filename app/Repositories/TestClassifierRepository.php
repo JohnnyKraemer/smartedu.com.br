@@ -43,10 +43,13 @@ class TestClassifierRepository extends AbstractRepository
     {
         return DB::select('SELECT SUM(test_classifier.success) AS success,
                                  SUM(test_classifier.failure) AS failure,
+                                 SUM(test_classifier.neuter) AS neuter,
                                  SUM(test_classifier.success_evaded) AS success_evaded,
                                  SUM(test_classifier.failure_evaded) AS failure_evaded,
+                                 SUM(test_classifier.neuter_evaded) AS neuter_evaded,
                                  SUM(test_classifier.success_not_evaded) AS success_not_evaded,
-                                 SUM(test_classifier.failure_not_evaded) AS failure_not_evaded
+                                 SUM(test_classifier.failure_not_evaded) AS failure_not_evaded,
+                                 SUM(test_classifier.neuter_not_evaded) AS neuter_not_evaded
                                  FROM test_classifier
                                  LEFT JOIN classifier
                                  ON test_classifier.classifier_id = classifier.id

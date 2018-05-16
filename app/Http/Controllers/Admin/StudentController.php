@@ -17,8 +17,12 @@ class StudentController extends Controller
     private $name;
     private $student_repository;
     private $detail_repository;
+    private $cache;
+    private $time_cache;
 
-    public function __construct(StudentRepository $student_repository, DetailRepository $detailRepository)
+    public function __construct(StudentRepository $student_repository,
+                                DetailRepository $detailRepository,
+                                \Illuminate\Cache\Repository $cache)
     {
         $this->way = array();
         array_push($this->way, 'admin.student.');
@@ -27,7 +31,8 @@ class StudentController extends Controller
         $this->name = 'aluno';
         $this->student_repository = $student_repository;
         $this->detailRepository = $detailRepository;
-
+        $this->cache = $cache;
+        $this->time_cache = 60;
     }
 
     /**
@@ -47,7 +52,7 @@ class StudentController extends Controller
 
                     $students = $this->student_repository->getStudents(
                         array(0 => "student.id", 1 => "student.name", 2 => "course.name AS course_name", 3 => "student.code"),
-                        array(array(0 => "course.id", 1 => " = ", 2 => $object->course_id)),
+                        array(array(0 => "1", 1 => " = ", 2 => 1)),
                         array(0 => "student.id", 1 => "student.name", 2 => "course_name", 3 => "student.code")
                     );
 
@@ -65,21 +70,24 @@ class StudentController extends Controller
                     //dd($courses);
                     $wher = "";
 
-                    for ($i = 0; $i < count($courses); $i++){
-                        if($i == (count($courses)-1)){
-                            $wher = $wher . " course.id = ".$courses[$i]->id;
-                        }else{
-                            $wher = $wher . " course.id = ".$courses[$i]->id." OR";
+                    for ($i = 0; $i < count($courses); $i++) {
+                        if ($i == (count($courses) - 1)) {
+                            $wher = $wher . " course.id = " . $courses[$i]->id;
+                        } else {
+                            $wher = $wher . " course.id = " . $courses[$i]->id . " OR";
                         }
 
                     }
-                    //dd($wher);
-                    $students = $this->student_repository->getStudents(
-                        array(0 => "student.id", 1 => "student.name", 2 => "course.name", 3 => "student.code"),
-                        array(array(0 => " ", 1 => " ", 2 => " ".$wher)),
-                        array(0 => "student.id", 1 => "student.name", 2 => "course.name", 3 => "student.code")
-                    );
 
+                    if (!$this->cache->has('students')) {
+                        $students = $this->student_repository->getStudents(
+                            array(0 => "student.id", 1 => "student.name", 2 => "course.name AS course_name", 3 => "student.code"),
+                            array(array(0 => " ", 1 => " ", 2 => " " . $wher)),
+                            array(0 => "student.id", 1 => "student.name", 2 => "course_name", 3 => "student.code")
+                        );
+                        $this->cache->put('students', $students, $this->time_cache);
+                    }
+                    $students = $this->cache->get('students');
 
                     foreach ($students as $student) {
                         if ($student->id == $id) {

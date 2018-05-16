@@ -111,7 +111,7 @@
                                     <div class="m--space-10"></div>
                                     <div class="progress m-progress--sm">
                                         <div class="progress-bar m--bg-warning" role="progressbar"
-                                             style="width: {{$total_by_situation_short[2]->percent}}%;"
+                                             style="width: {{ number_format((($total_not_evaded_high_prob/$total_by_situation_short[0]->total)*100),2) }}%;"
                                              aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span class="m-widget24__change">
@@ -387,6 +387,7 @@
             students_by_semesters = normalizeData(students_by_semesters);
             AmCharts.makeChart("chart_students_by_semesters", {
                 "type": "serial",
+                "language": "pt",
                 "categoryField": "category",
                 "startDuration": 1,
                 "categoryAxis": {
