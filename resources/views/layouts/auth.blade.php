@@ -21,9 +21,9 @@
 
     <!--============================ Stylesheets ============================-->
     <link href="<?php echo asset('assets/vendors/base/vendors.bundle.css') ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo asset('assets/demo/demo5/base/style.bundle.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo asset('assets/demo/default/base/style.bundle.css') ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo asset('assets/charts/amcharts/plugins/export/export.css') ?>" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="<?php echo asset('assets/demo/demo5/media/img/logo/favicon.ico') ?>" /> @yield('stylesheets')
+    <link rel="shortcut icon" href="<?php echo asset('assets/demo/default/media/img/logo/favicon.ico') ?>" /> @yield('stylesheets')
 </head>
 
 <body class="m-page--wide m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default" style="background-color: #f2f3f8;" >
@@ -74,7 +74,7 @@
 
     <!--begin::Base Scripts -->
     <script src="<?php echo asset('assets/vendors/base/vendors.bundle.js') ?>" type="text/javascript"></script>
-    <script src="<?php echo asset('assets/demo/demo5/base/scripts.bundle.js') ?>" type="text/javascript"></script>
+    <script src="<?php echo asset('assets/demo/default/base/scripts.bundle.js') ?>" type="text/javascript"></script>
     <!--end::Base Scripts -->
     <!--begin::Page Snippets -->
     <!--end::Page Snippets -->
