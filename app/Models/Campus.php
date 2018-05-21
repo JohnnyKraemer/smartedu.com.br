@@ -128,7 +128,7 @@ class Campus extends Model
                                 WHERE test_classifier.type = 9
                                 AND test_classifier.period_calculation = (SELECT MAX(test_classifier.period_calculation) AS period_calculation FROM test_classifier WHERE test_classifier.type = 9)
                                 AND probability.situation = "Não Evadido"
-                                AND probability.probability_evasion > 0.5
+                                AND probability.probability_evasion > 0.7
                                 AND course.campus_id = :campus', ['campus' => $this->id])[0]->total;
     }
 

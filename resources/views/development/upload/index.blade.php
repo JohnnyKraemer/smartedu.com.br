@@ -169,7 +169,7 @@
 			success: function (result) {
 				array[position].message = "Sucesso ao fazer upload.";
 				array[position].state = 2;
-				//updateTable();
+				updateTable();
 				console.log("Sucesso ao fazer upload!");
 				console.log(result);
 				mApp.unblockPage();
@@ -177,7 +177,7 @@
 			error: function (result) {
 				array[position].message = "Arquivo fora do padrão.";
 				array[position].state = 1;
-				//updateTable();
+				updateTable();
 				console.log("Erro ao fazer upload!");
 				console.log(result);
 				mApp.unblockPage();

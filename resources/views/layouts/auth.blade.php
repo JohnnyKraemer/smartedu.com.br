@@ -41,10 +41,7 @@
                     <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
                         <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 								<span class="m-footer__copyright">
-									2018 &copy; Desenvolvido por
-									<a href="#" class="m-link">
-										InnovaSis
-									</a>
+									2018 &copy; Desenvolvido por SmartEdu
 								</span>
                         </div>
                         <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
@@ -52,7 +49,7 @@
                                 <li class="m-nav__item">
                                     <a href="#" class="m-nav__link">
 											<span class="m-nav__link-text">
-												Sobre
+												Início
 											</span>
                                     </a>
                                 </li>

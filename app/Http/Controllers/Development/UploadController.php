@@ -285,16 +285,6 @@ class UploadController extends Controller
                 $quant = $quant + 1;
             }
 
-            //$courses = \App\Models\Course::all();
-
-            //foreach ($courses as $course){
-            //    if($course->students_formed > 50 && $course->students_evaded > 50){
-            //        $course->use_classify = 1;
-            //     }else{
-            //         $course->use_classify = 0;
-            //    }
-            // }
-
             $result = [
                 "campus" => $count_campus,
                 "courses" => $count_courses,

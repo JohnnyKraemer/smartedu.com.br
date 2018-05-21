@@ -82,5 +82,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="smcti.patobranco.pr.gov.br" />
     <orderEntry type="module" module-name="conselhodacriancapb" />
+    <orderEntry type="module" module-name="smcti.patobranco.pr.gov.br" />
   </component>
 </module>

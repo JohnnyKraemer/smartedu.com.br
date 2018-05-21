@@ -111,14 +111,14 @@
                                     <div class="m--space-10"></div>
                                     <div class="progress m-progress--sm">
                                         <div class="progress-bar m--bg-warning" role="progressbar"
-                                             style="width: {{ number_format((($total_not_evaded_high_prob/$total_by_situation_short[0]->total)*100),2) }}%;"
+                                             style="width: {{ number_format((($total_not_evaded_high_prob/$total_by_situation_short[2]->total)*100),2) }}%;"
                                              aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <span class="m-widget24__change">
                                         Percentual:
                                     </span>
                                     <span class="m-widget24__number">
-                                        {{ number_format((($total_not_evaded_high_prob/$total_by_situation_short[0]->total)*100),2) }}
+                                        {{ number_format((($total_not_evaded_high_prob/$total_by_situation_short[2]->total)*100),2) }}
                                         %
                                     </span>
                                 </div>

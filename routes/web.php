@@ -15,10 +15,10 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth', 'namespace' => 'admi
 });
 
 Route::group(['prefix' => '/admin', 'middleware' => 'admin', 'namespace' => 'admin'], function () {
-    Route::get('/position', 'PositionController@index')->name('position');
+    Route::get('/position', 'PositionController@index');
     Route::resource('/user', 'UserController');
     Route::post('/user/delete', 'UserController@destroy');
-    Route::resource('/situation', 'SituationController', ['as' => 'situation']);
+    Route::resource('/situation', 'SituationController');
 });
 
 

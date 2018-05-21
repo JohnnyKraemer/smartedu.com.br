@@ -57,7 +57,7 @@
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        Alunos
+                        Resultado Classificação por Curso
                     </h3>
                 </div>
             </div>
@@ -70,12 +70,12 @@
                     <th>Variaveis</th>
                     <th>Campus</th>
                     <th>Curso</th>
-                    <th>Sucesso %</th>
+                    <th>Sucesso(%)</th>
                     <th>Sucesso</th>
-                    <th>Intervalo %</th>
+                    <th>Intervalo(%)</th>
                     <th>Intervalo</th>
-                    <th>Falha %</th>
-                    <th>Falha</th>
+                    <th>Falha(%)</th>
+                    <th>Falha </th>
                 </tr>
                 </thead>
                 <tbody>

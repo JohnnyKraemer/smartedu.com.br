@@ -31,7 +31,6 @@ class UserController extends Controller
             'same' => 'Os campos :attribute e :other devem ser iguais.',
             'size' => 'O campo :attribute deve ter o tamnho igual a :size.',
             'between' => 'O campo :attribute deve ter um valor entre :min e :max.',
-            //'in' => 'The :attribute must be one of the following types: :values',
             'unique' => 'Este :attribute já está em uso.',
             'min' => 'O :attribute deve ter no mínimo :min caracteres.',
             'max' => 'O :attribute deve ter no máximo :min caracteres.',
@@ -53,11 +52,8 @@ class UserController extends Controller
                 $objects = ObjectClass::where('position_id', '!=' ,1)
                     ->orderBy('position_id', 'asc')
                     ->get();
-
             }
-
-
-            return view($this->way[0] . 'index', compact([
+            return view('admin.user.index', compact([
                 'objects', $objects,
             ]));
         } catch (Exception $e) {

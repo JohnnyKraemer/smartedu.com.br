@@ -33,12 +33,12 @@
                                     @foreach($students as $student)
                                         @if($student->id == $object->id)
                                             <option value="{{$student->id}}" selected>
-                                                {{$student->code}} - {{ucwords(strtolower($student->name))}}
+                                                {{$student->code}} - Aluno ({{$student->code}})
                                                 - {{$student->course_name}}
                                             </option>
                                         @else
                                             <option value="{{$student->id}}">
-                                                {{$student->code}} - {{ucwords(strtolower($student->name))}}
+                                                {{$student->code}} - Aluno ({{$student->code}})
                                                 - {{$student->course_name}}
                                             </option>
                                         @endif
@@ -66,15 +66,18 @@
                             </div>
                         </div>
                         <div class="m-card-profile__details">
-                            <span class="m-card-profile__name">
+                            {{--<span class="m-card-profile__name">
                                 {{ucwords(strtolower($object->name))}}
+                            </span>--}}
+                            <span class="m-card-profile__name">
+                                Aluno ({{$object->code}})
                             </span>
                             <br/>
-                            <a href="" class="m-card-profile__email m-link">
+                            <a class="m-card-profile__email m-link">
                                 {{$object->course}}
                             </a>
                             <br/>
-                            <a href="" class="m-card-profile__email m-link">
+                            <a class="m-card-profile__email m-link">
                                 {{$object->campus}}
                             </a>
                         </div>
@@ -165,7 +168,8 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{ucwords(strtolower($object->name))}}
+                                        {{--{{ucwords(strtolower($object->name))}}--}}
+                                        Aluno ({{$object->code}})
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -355,7 +359,8 @@
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        Detalhes por Semestre Cursado - {{ucwords(strtolower($object->name))}}
+                        Detalhes por Semestre Cursado - Aluno ({{$object->code}})
+                        {{--{{ucwords(strtolower($object->name))}}--}}
                     </h3>
                 </div>
             </div>

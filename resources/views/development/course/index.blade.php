@@ -13,10 +13,7 @@
             <table id="table" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
-                    <th rowspan="2">Nome</th>
-                    <th colspan="6">Alunos</th>
-                </tr>
-                <tr>
+                    <th>Curso</th>
                     <th>Evadidos</th>
                     <th>Não Evadidos</th>
                     <th>Formados</th>

@@ -46,7 +46,7 @@ class InstitutionController extends Controller
     public function index(Request $request)
     {
         try {
-            if (!$this->cache->has('if_cache_institution1')) {
+            if (!$this->cache->has('if_cache_institution')) {
                 $campus = Campus::all();
                 $this->cache->put('campus__institution', $campus, $this->time_cache);
 
@@ -69,7 +69,7 @@ class InstitutionController extends Controller
                                         WHERE test_classifier.type = 9
                                         AND test_classifier.period_calculation = (SELECT MAX(test_classifier.period_calculation) AS period_calculation FROM test_classifier WHERE test_classifier.type = 9)
                                         AND probability.situation = "Não Evadido"
-                                        AND probability.probability_evasion > 0.5')[0]->total;
+                                        AND probability.probability_evasion > 0.7')[0]->total;
                 $this->cache->put('total_not_evaded_high_prob_institution', $total_not_evaded_high_prob, $this->time_cache);
 
                 foreach ($total_by_situation_short as $totals) {

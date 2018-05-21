@@ -35,14 +35,6 @@
                     <th>Ações</th>
                 </tr>
                 </thead>
-                <tfoot>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </tfoot>
                 <tbody>
                 @foreach ($objects as $object)
                     <tr>
@@ -123,7 +115,7 @@
 
 
         $(document).ready(function () {
-            var table = initTable(true, true,texto,selecionar,ocultas);
+            var table = initTable(true, false,texto,selecionar,ocultas);
         });
     </script>
 @endsection
