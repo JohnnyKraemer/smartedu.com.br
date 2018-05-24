@@ -341,7 +341,7 @@
                 @foreach ($objects as $object)
                     <tr>
                         <td>
-                            <a href="{{ url('/admin/student/'.$object->id) }}">Aluno ({{$object->code}})</a>
+                            <a href="{{ url('/admin/student/'.$object->id) }}">{{--Aluno ({{$object->code}})--}}########</a>
                         </td>
                         <td>{{$object->semester_ingress}}/{{$object->year_ingress}}</td>
                         <td>{{$object->period}}</td>

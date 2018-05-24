@@ -210,7 +210,7 @@
                     </li>
                     @if(auth()->user()->position_id == 1 || auth()->user()->position_id == 2 || auth()->user()->position_id == 3)
 
-                        <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
+                        {{--<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
                             data-menu-submenu-toggle="hover">
                             <a href="#" class="m-menu__link m-menu__toggle">
                                 <i class="m-menu__link-icon fa fa-gears"></i>
@@ -256,8 +256,8 @@
 
                                 </ul>
                             </div>
-                        </li>
-                        <!--
+                        </li>--}}
+
                         <li class="m-menu__section">
                             <h4 class="m-menu__section-text">
                                 Administrativo
@@ -300,7 +300,7 @@
 					        </span>
                             </a>
                         </li>
-                        -->
+
                     @endif
                     @if(auth()->user()->position_id == 1)
                         <li class="m-menu__section">
@@ -429,10 +429,10 @@
             </div>
         </div>
     </footer>
-    <div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500"
+  {{--  <div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500"
          data-scroll-speed="300">
         <i class="la la-arrow-up"></i>
-    </div>
+    </div>--}}
     <script src="<?php echo asset('assets/vendors/base/vendors.bundle.js') ?>" type="text/javascript"></script>
     <script src="<?php echo asset('assets/demo/default/base/scripts.bundle.js') ?>" type="text/javascript"></script>
     <script src="<?php echo asset('assets/js/notification.js') ?>" type="text/javascript"></script>

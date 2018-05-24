@@ -7,6 +7,30 @@
 
 @section('content')
     <div class="row">
+        <div class="col-lg-12">
+            <div class="m-portlet m-portlet--tab">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title" style="width: 100%;">
+                            <span class="m-portlet__head-icon m--hide">
+                              <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text" style="text-align: left; width: 80%;">
+                                <a href="{{ url('/development/classify/classify') }}"
+                                   class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                            <span>
+                                <span>Gerar Classificação</span>
+                            </span>
+                                </a>
+                            </h3>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-5">
             <!--begin::Portlet-->
             <div class="m-portlet m-portlet--tab">
@@ -57,7 +81,7 @@
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        Resultado Classificação por Curso
+                        Resultado da Classificação por Curso
                     </h3>
                 </div>
             </div>

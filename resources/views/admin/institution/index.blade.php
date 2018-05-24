@@ -346,7 +346,7 @@
                     <th>Não Evadidos</th>
                     <th>Formados</th>
                     <th>Total</th>
-                    <th>APE</th>
+                    <th>AAPE</th>
                 </tr>
                 </thead>
                 <tbody>

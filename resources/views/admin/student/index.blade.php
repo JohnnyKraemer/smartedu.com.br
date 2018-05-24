@@ -70,7 +70,8 @@
                                 {{ucwords(strtolower($object->name))}}
                             </span>--}}
                             <span class="m-card-profile__name">
-                                Aluno ({{$object->code}})
+                                {{--Aluno ({{$object->code}})--}}
+                                ########
                             </span>
                             <br/>
                             <a class="m-card-profile__email m-link">
@@ -169,7 +170,8 @@
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
                                         {{--{{ucwords(strtolower($object->name))}}--}}
-                                        Aluno ({{$object->code}})
+                                        {{--Aluno ({{$object->code}})--}}
+                                        ########
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -179,7 +181,8 @@
                                     </label>
                                     <label for="example-text-input" class="col-7 col-form-label"
                                            style="text-align: left; font-weight: bold;">
-                                        {{$object->code}}
+                                        {{--{{$object->code}}--}}
+                                        ########
                                     </label>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -359,7 +362,7 @@
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        Detalhes por Semestre Cursado - Aluno ({{$object->code}})
+                        Detalhes por Semestre Cursado
                         {{--{{ucwords(strtolower($object->name))}}--}}
                     </h3>
                 </div>

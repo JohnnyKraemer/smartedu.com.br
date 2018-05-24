@@ -1,6 +1,7 @@
 <?php
 Auth::routes();
 Route::get('/', 'Admin\InstitutionController@index')->middleware('institution');
+Route::get('/teste', 'HomeController@index');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => '/admin', 'middleware' => 'auth', 'namespace' => 'admin'], function () {
