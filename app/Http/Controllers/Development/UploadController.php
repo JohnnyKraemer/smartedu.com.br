@@ -60,7 +60,7 @@ class UploadController extends Controller
     public function upload(Request $request)
     {
         $data = $request->get('data');
-        $quant = 0;
+        $amount_data = 0;
         $count_courses = 0;
         $count_campus = 0;
         $count_students = 0;
@@ -160,8 +160,6 @@ class UploadController extends Controller
                         $enemNatureza = null;
                         $enemRedacao = null;
                         $notaFinalSISU = null;
-
-
                         if ($mydata["Nota ENEM Humanas"] != "-") {
                             $enemHumanas = $mydata["Nota ENEM Humanas"];
                         }
@@ -256,7 +254,6 @@ class UploadController extends Controller
                         } else {
                             $cr = null;
                         }
-
                         $detail = Detail::create([
                             'loading_period' => $loading_period,
                             'period' => $mydata["Período"],
@@ -275,14 +272,12 @@ class UploadController extends Controller
                             'situation_id' => $situation->id,
                             'student_id' => $student,
                         ]);
-                        //$student = Student::find($student);
-                        //$student->detail()->attach($detail);
                         $count_details = $count_details + 1;
                     }
                 } catch (Exception $e) {
                     return "Erro ao criar/buscar o Detalhe!";
                 }
-                $quant = $quant + 1;
+                $amount_data = $amount_data + 1;
             }
 
             $result = [
@@ -290,7 +285,7 @@ class UploadController extends Controller
                 "courses" => $count_courses,
                 "students" => $count_students,
                 "details" => $count_details,
-                "amount_data" => $quant
+                "amount_data" => $amount_data
             ];
 
             return $result;

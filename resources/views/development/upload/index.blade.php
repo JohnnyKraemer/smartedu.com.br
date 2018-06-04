@@ -187,7 +187,7 @@
 
 	function upload(position){
 		try {
-			var rABS = true; // true: readAsBinaryString ; false: readAsArrayBuffer
+			var rABS = true;
 			var f = array_files[position];
 
 			var reader = new FileReader();
@@ -201,9 +201,6 @@
 					dateNF:"yyyy-mm-dd"});
 
 				var worksheets = [];
-
-
-
 				for (var i = 0; i < workbook.SheetNames.length; ++i) {
 					var worksheet = workbook.Sheets[workbook.SheetNames[i]];
 					var cell = worksheet[XLSX.utils.encode_cell({c: 0, r: 0})];
@@ -223,31 +220,6 @@
 
 				if(worksheets.length){
 					worksheets.forEach(function (item) {
-					    //console.log(item);
-                        /*
-					    var quant = parseInt(item.length / 10);
-                        var students;
-
-                        var inicio = 0;
-                        var final = quant;
-
-                        console.log(quant);
-
-					    for(var i = 1; i <= 10; i++){
-					        console.log(inicio);
-                            console.log(final);
-                            students = item.slice(inicio, final);
-                            send_data(students, position);
-
-                            if(i == 9){
-                                inicio = final +1;
-                                final = item.length;
-                            }else{
-                                inicio = final + 1;
-                                final = inicio + quant;
-                            }
-                        }
-                         */
                         send_data(item, position);
 					});
 				}else{

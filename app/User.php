@@ -14,25 +14,23 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $table = 'user';
-    protected $appends = ['position', 'campus', 'courses'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password', 'status', 'position_id', 'campus_id',
     ];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    protected $appends = ['position', 'campus', 'courses'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+
 
     public function position()
     {
