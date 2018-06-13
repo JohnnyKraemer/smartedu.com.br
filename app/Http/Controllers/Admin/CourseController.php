@@ -106,7 +106,7 @@ class CourseController extends Controller
                 )
             )[0];
 
-            if (!$this->cache->has('if_cache_course1')) {
+            if (!$this->cache->has('if_cache_course12')) {
                 $objects =
                     $this->student_repository->getStudentsProbability(
                         array(

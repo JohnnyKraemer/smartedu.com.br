@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../conselhodacriancapb/.idea/conselhodacriancapb.iml" filepath="$PROJECT_DIR$/../conselhodacriancapb/.idea/conselhodacriancapb.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/smartedu.com.br.iml" filepath="$PROJECT_DIR$/.idea/smartedu.com.br.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../smcti.patobranco.pr.gov.br/.idea/smcti.patobranco.pr.gov.br.iml" filepath="$PROJECT_DIR$/../smcti.patobranco.pr.gov.br/.idea/smcti.patobranco.pr.gov.br.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../smcti/.idea/smcti.iml" filepath="$PROJECT_DIR$/../smcti/.idea/smcti.iml" />
       <module fileurl="file://$PROJECT_DIR$/../smcti.patobranco.pr.gov.br/.idea/smcti.patobranco.pr.gov.br.iml" filepath="$PROJECT_DIR$/../smcti.patobranco.pr.gov.br/.idea/smcti.patobranco.pr.gov.br.iml" />
     </modules>
   </component>

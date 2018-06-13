@@ -33,7 +33,7 @@ class CampusController extends Controller
         array_push($this->way, 'admin.campus.');
         array_push($this->way, 'admin/campus');
 
-        $this->name = 'campus';
+        $this->name = 'câmpus';
         $this->repository = $repository;
         $this->test_classifier_repository = $test_classifier_repository;
         $this->student_repository = $student_repository;
@@ -75,7 +75,7 @@ class CampusController extends Controller
                 $campus[1] = $object;
             }
 
-            if (!$this->cache->has('if_cache_campus')) {
+            if (!$this->cache->has('if_cache_campus1')) {
                 $objects = $this->course_repository->findBy(
                     array(
                         array(0 => "campus_id", 1 => "=", 2 => $id)

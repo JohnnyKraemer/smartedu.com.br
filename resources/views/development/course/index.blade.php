@@ -13,10 +13,12 @@
             <table id="table" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
+                    <th>Câmpus</th>
                     <th>Curso</th>
                     <th>Evadidos</th>
                     <th>Não Evadidos</th>
                     <th>Formados</th>
+                    <th>Outros</th>
                     <th>Total</th>
                     <th>Classificar</th>
                 </tr>
@@ -24,10 +26,12 @@
                 <tbody>
                 @foreach ($objects as $object)
                     <tr>
-                        <td><a href="{{ url('/admin/course/'.$object['id']) }}">{{$object['name']}}</a></td>
+                        <td>{{$object['campus']}}</td>
+                        <td>{{$object['name']}}</td>
                         <td>{{$object['students_evaded']}}</td>
                         <td>{{$object['students_not_evaded']}}</td>
                         <td>{{$object['students_formed']}}</td>
+                        <td>{{$object['students_others']}}</td>
                         <td>{{$object['students']}}</td>
                         <td>
                             @if($object['use_classify'] == 1)

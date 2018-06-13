@@ -14,6 +14,7 @@ class Course extends Model
         'students',
         'students_evaded',
         'students_not_evaded',
+        'students_others',
         'students_formed',
         'students_evaded_percent',
         'students_not_evaded_percent',
@@ -69,6 +70,17 @@ class Course extends Model
                             LEFT JOIN situation ON detail.situation_id = situation.id
                             WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
                             AND situation.situation_short = "Evadido"
+                            AND student.course_id = :course', ['course' => $this->id])[0]->total;
+    }
+
+    public function getStudentsOthersAttribute()
+    {
+        return DB::select('SELECT COUNT(student.id) AS total
+                            FROM student
+                            LEFT JOIN detail ON student.id = detail.student_id
+                            LEFT JOIN situation ON detail.situation_id = situation.id
+                            WHERE detail.loading_period = (SELECT MAX(detail.loading_period) FROM detail WHERE detail.student_id = student.id)
+                            AND situation.situation_short = "Outro"
                             AND student.course_id = :course', ['course' => $this->id])[0]->total;
     }
 

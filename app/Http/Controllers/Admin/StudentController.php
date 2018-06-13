@@ -79,7 +79,7 @@ class StudentController extends Controller
 
                     }
 
-                    if (!$this->cache->has('students')) {
+                    if (!$this->cache->has('students1')) {
                         $students = $this->student_repository->getStudents(
                             array(0 => "student.id", 1 => "student.name", 2 => "course.name AS course_name", 3 => "student.code"),
                             array(array(0 => " ", 1 => " ", 2 => " " . $wher)),
