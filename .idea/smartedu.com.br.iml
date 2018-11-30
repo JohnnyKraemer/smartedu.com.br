@@ -80,9 +80,14 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="smcti.patobranco.pr.gov.br" />
     <orderEntry type="module" module-name="conselhodacriancapb" />
-    <orderEntry type="module" module-name="smcti.patobranco.pr.gov.br" />
-    <orderEntry type="module" module-name="smcti" />
+    <orderEntry type="module" module-name="reverblog.github.io" />
+    <orderEntry type="module" module-name="Portifólio" />
+    <orderEntry type="module" module-name="Portifólio" />
+    <orderEntry type="module" module-name="quandomeninosviramhomens" />
+    <orderEntry type="module" module-name="padrao" />
+    <orderEntry type="module" module-name="mothapp.com.br" />
+    <orderEntry type="module" module-name="mothapp.com.br" />
+    <orderEntry type="module" module-name="llcm" />
   </component>
 </module>

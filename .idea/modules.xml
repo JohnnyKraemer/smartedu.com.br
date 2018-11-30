@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../reverblog.github.io/.idea/Portifólio.iml" filepath="$PROJECT_DIR$/../reverblog.github.io/.idea/Portifólio.iml" />
       <module fileurl="file://$PROJECT_DIR$/../conselhodacriancapb/.idea/conselhodacriancapb.iml" filepath="$PROJECT_DIR$/../conselhodacriancapb/.idea/conselhodacriancapb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../llcm/.idea/llcm.iml" filepath="$PROJECT_DIR$/../llcm/.idea/llcm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mothapp.com.br/.idea/mothapp.com.br.iml" filepath="$PROJECT_DIR$/../mothapp.com.br/.idea/mothapp.com.br.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../padrao/.idea/padrao.iml" filepath="$PROJECT_DIR$/../padrao/.idea/padrao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../quandomeninosviramhomens/.idea/quandomeninosviramhomens.iml" filepath="$PROJECT_DIR$/../quandomeninosviramhomens/.idea/quandomeninosviramhomens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../reverblog.github.io/.idea/reverblog.github.io.iml" filepath="$PROJECT_DIR$/../reverblog.github.io/.idea/reverblog.github.io.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/smartedu.com.br.iml" filepath="$PROJECT_DIR$/.idea/smartedu.com.br.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../smcti/.idea/smcti.iml" filepath="$PROJECT_DIR$/../smcti/.idea/smcti.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../smcti.patobranco.pr.gov.br/.idea/smcti.patobranco.pr.gov.br.iml" filepath="$PROJECT_DIR$/../smcti.patobranco.pr.gov.br/.idea/smcti.patobranco.pr.gov.br.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/smcti.patobranco.pr.gov.br/.idea/smcti.patobranco.pr.gov.br.iml" filepath="$USER_HOME$/Desktop/smcti.patobranco.pr.gov.br/.idea/smcti.patobranco.pr.gov.br.iml" />
     </modules>
   </component>
 </project>

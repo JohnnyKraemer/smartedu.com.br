@@ -33,13 +33,11 @@
                                     @foreach($students as $student)
                                         @if($student->id == $object->id)
                                             <option value="{{$student->id}}" selected>
-                                                {{$student->code}} - Aluno ({{$student->code}})
-                                                - {{$student->course_name}}
+                                                ########{{--{{$student->code}}--}} - {{$student->course_name}}
                                             </option>
                                         @else
                                             <option value="{{$student->id}}">
-                                                {{$student->code}} - Aluno ({{$student->code}})
-                                                - {{$student->course_name}}
+                                                ########{{--{{$student->code}}--}} - {{$student->course_name}}
                                             </option>
                                         @endif
                                     @endforeach
