@@ -91,9 +91,18 @@
     <orderEntry type="module" module-name="llcm" />
     <orderEntry type="module" module-name="smma" />
     <orderEntry type="module" module-name="themeforest-9228123-canvas-the-multipurpose-html5-template" />
-    <orderEntry type="module" module-name="inventum" />
     <orderEntry type="module" module-name="themeforest-23856018-ewent-event-conference-website-template" />
     <orderEntry type="module" module-name="base" />
     <orderEntry type="module" module-name="limitless-201" />
+    <orderEntry type="module" module-name="framework" />
+    <orderEntry type="module" module-name="ideias" />
+    <orderEntry type="module" module-name="inventum" />
+    <orderEntry type="module" module-name="jrfotografias" />
+    <orderEntry type="module" module-name="conexao" />
+    <orderEntry type="module" module-name="framework" />
+    <orderEntry type="module" module-name="inventuma" />
+    <orderEntry type="module" module-name="inventum" />
+    <orderEntry type="module" module-name="conexum" />
+    <orderEntry type="module" module-name="jrfotodesign" />
   </component>
 </module>

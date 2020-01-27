@@ -4,8 +4,15 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../reverblog.github.io/.idea/Portifólio.iml" filepath="$PROJECT_DIR$/../reverblog.github.io/.idea/Portifólio.iml" />
       <module fileurl="file://$PROJECT_DIR$/../base/.idea/base.iml" filepath="$PROJECT_DIR$/../base/.idea/base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../conexao/.idea/conexao.iml" filepath="$PROJECT_DIR$/../conexao/.idea/conexao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../conexum/.idea/conexum.iml" filepath="$PROJECT_DIR$/../conexum/.idea/conexum.iml" />
       <module fileurl="file://$PROJECT_DIR$/../conselhodacriancapb/.idea/conselhodacriancapb.iml" filepath="$PROJECT_DIR$/../conselhodacriancapb/.idea/conselhodacriancapb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../framework/.idea/framework.iml" filepath="$PROJECT_DIR$/../framework/.idea/framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ideias/.idea/ideias.iml" filepath="$PROJECT_DIR$/../ideias/.idea/ideias.iml" />
       <module fileurl="file://$PROJECT_DIR$/../inventum/.idea/inventum.iml" filepath="$PROJECT_DIR$/../inventum/.idea/inventum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../inventuma/.idea/inventuma.iml" filepath="$PROJECT_DIR$/../inventuma/.idea/inventuma.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../jrfotodesign/.idea/jrfotodesign.iml" filepath="$PROJECT_DIR$/../jrfotodesign/.idea/jrfotodesign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../jrfotografias/.idea/jrfotografias.iml" filepath="$PROJECT_DIR$/../jrfotografias/.idea/jrfotografias.iml" />
       <module fileurl="file://$PROJECT_DIR$/../themes/limitless-201/.idea/limitless-201.iml" filepath="$PROJECT_DIR$/../themes/limitless-201/.idea/limitless-201.iml" />
       <module fileurl="file://$PROJECT_DIR$/../llcm/.idea/llcm.iml" filepath="$PROJECT_DIR$/../llcm/.idea/llcm.iml" />
       <module fileurl="file://$PROJECT_DIR$/../mothapp.com.br/.idea/mothapp.com.br.iml" filepath="$PROJECT_DIR$/../mothapp.com.br/.idea/mothapp.com.br.iml" />

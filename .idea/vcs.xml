@@ -5,7 +5,10 @@
     <mapping directory="$PROJECT_DIR$/../base" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../bituruna" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../conselhodacriancapb" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../framework" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../ideias" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../inventum" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../jrfotodesign" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../llcm" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../reverblog.github.io" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../smcti.patobranco.pr.gov.br" vcs="Git" />
